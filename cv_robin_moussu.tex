@@ -1,0 +1,119 @@
+\documentclass[12pt,a4paper]{moderncv}
+\moderncvtheme[black]{custom}
+
+\usepackage[utf8]{inputenc}
+\usepackage[left=2.1cm, right=2.1cm, top=2.3cm, bottom=1.5cm]{geometry}
+\usepackage{relsize}
+\usepackage{bold-extra}
+\usepackage{lmodern}
+\usepackage{calc}
+
+% \input{style.sty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \setlength{\hintscolumnwidth}{22mm}
+
+\newcommand{\cvformation}{\cventry}
+% \newcommand{\cvformation}[7][.25em]{%
+%  \cvitem[#1]{#2}{%
+%    {\textbf{#3}}%
+%    \ifthenelse{\equal{#4}{}}{}{, {\textit{#4}}}%
+%    \ifthenelse{\equal{#5}{}}{}{, #5}%
+%    \ifthenelse{\equal{#6}{}}{}{, #6}%
+%    \ifx&#7&%
+%      \else{\hfill\small#7}\fi}
+%}
+
+\newcommand{\cvcomp}{\cventry}
+% \newcommand{\cvcomp}[7][.25em]{%
+%   \cvitem[#1]{#2}{%
+%     {\textbf{#3}}%
+% %
+%     \ifthenelse{\equal{#4}{}}{%
+%       \ifthenelse{\equal{#5}{}}{%
+%         \ifthenelse{\equal{#6}{}}{%
+%         }{\hfill#6}%
+%       }{\hfill#5}%
+%     }{\hfill\slshape#4}%
+% %
+%     \ifthenelse{\equal{#5}{}}{}{, #5}%
+%     \ifthenelse{\equal{#6}{}}{}{, #6}%
+%     \ifx&#7&%
+%       \else{\break\small#7}\fi}
+% }
+
+
+\newlength{\cvitemrightoffset}
+\setlength{\cvitemrightoffset}{1cm}
+\newcommand{\cventryright}[3][.25em]{%
+  \recomputecvlengths%
+  \begin{tabular}{@{}p{\cvitemrightoffset + \hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}p{\maincolumnwidth - \cvitemrightoffset}@{}}%
+ 	  \raggedleft\hintstyle{#2} &\raggedleft{#3}%
+  \end{tabular}%
+  \par\addvspace{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%C plus plus
+\newcommand\cpp{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\relsize{-3}{\textbf{++}}}}
+\newcommand\pic{\textsc{Pic}}
+\newcommand\stm{\textsc{Stm32}}
+\newcommand\uml{\textsc{Uml}}
+\newcommand\labview{Lab\textsc{view}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\firstname{Robin}
+\familyname{Moussu}
+\title{Développeur logiciel}
+\address{4 rue Pierre et Marie Curie}{38400 Saint-Martin d'Heres}
+\phone[mobile]{06 95 07 44 23}
+\email{robin.moussu@gmail.com}
+\extrainfo{
+  \linkedinsocialsymbol
+  \githubsocialsymbol
+  robinmoussu
+}
+\photo{photo.jpg}
+
+\begin{document}
+
+\maketitle
+
+\section{Formation}
+ 
+\cvformation{Depuis 2013}{Grenoble INP}{Grenoble}{Phelma puis Ensimag}{}{Spécialité en Systemes et Logiciels Embarqués}
+\cvformation{2011--2013}{DUT GEII}{IUT 1}{Grenoble}{}{Génie électronique et informatique industrielle}
+\cvformation{2010--2011}{Prépa intégré}{Esisar}{Valence}{}{Électronique, informatique, système embarqué et réseaux}
+\cvformation{2010}{Baccalauréat S}{Lycée Dominique Villars}{Gap}{}{Mention bien}
+
+\vspace{1em}
+
+\cvitemwithcomment{Anglais}{Compétences techniques, niveau C1}{Bulats: 79 (2014), Toeic: 740 (2013)}{}
+
+\section{Experience}
+
+\cvcomp{Depuis 2014}{Responsable informatique}{club de robotique de Phelma}{Grenoble}{}{}{}
+\cvcomp{Depuis 2011}{Responsable de classe}{Ensimag, Phelma et IUT}{Grenoble}{}{Participation au conseil d’administration (durant mon IUT)}
+\cvcomp{2015}{Contribution à Firefox}{Projet scolaire}{}{3 semaines, par groupe de 5}{}%{Correction de bugs et amélioration de la partie audio et graphique de Firefox}
+\cvcomp{2015}{Conception d'un compilateur}{Projet scolaire}{}{4 semaines, par groupe de 5}{}%{Implémentation en java d'un compilateur et de sa librairie mathématique pour le Déca, un langage proche du java}
+\cvcomp{2014}{Stage}{Kalray}{Montbonnot, Isère}{10 semaines}{\textbf{Description d'architecture processeur many-core} (ruby)}
+\cvcomp{2013}{Stage}{Max Technologies}{Brossard, \textbf{Canada}}{10 semaines}{\textbf{Portage de code} du langage C vers le langage \labview}
+
+\vspace{1em}
+
+\cvitem{Langages}{\textbf{\cpp}, \textbf{C}, \textbf{ruby}, ada, asm, java, vhdl}
+\cvitem{Embarqué}{\pic, \stm, arduino, rasberry pi}
+\cvitem{Autre}{\textbf{Linux}, Latex, \ldots}
+\cvitem{Outils}{\textbf{git}, gcc, clang, Doxygen} 
+\cvitem{Conception}{\uml, Design patterns} 
+
+\section{Centres d'intérêts}
+
+\cvitemwithcomment{Projet}{Conception d'un clavier ergonomique}{réalisation matérielle et logicielle}
+\cvitemwithcomment{Robotique}{Coupe de France}{club Robotronik de Phelma (103\textsuperscript{ème} en 2015, 91\textsuperscript{ème} en 2014)\\club de robotique de l'Esisar (en 2011)}
+\cvitemwithcomment{}{Coupe des IUT à Vierzon}{2012 (IUT GEII de Grenoble, demi-finale)}
+\cvitemwithcomment{Loisirs}{Jeu de société, vélo, escalade}{}
+
+\end{document}
