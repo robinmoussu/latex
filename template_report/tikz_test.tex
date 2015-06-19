@@ -3,7 +3,7 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage{fancyhdr}
 \usepackage{tikz}
-\usepackage[showboxes, absolute, overlay]{textpos}
+\usepackage[absolute, overlay]{textpos}
 \usepackage{calc}
 \usepackage{lipsum}
 
@@ -21,34 +21,74 @@
 \renewcommand{\headrulewidth}{0.6pt}
 \renewcommand{\footrulewidth}{0pt}
 
-\newlength{\topleftheight}
-\newlength{\toprightheight}
-\newlength{\toplefttext}
-\newlength{\widthtoplefttext}
-\newlength{\margintoplefttext}
+\newcommand{\headerlefttext}{
+  \begin{center}%
+    \textbf{
+      \Large%
+      titre de la soutenance%
+    }
+  \end{center}%
+}
+
+\newcommand{\headerrighttext}{
+  \begin{center}%
+    titre de la section%
+  \end{center}%
+}
+
+\newlength{\headermargin}
+\newlength{\headercenterspace}
+\newlength{\headertextwidth}
+\newlength{\headerleftheight}
+\newlength{\headerlefttextwidth}
+\newlength{\headerlefttextheight}
+\newlength{\headerlefttextvcentering}
+\newlength{\headerrightheight}
+\newlength{\headerrighttextwidth}
+\newlength{\headerrighttextheight}
+\newlength{\headerrighttextvcentering}
 \renewcommand{\headrule}{
-  \setlength{\topleftheight}{3cm}
-  \setlength{\topleftheight}{2cm}
+
+  \setlength{\headermargin}          {1cm}
+  \setlength{\headercenterspace}     {2cm}
+  \setlength{\headertextwidth}       {.5\paperwidth-.5\headercenterspace-2\headermargin}
+
+  \setlength{\headerleftheight}      {2cm}
+  \setowidth{\headerlefttextwidth}   {\headerlefttext}
+  \setoheight{\headerlefttextheight} {\headerlefttext}
+
+  \setlength{\headerrightheight}     {1.5cm}
+  \setowidth{\headerrighttextwidth}  {\headerrighttext}
+  \setoheight{\headerrighttextheight}{\headerrighttext}
+
   \begin{textblock*}{\paperwidth}(0mm,0mm) {
     \begin{tikzpicture}
       \draw[fill=Cerulean]
-             (0,0) 
-          -- (\paperwidth,        0) 
-          -- (\paperwidth,       -\toprightheight) 
-          -- (.5\paperwidth + 4, -\toprightheight) 
-          -- (.5\paperwidth - 4, -\topleftheight) 
-          -- (0,                 -\topleftheight);
+             (0,                                  0) 
+          -- (\paperwidth,                        0) 
+          -- (\paperwidth,                        -\headerrightheight) 
+          -- (.5\paperwidth + .5\headercenterspace, -\headerrightheight) 
+          -- (.5\paperwidth - .5\headercenterspace, -\headerleftheight) 
+          -- (0,                                  -\headerleftheight);
     %  \draw(1,-.75cm +.5ex) node {--text--};
     %  \shade[white] (0,0) rectangle (8,0);
     %  \shade[left color=white, right color=black, dashed] (8,1) rectangle (12.98,1.01);
     \end{tikzpicture}
   } \end{textblock*}
-  \setlength{\toplefttext}{.5\topleftheight-.5ex}
-  \setlength{\margintoplefttext}{.1\paperwidth}
-  \setlength{\widthtoplefttext}{.5\paperwidth - \margintoplefttext} %  plus .5\margintoplefttext minus 3\margintoplefttext
-  \begin{textblock*}{\widthtoplefttext}(\margintoplefttext,\toplefttext) {
-	test
-  } \end{textblock*}
+
+  \setlength{\headerlefttextvcentering}{.5\headerleftheight -.5\headerlefttextheight}
+  \begin{textblock*}{\headertextwidth}(\headermargin,\headerlefttextvcentering)
+    \begin{minipage}{\headertextwidth}
+      \headerlefttext
+    \end{minipage}
+  \end{textblock*}
+
+  \setlength{\headerrighttextvcentering}{.5\headerrightheight -.5\headerrighttextheight}
+  \begin{textblock*}{\headertextwidth}(.5\paperwidth+.5\headermargin+\headermargin,\headerrighttextvcentering)
+    \begin{minipage}{\headertextwidth}
+      \headerrighttext
+    \end{minipage}
+  \end{textblock*}
 }
 
 \begin{document}
