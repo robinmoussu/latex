@@ -3,7 +3,7 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage{fancyhdr}
 \usepackage{tikz}
-\usepackage[strict]{changepage}
+\usepackage[showboxes, absolute, overlay]{textpos}
 \usepackage{lipsum}
 
 \pagestyle{fancy}
@@ -19,8 +19,9 @@
 \fancyhead[LE]{\sffamily\bfseries\textcolor{darkgrey}\thepage\hspace{0.3cm}\sffamily\textcolor{grey}\leftmark}
 \renewcommand{\headrulewidth}{0.6pt}
 \renewcommand{\footrulewidth}{0pt}
+
 \renewcommand{\headrule}{
-  \begin{adjustwidth}{-\evensidemargin}{-\rightmargin}
+  \begin{textblock*}{\paperwidth}(0mm,0mm)
     \begin{tikzpicture}
       \draw[fill=Cerulean]
              (0,0) 
@@ -33,8 +34,9 @@
       \shade[white] (0,0) rectangle (8,0);
       \shade[left color=white, right color=black, dashed] (8,1) rectangle (12.98,1.01);
     \end{tikzpicture}
-  \end{adjustwidth}
+  \end{textblock*}
 }
+
 \begin{document}
 
 \chapter{Test chapter}
