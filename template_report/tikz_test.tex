@@ -1,14 +1,44 @@
-\documentclass{report}
-\usepackage{tikz}
+\documentclass[11pt, titlepage, openright]{book}
 
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage[strict]{changepage}
+\usepackage{lipsum}
+
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\fancyhead{}
+\fancyfoot{}
+
+\definecolor{grey}{rgb}{0.6,0.6,0.6}
+\definecolor{darkgrey}{rgb}{0.4,0.4,0.4}
+
+\setlength{\headheight}{24pt}
+\fancyhead[RO]{\sffamily\bfseries\textcolor{grey}\leftmark\hspace{0.3cm}\sffamily\textcolor{darkgrey}\thepage}
+\fancyhead[LE]{\sffamily\bfseries\textcolor{darkgrey}\thepage\hspace{0.3cm}\sffamily\textcolor{grey}\leftmark}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headrule}{
+  \begin{adjustwidth}{-\evensidemargin}{-\rightmargin}
+    \begin{tikzpicture}
+      \draw[fill=Cerulean]
+             (0,0) 
+          -- (\paperwidth,        0) 
+          -- (\paperwidth,       -1) 
+          -- (.5\paperwidth + 4, -1) 
+          -- (.5\paperwidth - 4, -1.5) 
+          -- (0,                -1.5);
+      \draw(1,-.75cm +.5ex) node {--text--};
+      \shade[white] (0,0) rectangle (8,0);
+      \shade[left color=white, right color=black, dashed] (8,1) rectangle (12.98,1.01);
+    \end{tikzpicture}
+  \end{adjustwidth}
+}
 \begin{document}
 
-avant
-
-\begin{tikzpicture}[⟨options⟩] 
-  ⟨tikz commands⟩
-\end{tikzpicture}
-
-après
+\chapter{Test chapter}
+\lipsum
+\lipsum
 
 \end{document}
