@@ -4,6 +4,7 @@
 \usepackage{fancyhdr}
 \usepackage{tikz}
 \usepackage[showboxes, absolute, overlay]{textpos}
+\usepackage{calc}
 \usepackage{lipsum}
 
 \pagestyle{fancy}
@@ -20,21 +21,34 @@
 \renewcommand{\headrulewidth}{0.6pt}
 \renewcommand{\footrulewidth}{0pt}
 
+\newlength{\topleftheight}
+\newlength{\toprightheight}
+\newlength{\toplefttext}
+\newlength{\widthtoplefttext}
+\newlength{\margintoplefttext}
 \renewcommand{\headrule}{
-  \begin{textblock*}{\paperwidth}(0mm,0mm)
+  \setlength{\topleftheight}{3cm}
+  \setlength{\topleftheight}{2cm}
+  \begin{textblock*}{\paperwidth}(0mm,0mm) {
     \begin{tikzpicture}
       \draw[fill=Cerulean]
              (0,0) 
           -- (\paperwidth,        0) 
-          -- (\paperwidth,       -1) 
-          -- (.5\paperwidth + 4, -1) 
-          -- (.5\paperwidth - 4, -1.5) 
-          -- (0,                -1.5);
-      \draw(1,-.75cm +.5ex) node {--text--};
-      \shade[white] (0,0) rectangle (8,0);
-      \shade[left color=white, right color=black, dashed] (8,1) rectangle (12.98,1.01);
+          -- (\paperwidth,       -\toprightheight) 
+          -- (.5\paperwidth + 4, -\toprightheight) 
+          -- (.5\paperwidth - 4, -\topleftheight) 
+          -- (0,                 -\topleftheight);
+    %  \draw(1,-.75cm +.5ex) node {--text--};
+    %  \shade[white] (0,0) rectangle (8,0);
+    %  \shade[left color=white, right color=black, dashed] (8,1) rectangle (12.98,1.01);
     \end{tikzpicture}
-  \end{textblock*}
+  } \end{textblock*}
+  \setlength{\toplefttext}{.5\topleftheight-.5ex}
+  \setlength{\margintoplefttext}{.1\paperwidth}
+  \setlength{\widthtoplefttext}{.5\paperwidth - \margintoplefttext} %  plus .5\margintoplefttext minus 3\margintoplefttext
+  \begin{textblock*}{\widthtoplefttext}(\margintoplefttext,\toplefttext) {
+	test
+  } \end{textblock*}
 }
 
 \begin{document}
