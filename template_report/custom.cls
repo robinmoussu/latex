@@ -33,7 +33,6 @@
 \RequirePackage{titlesec} % Allows customization of titles
 \RequirePackage{graphicx} % Required for including pictures
 \RequirePackage{tikz} % Required for drawing custom shapes
-\RequirePackage{eso-pic} % Required for specifying an image background in the title page
 \RequirePackage{titling} % use the title many time
 \RequirePackage{tikz} % for drawing graphics
 \RequirePackage[absolute, overlay]{textpos} % for absolute positioning of graphics
@@ -257,6 +256,13 @@
 \setlength{\headertitleposition}    {.4\paperheight}%
 \setlength{\headerauthorposition}   {.56\paperheight}%
 
+\newcommand{\mytitleformat}{
+  \rmfamily%
+  \bfseries%
+  \HUGE%
+  \centering%
+}
+
 \pretitle{%
   %page decoration
   \headerdecoration{Black}
@@ -266,12 +272,13 @@
   %title
   \begin{textblock*}{\headertitlewidth}(.5\paperwidth-.5\headertitlewidth,\headertitleposition)%
     \begin{minipage}{\headertitlewidth}%
-      \centering%
+      \mytitleformat%
 }
 
 \posttitle{
       \newlength{\headertitletextwidth}%
       \settowidth{\headertitletextwidth}{%
+        \mytitleformat%
 	\thetitle%
       }%
 
