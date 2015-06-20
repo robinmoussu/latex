@@ -29,10 +29,16 @@
 \LoadClass[a4paper]{report}
 
 %% Load additional packages and commands.
+\RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{titlesec} % Allows customization of titles
 \RequirePackage{graphicx} % Required for including pictures
 \RequirePackage{tikz} % Required for drawing custom shapes
 \RequirePackage{eso-pic} % Required for specifying an image background in the title page
+\RequirePackage{titling}
+\RequirePackage{fancyhdr}
+\RequirePackage{tikz}
+\RequirePackage[absolute, overlay]{textpos}
+\RequirePackage{calc}
 
 %\graphicspath{{Pictures/}} % Specifies the directory where pictures are stored
 
@@ -110,6 +116,63 @@
 \newpage
 \fi}
 
+
+\newcommand{\headerlefttext}{
+  \begin{center}%
+    \textsc{
+      \Large%
+      \thetitle
+    }
+  \end{center}%
+}
+
+\newcommand{\headerrighttext}{
+  \begin{center}%
+    \leftmark
+  \end{center}%
+}
+
+\newlength{\headermargin}
+\newlength{\headercenterspace}
+\newlength{\headertextwidth}
+\newlength{\headerleftheight}
+\newlength{\headerrightheight}
+
+\renewcommand{\headrule}{
+
+  \setlength{\headermargin}          {1cm}
+  \setlength{\headercenterspace}     {2cm}
+  \setlength{\headertextwidth}       {.5\paperwidth-.5\headercenterspace-2\headermargin}
+
+  \setlength{\headerleftheight}      {2cm}
+  \setlength{\headerrightheight}     {1.5cm}
+
+  \begin{textblock*}{\paperwidth}(0mm,0mm) {
+    \begin{tikzpicture}
+      \draw[fill=Cerulean]
+             (0,                                   0) 
+          -- (\paperwidth,                         0) 
+          -- (\paperwidth,                         -\headerrightheight) 
+          -- (.5\paperwidth +.5\headercenterspace, -\headerrightheight) 
+          -- (.5\paperwidth -.5\headercenterspace, -\headerleftheight) 
+          -- (0,                                   -\headerleftheight);
+    \end{tikzpicture}
+  } \end{textblock*}
+
+  \begin{textblock*}{\headertextwidth}(\headermargin,0pt)
+    \centering
+    \begin{minipage}[t][\headerleftheight][c]{.75\headertextwidth plus .25\headertextwidth}
+      \headerlefttext
+    \end{minipage}
+  \end{textblock*}
+
+  \begin{textblock*}{\headertextwidth}(.5\paperwidth+.5\headermargin+\headermargin,0pt)
+    \centering
+    \begin{minipage}[t][\headerrightheight][c]{.75\headertextwidth plus .25\headertextwidth}
+      \headerrighttext
+    \end{minipage}
+  \end{textblock*}
+}
 
 %----------------------------------------------------------------------------------------
 %	DEFINITION OF COLORED BOXES
