@@ -29,7 +29,7 @@
 \LoadClass[a4paper]{report}
 
 %% Load additional packages and commands.
-\RequirePackage[dvipsnames, x11names]{xcolor} % color by name
+\RequirePackage[dvipsnames, x11names, svgnames]{xcolor} % color by name
 \RequirePackage{titlesec} % Allows customization of titles
 \RequirePackage{graphicx} % Required for including pictures
 \RequirePackage{tikz} % Required for drawing custom shapes
@@ -259,7 +259,7 @@
 
 \pretitle{%
   %page decoration
-  \headerdecoration{gray}
+  \headerdecoration{Black}
   \headerleftcontent[\headerimagemargin]{\includegraphics[height=.9\headerleftheight]{smart_me_up}}%
   \headerrightcontent[\headerimagemargin]{\flushright\includegraphics[height=.9\headerrightheight]{Logo_ENSIMAG_2008}}%
 
