@@ -245,13 +245,60 @@
 %	MAIN TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
 
+\newlength{\headertitlewidth}
+\newlength{\headerauthorwidth}
+\newlength{\headertitleposition}
+\newlength{\headerauthorposition}
+
+\setlength{\headertitlewidth}       {.5\paperwidth}%
+\setlength{\headerauthorwidth}      {.5\paperwidth}%
+\setlength{\headertitleposition}    {.4\paperheight}%
+\setlength{\headerauthorposition}   {.56\paperheight}%
+
+\newcommand{\headertitleformat}{
+  \Huge%
+  \bfseries%
+}
+
 \pretitle{%
+  %page decoration
   \headerdecoration{gray}
   \headerleftcontent[\headerimagemargin]{\includegraphics[height=.9\headerleftheight]{smart_me_up}}%
   \headerrightcontent[\headerimagemargin]{\flushright\includegraphics[height=.9\headerrightheight]{Logo_ENSIMAG_2008}}%
+
+  %title
+  \begin{textblock*}{\headertitlewidth}(.5\paperwidth-.5\headertitlewidth,\headertitleposition)%
+    \begin{minipage}{\headertitlewidth}%
+      \centering%
+      \headertitleformat
 }
 
-\posttitle{}
+\posttitle{
+      \newlength{\headertitletextwidth}
+      \settowidth{\headertitletextwidth}{%
+	\headertitleformat%
+	\thetitle%
+      }
+	\headertitleformat%
+	\thetitle%
+
+
+      {\centering\color{cyan}\rule{\headertitletextwidth}{.25ex}}%
+    \end{minipage}%
+  \end{textblock*}%
+}
+
+\preauthor{
+  \begin{textblock*}{\headerauthorwidth}(.5\paperwidth-.5\headerauthorwidth,\headerauthorposition)%
+    \begin{minipage}{\headerauthorwidth}%
+      \centering
+}
+
+\postauthor{
+    \end{minipage}%
+  \end{textblock*}%
+}
+
 \predate{\myfootrulebegin}
 \postdate{\myfootruleend}
 
