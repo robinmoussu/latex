@@ -245,6 +245,8 @@
 %	MAIN TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
 
+\RequirePackage{moresize}
+
 \newlength{\headertitlewidth}
 \newlength{\headerauthorwidth}
 \newlength{\headertitleposition}
@@ -254,11 +256,6 @@
 \setlength{\headerauthorwidth}      {.5\paperwidth}%
 \setlength{\headertitleposition}    {.4\paperheight}%
 \setlength{\headerauthorposition}   {.56\paperheight}%
-
-\newcommand{\headertitleformat}{
-  \Huge%
-  \bfseries%
-}
 
 \pretitle{%
   %page decoration
@@ -270,20 +267,16 @@
   \begin{textblock*}{\headertitlewidth}(.5\paperwidth-.5\headertitlewidth,\headertitleposition)%
     \begin{minipage}{\headertitlewidth}%
       \centering%
-      \headertitleformat
 }
 
 \posttitle{
-      \newlength{\headertitletextwidth}
+      \newlength{\headertitletextwidth}%
       \settowidth{\headertitletextwidth}{%
-	\headertitleformat%
 	\thetitle%
-      }
-	\headertitleformat%
-	\thetitle%
+      }%
 
-
-      {\centering\color{cyan}\rule{\headertitletextwidth}{.25ex}}%
+      \vspace{-1ex}%
+      \color{cyan}\rule{\headertitletextwidth}{.25ex}%
     \end{minipage}%
   \end{textblock*}%
 }
