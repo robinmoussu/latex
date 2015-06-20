@@ -68,24 +68,24 @@
 {\sffamily\;\titlerule*[.5pc]{.}\;\thecontentspage} % Page number
 [] 
 
-%----------------------------------------------------------------------------------------
-%	MINI TABLE OF CONTENTS IN CHAPTER HEADS
-%----------------------------------------------------------------------------------------
-
-% Section text styling
-\titlecontents{lsection}[0em] % Indendating
-{\footnotesize\sffamily} % Font settings
-{}
-{}
-{}
-
-% Subsection text styling
-\titlecontents{lsubsection}[.5em] % Indentation
-{\normalfont\footnotesize\sffamily} % Font settings
-{}
-{}
-{}
-
+%%----------------------------------------------------------------------------------------
+%%	MINI TABLE OF CONTENTS IN CHAPTER HEADS
+%%----------------------------------------------------------------------------------------
+%
+%% Section text styling
+%\titlecontents{lsection}[0em] % Indendating
+%{\footnotesize\sffamily} % Font settings
+%{}
+%{}
+%{}
+%
+%% Subsection text styling
+%\titlecontents{lsubsection}[.5em] % Indentation
+%{\normalfont\footnotesize\sffamily} % Font settings
+%{}
+%{}
+%{}
+%
 
 %----------------------------------------------------------------------------------------
 %	PAGE HEADERS
@@ -292,11 +292,22 @@
   \begin{textblock*}{\headerauthorwidth}(.5\paperwidth-.5\headerauthorwidth,\headerauthorposition)%
     \begin{minipage}{\headerauthorwidth}%
       \centering
+      \rmfamily
+      \LARGE
 }
 
 \postauthor{
     \end{minipage}%
   \end{textblock*}%
+}
+
+\renewcommand{\thanks}[1]{
+  \begin{minipage}{\headerauthorwidth}%
+    \centering
+    \itshape
+    \Large
+    #1%
+  \end{minipage}%
 }
 
 \predate{\myfootrulebegin}
