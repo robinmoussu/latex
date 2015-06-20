@@ -174,6 +174,54 @@
 }
 
 %----------------------------------------------------------------------------------------
+%	PAGE FOOTERS
+%----------------------------------------------------------------------------------------
+
+\usepackage{lastpage}
+
+\newcommand{\footerlefttext}{
+  \begin{center}%
+    page \thepage -- \pageref{LastPage}
+  \end{center}%
+}
+
+\newlength{\footermargin}
+\newlength{\footercenterspace}
+\newlength{\footertextwidth}
+\newlength{\footerleftheight}
+\newlength{\footerrightheight}
+
+\renewcommand{\footrule}{
+
+  \setlength{\footermargin}          {1cm}
+  \setlength{\footercenterspace}     {2cm}
+  \setlength{\footertextwidth}       {.5\paperwidth-.5\footercenterspace-2\footermargin}
+
+  \setlength{\footerleftheight}      {1cm}
+  \setlength{\footerrightheight}     {0.5cm}
+
+  \begin{textblock*}{\paperwidth}(0mm,\paperheight - \footerleftheight) {
+    \begin{tikzpicture}
+      \draw[fill=lightgray]
+             (0,                                   0) 
+          -- (\paperwidth,                         0) 
+          -- (\paperwidth,                         \footerrightheight) 
+          -- (.5\paperwidth +.5\footercenterspace, \footerrightheight) 
+          -- (.5\paperwidth -.5\footercenterspace, \footerleftheight) 
+          -- (0,                                   \footerleftheight);
+    \end{tikzpicture}
+  } \end{textblock*}
+
+  \begin{textblock*}{\footertextwidth}(\footermargin,\paperheight - \footerleftheight)
+    \centering
+    \begin{minipage}[t][\footerleftheight][c]{.75\footertextwidth plus .25\footertextwidth}
+      \footerlefttext
+    \end{minipage}
+  \end{textblock*}
+}
+
+
+%----------------------------------------------------------------------------------------
 %	DEFINITION OF COLORED BOXES
 %----------------------------------------------------------------------------------------
 
