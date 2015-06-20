@@ -178,7 +178,7 @@
 }
 
 \renewcommand{\headrule}{%
-  \headerdecoration{Cyan}%
+  \headerdecoration{DodgerBlue}%
   \headerleftcontent{\headerlefttext}%
   \headerrightcontent{\headerrighttext}%
 }
