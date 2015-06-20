@@ -29,7 +29,7 @@
 \LoadClass[a4paper]{report}
 
 %% Load additional packages and commands.
-\RequirePackage[dvipsnames]{xcolor} % color by name
+\RequirePackage[dvipsnames, x11names]{xcolor} % color by name
 \RequirePackage{titlesec} % Allows customization of titles
 \RequirePackage{graphicx} % Required for including pictures
 \RequirePackage{tikz} % Required for drawing custom shapes
@@ -100,7 +100,6 @@
 \pagestyle{fancy}
 \renewcommand{\chaptermark}[1]{\markboth{\sffamily\normalsize\bfseries\chaptername\ \thechapter.\ #1}{}} % Chapter text font settings
 \renewcommand{\sectionmark}[1]{\markright{\sffamily\normalsize\thesection\hspace{5pt}#1}{}} % Section text font settings
-\addtolength{\headheight}{2.5ex} % Decrease the spacing around the header slightly
 \renewcommand{\footrulewidth}{0pt} % Removes the rule in the footer
 \fancypagestyle{plain}{\fancyhead{}\renewcommand{\headrulewidth}{0pt}} % Style for when a plain pagestyle is specified
 
@@ -132,41 +131,46 @@
 
 \newlength{\headermargin}
 \newlength{\headercenterspace}
-\newlength{\headertextwidth}
+\newlength{\headercenter}
 \newlength{\headerleftheight}
 \newlength{\headerrightheight}
+\newlength{\headerlefttextwidth}
+\newlength{\headerrighttextwidth}
 
 \renewcommand{\headrule}{%
 %
   \setlength{\headermargin}          {1cm}%
   \setlength{\headercenterspace}     {2cm}%
-  \setlength{\headertextwidth}       {.5\paperwidth-.5\headercenterspace-2\headermargin}%
+  \setlength{\headercenter}          {.35\paperwidth}%
 %
   \setlength{\headerleftheight}      {2cm}%
   \setlength{\headerrightheight}     {1.5cm}%
+  \setlength{\headerlefttextwidth}   {\headercenter-.5\headercenterspace-2\headermargin}%
+  \setlength{\headerrighttextwidth}  {\paperwidth-\headercenter-.5\headercenterspace-2\headermargin}%
 %
   \begin{textblock*}{\paperwidth}(0mm,0mm) {%
     \begin{tikzpicture}%
-      \draw[fill=Cerulean]%
+      \draw[fill=Cyan]%
              (0,                                   0) %
           -- (\paperwidth,                         0) %
           -- (\paperwidth,                         -\headerrightheight) %
-          -- (.5\paperwidth +.5\headercenterspace, -\headerrightheight) %
-          -- (.5\paperwidth -.5\headercenterspace, -\headerleftheight) %
-          -- (0,                                   -\headerleftheight);%
+          -- (\headercenter +.5\headercenterspace, -\headerrightheight) %
+          -- (\headercenter -.5\headercenterspace, -\headerleftheight) %
+          -- (0,                                   -\headerleftheight)
+          -- (0,                                   0);%
     \end{tikzpicture}%
   } \end{textblock*}%
 %
-  \begin{textblock*}{\headertextwidth}(\headermargin,0pt)%
+  \begin{textblock*}{\headerlefttextwidth}(\headermargin,0pt)%
     \centering%
-    \begin{minipage}[t][\headerleftheight][c]{.75\headertextwidth plus .25\headertextwidth}%
+    \begin{minipage}[t][\headerleftheight][c]{\headerlefttextwidth}%
       \headerlefttext%
     \end{minipage}%
   \end{textblock*}%
 %
-  \begin{textblock*}{\headertextwidth}(.5\paperwidth+.5\headermargin+\headermargin,0pt)%
+  \begin{textblock*}{\headerrighttextwidth}(\headercenter + .5\headercenterspace + \headermargin,0pt)%
     \centering%
-    \begin{minipage}[t][\headerrightheight][c]{.75\headertextwidth plus .25\headertextwidth}%
+    \begin{minipage}[t][\headerrightheight][c]{\headerrighttextwidth}%
       \headerrighttext%
     \end{minipage}%
   \end{textblock*}%
@@ -185,15 +189,17 @@
 }
 
 \newlength{\footermargin}
+\newlength{\footercenter}
 \newlength{\footercenterspace}
-\newlength{\footertextwidth}
+\newlength{\footerlefttextwidth}
 \newlength{\footerleftheight}
 \newlength{\footerrightheight}
 
 \newcommand{\myfootrule}{%
   \setlength{\footermargin}          {1cm}%
+  \setlength{\footercenter}          {.35\paperwidth}%
   \setlength{\footercenterspace}     {2cm}%
-  \setlength{\footertextwidth}       {.5\paperwidth-.5\footercenterspace-2\footermargin}%
+  \setlength{\footerlefttextwidth}   {\footercenter-.5\footercenterspace-2\footermargin}%
 %
   \setlength{\footerleftheight}      {1cm}%
   \setlength{\footerrightheight}     {0.5cm}%
@@ -204,15 +210,16 @@
              (0,                                   0) %
           -- (\paperwidth,                         0) %
           -- (\paperwidth,                         \footerrightheight) %
-          -- (.5\paperwidth +.5\footercenterspace, \footerrightheight) %
-          -- (.5\paperwidth -.5\footercenterspace, \footerleftheight) %
-          -- (0,                                   \footerleftheight);%
+          -- (\footercenter +.5\footercenterspace, \footerrightheight) %
+          -- (\footercenter -.5\footercenterspace, \footerleftheight) %
+          -- (0,                                   \footerleftheight)
+          -- (0,                                   0);%
     \end{tikzpicture}%
   } \end{textblock*}%
 %
-  \begin{textblock*}{\footertextwidth}(\footermargin,\paperheight - \footerleftheight)%
+  \begin{textblock*}{\footerlefttextwidth}(\footermargin,\paperheight - \footerleftheight)%
     \centering%
-    \begin{minipage}[t][\footerleftheight][c]{.75\footertextwidth plus .25\footertextwidth}%
+    \begin{minipage}[t][\footerleftheight][c]{.75\footerlefttextwidth plus .25\footerlefttextwidth}%
       \footerlefttext%
     \end{minipage}%
   \end{textblock*}%
