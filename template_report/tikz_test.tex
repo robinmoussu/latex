@@ -1,6 +1,9 @@
 \documentclass[11pt, titlepage, openright]{book}
+\usepackage[utf8x]{inputenc}
 
 \usepackage[dvipsnames]{xcolor}
+\usepackage{titling}
+\usepackage{titling}
 \usepackage{fancyhdr}
 \usepackage{tikz}
 \usepackage[absolute, overlay]{textpos}
@@ -12,27 +15,18 @@
 \fancyhead{}
 \fancyfoot{}
 
-\definecolor{grey}{rgb}{0.6,0.6,0.6}
-\definecolor{darkgrey}{rgb}{0.4,0.4,0.4}
-
-\setlength{\headheight}{24pt}
-\fancyhead[RO]{\sffamily\bfseries\textcolor{grey}\leftmark\hspace{0.3cm}\sffamily\textcolor{darkgrey}\thepage}
-\fancyhead[LE]{\sffamily\bfseries\textcolor{darkgrey}\thepage\hspace{0.3cm}\sffamily\textcolor{grey}\leftmark}
-\renewcommand{\headrulewidth}{0.6pt}
-\renewcommand{\footrulewidth}{0pt}
-
 \newcommand{\headerlefttext}{
   \begin{center}%
-    \textbf{
+    \textsc{
       \Large%
-      titre de la soutenance%
+      \thetitle
     }
   \end{center}%
 }
 
 \newcommand{\headerrighttext}{
   \begin{center}%
-    titre de la section%
+    \leftmark
   \end{center}%
 }
 
@@ -40,13 +34,8 @@
 \newlength{\headercenterspace}
 \newlength{\headertextwidth}
 \newlength{\headerleftheight}
-\newlength{\headerlefttextwidth}
-\newlength{\headerlefttextheight}
-\newlength{\headerlefttextvcentering}
 \newlength{\headerrightheight}
-\newlength{\headerrighttextwidth}
-\newlength{\headerrighttextheight}
-\newlength{\headerrighttextvcentering}
+
 \renewcommand{\headrule}{
 
   \setlength{\headermargin}          {1cm}
@@ -54,45 +43,42 @@
   \setlength{\headertextwidth}       {.5\paperwidth-.5\headercenterspace-2\headermargin}
 
   \setlength{\headerleftheight}      {2cm}
-  \setowidth{\headerlefttextwidth}   {\headerlefttext}
-  \setoheight{\headerlefttextheight} {\headerlefttext}
-
   \setlength{\headerrightheight}     {1.5cm}
-  \setowidth{\headerrighttextwidth}  {\headerrighttext}
-  \setoheight{\headerrighttextheight}{\headerrighttext}
 
   \begin{textblock*}{\paperwidth}(0mm,0mm) {
     \begin{tikzpicture}
       \draw[fill=Cerulean]
-             (0,                                  0) 
-          -- (\paperwidth,                        0) 
-          -- (\paperwidth,                        -\headerrightheight) 
-          -- (.5\paperwidth + .5\headercenterspace, -\headerrightheight) 
-          -- (.5\paperwidth - .5\headercenterspace, -\headerleftheight) 
-          -- (0,                                  -\headerleftheight);
+             (0,                                   0) 
+          -- (\paperwidth,                         0) 
+          -- (\paperwidth,                         -\headerrightheight) 
+          -- (.5\paperwidth +.5\headercenterspace, -\headerrightheight) 
+          -- (.5\paperwidth -.5\headercenterspace, -\headerleftheight) 
+          -- (0,                                   -\headerleftheight);
     %  \draw(1,-.75cm +.5ex) node {--text--};
     %  \shade[white] (0,0) rectangle (8,0);
     %  \shade[left color=white, right color=black, dashed] (8,1) rectangle (12.98,1.01);
     \end{tikzpicture}
   } \end{textblock*}
 
-  \setlength{\headerlefttextvcentering}{.5\headerleftheight -.5\headerlefttextheight}
-  \begin{textblock*}{\headertextwidth}(\headermargin,\headerlefttextvcentering)
-    \begin{minipage}{\headertextwidth}
+  \begin{textblock*}{\headertextwidth}[0,0.5](\headermargin,.5\headerleftheight)
+    \centering
+    \begin{minipage}{.5\headertextwidth plus .5\headertextwidth}
       \headerlefttext
     \end{minipage}
   \end{textblock*}
 
-  \setlength{\headerrighttextvcentering}{.5\headerrightheight -.5\headerrighttextheight}
-  \begin{textblock*}{\headertextwidth}(.5\paperwidth+.5\headermargin+\headermargin,\headerrighttextvcentering)
+  \begin{textblock*}{\headertextwidth}[0,0.5](.5\paperwidth+.5\headermargin+\headermargin,.5\headerrightheight)
     \begin{minipage}{\headertextwidth}
       \headerrighttext
     \end{minipage}
   \end{textblock*}
 }
 
+\title{Streaming Vid\'eo}
+
 \begin{document}
 
+\maketitle
 \chapter{Test chapter}
 \lipsum
 \lipsum
