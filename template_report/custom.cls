@@ -136,7 +136,7 @@
 \newlength{\headerrightwidth}
 
 \setlength{\headertextmargin}      {1cm}%
-\setlength{\headerimagemargin}     {2mm}%
+\setlength{\headerimagemargin}     {-3mm}%
 \setlength{\headercenterspace}     {2cm}%
 \setlength{\headercenter}          {.35\paperwidth}%
 
@@ -145,13 +145,13 @@
 \setlength{\headerleftwidth}   {\headercenter-.5\headercenterspace}%
 \setlength{\headerrightwidth}  {\paperwidth-\headercenter-.5\headercenterspace}%
 
-\newcommand{\headerdecoration}[1]{
-  \begin{textblock*}{\paperwidth}(0mm,0mm) {%
+\newcommand{\headerdecoration}[2][0cm]{
+  \begin{textblock*}{\paperwidth}(#1,0pt) {%
     \begin{tikzpicture}%
-      \draw[fill=#1]%
+      \draw[fill=#2]%
              (0,                                   0) %
-          -- (\paperwidth,                         0) %
-          -- (\paperwidth,                         -\headerrightheight) %
+          -- (\paperwidth-1.5pt,                   0) %
+          -- (\paperwidth-1.5pt,                   -\headerrightheight) %
           -- (\headercenter +.5\headercenterspace, -\headerrightheight) %
           -- (\headercenter -.5\headercenterspace, -\headerleftheight) %
           -- (0,                                   -\headerleftheight)
@@ -162,16 +162,16 @@
 }
 
 \newcommand{\headerleftcontent}[2][\headertextmargin]{%
-  \begin{textblock*}{\headerleftwidth-2#1}(#1,0pt)%
-    \begin{minipage}[t][\headerleftheight][c]{\headerleftwidth-2#1}%
+  \begin{textblock*}{\headerleftwidth-#1-#1}(#1,0pt)%
+    \begin{minipage}[t][\headerleftheight][c]{\headerleftwidth-#1-#1}%
       #2%
     \end{minipage}%
   \end{textblock*}%
 }
 
 \newcommand{\headerrightcontent}[2][\headertextmargin]{%
-  \begin{textblock*}{\headerrightwidth-2#1}(\headercenter + .5\headercenterspace + #1,0pt)%
-    \begin{minipage}[t][\headerrightheight][c]{\headerrightwidth-2#1}%
+  \begin{textblock*}{\headerrightwidth-#1-#1}(\headercenter + .5\headercenterspace + #1,0pt)%
+    \begin{minipage}[t][\headerrightheight][c]{\headerrightwidth-#1-#1}%
       #2%
     \end{minipage}%
   \end{textblock*}%
@@ -202,7 +202,7 @@
 \newlength{\footerleftheight}
 \newlength{\footerrightheight}
 
-\newcommand{\myfootrulebegin}{%
+\newcommand{\myfootrulebegin}[1][0pt]{%
   \setlength{\footermargin}          {1cm}%
   \setlength{\footercenter}          {.35\paperwidth}%
   \setlength{\footercenterspace}     {2cm}%
@@ -211,12 +211,12 @@
   \setlength{\footerleftheight}      {1cm}%
   \setlength{\footerrightheight}     {0.5cm}%
 %
-  \begin{textblock*}{\paperwidth}(0mm,\paperheight - \footerleftheight) {%
+  \begin{textblock*}{\paperwidth}(#1,\paperheight - \footerleftheight - 1pt) {%
     \begin{tikzpicture}%
       \draw[fill=lightgray]%
              (0,                                   0) %
-          -- (\paperwidth,                         0) %
-          -- (\paperwidth,                         \footerrightheight) %
+          -- (\paperwidth-1.5pt,                   0) %
+          -- (\paperwidth-1.5pt,                   \footerrightheight) %
           -- (\footercenter +.5\footercenterspace, \footerrightheight) %
           -- (\footercenter -.5\footercenterspace, \footerleftheight) %
           -- (0,                                   \footerleftheight)
@@ -256,6 +256,9 @@
 \setlength{\headertitleposition}    {.4\paperheight}%
 \setlength{\headerauthorposition}   {.56\paperheight}%
 
+\newlength{\titleblackmagicmargin}
+\setlength{\titleblackmagicmargin}  {-5mm}%
+
 \newcommand{\mytitleformat}{
   \rmfamily%
   \bfseries%
@@ -265,9 +268,9 @@
 
 \pretitle{%
   %page decoration
-  \headerdecoration{Black}
+  \headerdecoration[\titleblackmagicmargin]{Black}
   \headerleftcontent[\headerimagemargin]{\includegraphics[height=.9\headerleftheight]{smart_me_up}}%
-  \headerrightcontent[\headerimagemargin]{\flushright\includegraphics[height=.9\headerrightheight]{Logo_ENSIMAG_2008}}%
+  \headerrightcontent{\flushright\includegraphics[height=.9\headerrightheight]{Logo_ENSIMAG_2008}}%
 
   %title
   \begin{textblock*}{\headertitlewidth}(.5\paperwidth-.5\headertitlewidth,\headertitleposition)%
@@ -283,7 +286,7 @@
       }%
 
       \vspace{-1ex}%
-      \color{cyan}\rule{\headertitletextwidth}{.25ex}%
+      \hspace{.5\titleblackmagicmargin}\color{cyan}\rule{\headertitletextwidth}{.25ex}%
     \end{minipage}%
   \end{textblock*}%
 }
@@ -310,7 +313,7 @@
   \end{minipage}%
 }
 
-\predate{\myfootrulebegin}
+\predate{\myfootrulebegin[\titleblackmagicmargin]}
 \postdate{\myfootruleend}
 
 %----------------------------------------------------------------------------------------
