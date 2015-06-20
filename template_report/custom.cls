@@ -94,14 +94,13 @@
 
 \usepackage{fancyhdr} % Required for header and footer configuration
 
+\fancyhead{}
+\fancyfoot{}
+
 \pagestyle{fancy}
 \renewcommand{\chaptermark}[1]{\markboth{\sffamily\normalsize\bfseries\chaptername\ \thechapter.\ #1}{}} % Chapter text font settings
 \renewcommand{\sectionmark}[1]{\markright{\sffamily\normalsize\thesection\hspace{5pt}#1}{}} % Section text font settings
-\fancyhf{} \fancyhead[LE,RO]{\sffamily\normalsize\thepage} % Font setting for the page number in the header
-\fancyhead[LO]{\rightmark} % Print the nearest section name on the left side of odd pages
-\fancyhead[RE]{\leftmark} % Print the current chapter name on the right side of even pages
-\renewcommand{\headrulewidth}{0.5pt} % Width of the rule under the header
-\addtolength{\headheight}{2.5pt} % Increase the spacing around the header slightly
+\addtolength{\headheight}{2.5ex} % Decrease the spacing around the header slightly
 \renewcommand{\footrulewidth}{0pt} % Removes the rule in the footer
 \fancypagestyle{plain}{\fancyhead{}\renewcommand{\headrulewidth}{0pt}} % Style for when a plain pagestyle is specified
 
@@ -116,18 +115,18 @@
 \fi}
 
 
-\newcommand{\headerlefttext}{
+\newcommand{\headerlefttext}{%
   \begin{center}%
-    \textsc{
+    \textsc{%
       \Large%
-      \thetitle
-    }
+      \thetitle%
+    }%
   \end{center}%
 }
 
-\newcommand{\headerrighttext}{
+\newcommand{\headerrighttext}{%
   \begin{center}%
-    \leftmark
+    \leftmark%
   \end{center}%
 }
 
@@ -137,40 +136,40 @@
 \newlength{\headerleftheight}
 \newlength{\headerrightheight}
 
-\renewcommand{\headrule}{
-
-  \setlength{\headermargin}          {1cm}
-  \setlength{\headercenterspace}     {2cm}
-  \setlength{\headertextwidth}       {.5\paperwidth-.5\headercenterspace-2\headermargin}
-
-  \setlength{\headerleftheight}      {2cm}
-  \setlength{\headerrightheight}     {1.5cm}
-
-  \begin{textblock*}{\paperwidth}(0mm,0mm) {
-    \begin{tikzpicture}
-      \draw[fill=Cerulean]
-             (0,                                   0) 
-          -- (\paperwidth,                         0) 
-          -- (\paperwidth,                         -\headerrightheight) 
-          -- (.5\paperwidth +.5\headercenterspace, -\headerrightheight) 
-          -- (.5\paperwidth -.5\headercenterspace, -\headerleftheight) 
-          -- (0,                                   -\headerleftheight);
-    \end{tikzpicture}
-  } \end{textblock*}
-
-  \begin{textblock*}{\headertextwidth}(\headermargin,0pt)
-    \centering
-    \begin{minipage}[t][\headerleftheight][c]{.75\headertextwidth plus .25\headertextwidth}
-      \headerlefttext
-    \end{minipage}
-  \end{textblock*}
-
-  \begin{textblock*}{\headertextwidth}(.5\paperwidth+.5\headermargin+\headermargin,0pt)
-    \centering
-    \begin{minipage}[t][\headerrightheight][c]{.75\headertextwidth plus .25\headertextwidth}
-      \headerrighttext
-    \end{minipage}
-  \end{textblock*}
+\renewcommand{\headrule}{%
+%
+  \setlength{\headermargin}          {1cm}%
+  \setlength{\headercenterspace}     {2cm}%
+  \setlength{\headertextwidth}       {.5\paperwidth-.5\headercenterspace-2\headermargin}%
+%
+  \setlength{\headerleftheight}      {2cm}%
+  \setlength{\headerrightheight}     {1.5cm}%
+%
+  \begin{textblock*}{\paperwidth}(0mm,0mm) {%
+    \begin{tikzpicture}%
+      \draw[fill=Cerulean]%
+             (0,                                   0) %
+          -- (\paperwidth,                         0) %
+          -- (\paperwidth,                         -\headerrightheight) %
+          -- (.5\paperwidth +.5\headercenterspace, -\headerrightheight) %
+          -- (.5\paperwidth -.5\headercenterspace, -\headerleftheight) %
+          -- (0,                                   -\headerleftheight);%
+    \end{tikzpicture}%
+  } \end{textblock*}%
+%
+  \begin{textblock*}{\headertextwidth}(\headermargin,0pt)%
+    \centering%
+    \begin{minipage}[t][\headerleftheight][c]{.75\headertextwidth plus .25\headertextwidth}%
+      \headerlefttext%
+    \end{minipage}%
+  \end{textblock*}%
+%
+  \begin{textblock*}{\headertextwidth}(.5\paperwidth+.5\headermargin+\headermargin,0pt)%
+    \centering%
+    \begin{minipage}[t][\headerrightheight][c]{.75\headertextwidth plus .25\headertextwidth}%
+      \headerrighttext%
+    \end{minipage}%
+  \end{textblock*}%
 }
 
 %----------------------------------------------------------------------------------------
@@ -179,9 +178,9 @@
 
 \usepackage{lastpage}
 
-\newcommand{\footerlefttext}{
-  \begin{center}%
-    page \thepage -- \pageref{LastPage}
+\newcommand{\footerlefttext}{%
+  \begin{center}%%
+    page \thepage -- \pageref{LastPage}%
   \end{center}%
 }
 
@@ -191,35 +190,37 @@
 \newlength{\footerleftheight}
 \newlength{\footerrightheight}
 
-\renewcommand{\footrule}{
-
-  \setlength{\footermargin}          {1cm}
-  \setlength{\footercenterspace}     {2cm}
-  \setlength{\footertextwidth}       {.5\paperwidth-.5\footercenterspace-2\footermargin}
-
-  \setlength{\footerleftheight}      {1cm}
-  \setlength{\footerrightheight}     {0.5cm}
-
-  \begin{textblock*}{\paperwidth}(0mm,\paperheight - \footerleftheight) {
-    \begin{tikzpicture}
-      \draw[fill=lightgray]
-             (0,                                   0) 
-          -- (\paperwidth,                         0) 
-          -- (\paperwidth,                         \footerrightheight) 
-          -- (.5\paperwidth +.5\footercenterspace, \footerrightheight) 
-          -- (.5\paperwidth -.5\footercenterspace, \footerleftheight) 
-          -- (0,                                   \footerleftheight);
-    \end{tikzpicture}
-  } \end{textblock*}
-
-  \begin{textblock*}{\footertextwidth}(\footermargin,\paperheight - \footerleftheight)
-    \centering
-    \begin{minipage}[t][\footerleftheight][c]{.75\footertextwidth plus .25\footertextwidth}
-      \footerlefttext
-    \end{minipage}
-  \end{textblock*}
+\newcommand{\myfootrule}{%
+  \setlength{\footermargin}          {1cm}%
+  \setlength{\footercenterspace}     {2cm}%
+  \setlength{\footertextwidth}       {.5\paperwidth-.5\footercenterspace-2\footermargin}%
+%
+  \setlength{\footerleftheight}      {1cm}%
+  \setlength{\footerrightheight}     {0.5cm}%
+%
+  \begin{textblock*}{\paperwidth}(0mm,\paperheight - \footerleftheight) {%
+    \begin{tikzpicture}%
+      \draw[fill=lightgray]%
+             (0,                                   0) %
+          -- (\paperwidth,                         0) %
+          -- (\paperwidth,                         \footerrightheight) %
+          -- (.5\paperwidth +.5\footercenterspace, \footerrightheight) %
+          -- (.5\paperwidth -.5\footercenterspace, \footerleftheight) %
+          -- (0,                                   \footerleftheight);%
+    \end{tikzpicture}%
+  } \end{textblock*}%
+%
+  \begin{textblock*}{\footertextwidth}(\footermargin,\paperheight - \footerleftheight)%
+    \centering%
+    \begin{minipage}[t][\footerleftheight][c]{.75\footertextwidth plus .25\footertextwidth}%
+      \footerlefttext%
+    \end{minipage}%
+  \end{textblock*}%
+}%
+%
+\renewcommand{\footrule}{%
+  \myfootrule%
 }
-
 
 %----------------------------------------------------------------------------------------
 %	DEFINITION OF COLORED BOXES
@@ -350,6 +351,7 @@ innerbottommargin=5pt]{cBox}
 % Unnumbered chapters without mini tableofcontents (could be added though) 
 \def\@makeschapterhead#1{
 \thispagestyle{empty}
+%\myfootrule
 {\centering \normalfont\sffamily
 \ifnum \c@secnumdepth >\m@ne
 \if@mainmatter
