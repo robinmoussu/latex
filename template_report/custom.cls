@@ -29,16 +29,15 @@
 \LoadClass[a4paper]{report}
 
 %% Load additional packages and commands.
-\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage[dvipsnames]{xcolor} % color by name
 \RequirePackage{titlesec} % Allows customization of titles
 \RequirePackage{graphicx} % Required for including pictures
 \RequirePackage{tikz} % Required for drawing custom shapes
 \RequirePackage{eso-pic} % Required for specifying an image background in the title page
-\RequirePackage{titling}
-\RequirePackage{fancyhdr}
-\RequirePackage{tikz}
-\RequirePackage[absolute, overlay]{textpos}
-\RequirePackage{calc}
+\RequirePackage{titling} % use the title many time
+\RequirePackage{tikz} % for drawing graphics
+\RequirePackage[absolute, overlay]{textpos} % for absolute positioning of graphics
+\RequirePackage{calc} % allow dimensions calculations
 
 %\graphicspath{{Pictures/}} % Specifies the directory where pictures are stored
 
