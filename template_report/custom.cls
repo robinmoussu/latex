@@ -115,42 +115,41 @@
 
 
 \newcommand{\headerlefttext}{%
-  \begin{center}%
-    \textsc{%
-      \Large%
-      \thetitle%
-    }%
-  \end{center}%
+  \centering
+  \textsc{%
+    \Large%
+    \thetitle%
+  }%
 }
 
 \newcommand{\headerrighttext}{%
-  \begin{center}%
-    \leftmark%
-  \end{center}%
+  \centering
+  \leftmark%
 }
 
-\newlength{\headermargin}
+\newlength{\headertextmargin}
+\newlength{\headerimagemargin}
 \newlength{\headercenterspace}
 \newlength{\headercenter}
 \newlength{\headerleftheight}
+\newlength{\headerleftwidth}
 \newlength{\headerrightheight}
-\newlength{\headerlefttextwidth}
-\newlength{\headerrighttextwidth}
+\newlength{\headerrightwidth}
 
-\renewcommand{\headrule}{%
-%
-  \setlength{\headermargin}          {1cm}%
-  \setlength{\headercenterspace}     {2cm}%
-  \setlength{\headercenter}          {.35\paperwidth}%
-%
-  \setlength{\headerleftheight}      {2cm}%
-  \setlength{\headerrightheight}     {1.5cm}%
-  \setlength{\headerlefttextwidth}   {\headercenter-.5\headercenterspace-2\headermargin}%
-  \setlength{\headerrighttextwidth}  {\paperwidth-\headercenter-.5\headercenterspace-2\headermargin}%
-%
+\setlength{\headertextmargin}      {1cm}%
+\setlength{\headerimagemargin}     {2mm}%
+\setlength{\headercenterspace}     {2cm}%
+\setlength{\headercenter}          {.35\paperwidth}%
+
+\setlength{\headerleftheight}      {2cm}%
+\setlength{\headerrightheight}     {1.5cm}%
+\setlength{\headerleftwidth}   {\headercenter-.5\headercenterspace}%
+\setlength{\headerrightwidth}  {\paperwidth-\headercenter-.5\headercenterspace}%
+
+\newcommand{\headerdecoration}[1]{
   \begin{textblock*}{\paperwidth}(0mm,0mm) {%
     \begin{tikzpicture}%
-      \draw[fill=Cyan]%
+      \draw[fill=#1]%
              (0,                                   0) %
           -- (\paperwidth,                         0) %
           -- (\paperwidth,                         -\headerrightheight) %
@@ -161,19 +160,28 @@
     \end{tikzpicture}%
   } \end{textblock*}%
 %
-  \begin{textblock*}{\headerlefttextwidth}(\headermargin,0pt)%
-    \centering%
-    \begin{minipage}[t][\headerleftheight][c]{\headerlefttextwidth}%
-      \headerlefttext%
+}
+
+\newcommand{\headerleftcontent}[2][\headertextmargin]{%
+  \begin{textblock*}{\headerleftwidth-2#1}(#1,0pt)%
+    \begin{minipage}[t][\headerleftheight][c]{\headerleftwidth-2#1}%
+      #2%
     \end{minipage}%
   \end{textblock*}%
-%
-  \begin{textblock*}{\headerrighttextwidth}(\headercenter + .5\headercenterspace + \headermargin,0pt)%
-    \centering%
-    \begin{minipage}[t][\headerrightheight][c]{\headerrighttextwidth}%
-      \headerrighttext%
+}
+
+\newcommand{\headerrightcontent}[2][\headertextmargin]{%
+  \begin{textblock*}{\headerrightwidth-2#1}(\headercenter + .5\headercenterspace + #1,0pt)%
+    \begin{minipage}[t][\headerrightheight][c]{\headerrightwidth-2#1}%
+      #2%
     \end{minipage}%
   \end{textblock*}%
+}
+
+\renewcommand{\headrule}{%
+  \headerdecoration{Cyan}%
+  \headerleftcontent{\headerlefttext}%
+  \headerrightcontent{\headerrighttext}%
 }
 
 %----------------------------------------------------------------------------------------
@@ -195,7 +203,7 @@
 \newlength{\footerleftheight}
 \newlength{\footerrightheight}
 
-\newcommand{\myfootrule}{%
+\newcommand{\myfootrulebegin}{%
   \setlength{\footermargin}          {1cm}%
   \setlength{\footercenter}          {.35\paperwidth}%
   \setlength{\footercenterspace}     {2cm}%
@@ -220,14 +228,32 @@
   \begin{textblock*}{\footerlefttextwidth}(\footermargin,\paperheight - \footerleftheight)%
     \centering%
     \begin{minipage}[t][\footerleftheight][c]{.75\footerlefttextwidth plus .25\footerlefttextwidth}%
-      \footerlefttext%
+}
+
+\newcommand{\myfootruleend}{%
     \end{minipage}%
   \end{textblock*}%
 }%
 %
 \renewcommand{\footrule}{%
-  \myfootrule%
+  \myfootrulebegin
+  \footerlefttext
+  \myfootruleend
 }
+
+%----------------------------------------------------------------------------------------
+%	MAIN TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\pretitle{%
+  \headerdecoration{gray}
+  \headerleftcontent[\headerimagemargin]{\includegraphics[height=.9\headerleftheight]{smart_me_up}}%
+  \headerrightcontent[\headerimagemargin]{\flushright\includegraphics[height=.9\headerrightheight]{Logo_ENSIMAG_2008}}%
+}
+
+\posttitle{}
+\predate{\myfootrulebegin}
+\postdate{\myfootruleend}
 
 %----------------------------------------------------------------------------------------
 %	DEFINITION OF COLORED BOXES
@@ -322,7 +348,7 @@ innerbottommargin=5pt]{cBox}
 {.1ex}
 {\normalfont\small\sffamily\bfseries}}
 
-%----------------------------------------------------------------------------------------
+%---------------------------------------------------------------------------------------
 %	CHAPTER HEADINGS
 %----------------------------------------------------------------------------------------
 
