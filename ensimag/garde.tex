@@ -1,0 +1,81 @@
+\documentclass[12pt,a4paper,twoside]{article}
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{a4wide} 
+\usepackage{amsmath}
+\usepackage{amssymb} 
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{fancybox}
+%\usepackage{moreverb}
+\usepackage[T1]{fontenc}
+% \usepackage{hangcaption}
+\usepackage{listings}
+\usepackage[latin1]{inputenc}
+
+%\fbox{}
+%\shadowbox{}
+%\doublebox{}
+%\ovalbox{}
+%\Ovalbox{}
+%\shabox{}
+
+
+% --- Logo Atos ---
+%\makebox[\textwidth][l]{
+%\raisebox{-15pt}[0pt][0pt]{
+%\hspace{2.5cm}
+%\includegraphics[scale=0.1]{Images/logo_atos.eps}
+%}
+%}
+\title{Rapport de projet de fin d'études}
+\author{Nom et Prénom Etudiant}
+\date{\today}
+
+\pagestyle{headings}
+
+\begin{document}
+\lstset{ numbers=left, tabsize=3, frame=single, numberstyle=\ttfamily, basicstyle=\footnotesize} 
+\thispagestyle{empty}
+
+\begin{center}
+\makebox[\textwidth][l]{
+\raisebox{-8pt}[0pt][0pt]{
+\includegraphics[scale=0.18]{Images/logo_entreprise}
+}
+}
+\makebox[\textwidth][r]{
+\raisebox{0pt}[0pt][0pt]{
+\includegraphics[scale=0.2]{Images/logo_ensimag}
+}
+}
+Grenoble INP  -- ENSIMAG\\
+École Nationale Supérieure dInformatique et de Mathématiques Appliquées\\
+\vspace{3cm}
+{\LARGE Rapport de <type de stage> \\(Projet de Fin d'Etudes ou Stage Assistant-Ingénieur)}\\
+\vspace{1cm}
+Effectué chez Nom Entreprise\\
+\vspace{2cm}
+\shadowbox{
+\begin{minipage}{1\textwidth}
+\begin{center}
+{\Huge Titre du Sujet de Stage}\\
+\end{center}
+\end{minipage}
+}\\
+\vspace{3cm}
+Nom et Prénom Etudiant\\
+<Année de formation (1A, 2A ou 3A)> -- Option <intitulé de filière>\\
+\vspace{3mm}
+11 février 2008 -- 01 août 2008\\
+\vspace{3,5cm}
+\begin{tabular}{p{10cm}p{10cm}}
+{\bf Nom Entreprise}                                            &{\bf Responsable de stage}\\
+{\footnotesize Adresse Entreprise}       & ~~~Nom Et Prénom Tuteur Entreprise\\
+{\footnotesize BP XX}                                        & {\bf Tuteur de l'école}\\
+{\footnotesize 38000 Grenoble Cedex}                          & ~~~Nom et PrénomTuteur Ecole\\
+\end{tabular}
+\end{center}
+\newpage
+\end{document}
