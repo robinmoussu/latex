@@ -35,7 +35,7 @@
 
 \pagestyle{headings}
 
-\newcommand{\smu}{\smallcaps{Smart Me Up}}
+\newcommand{\smu}{\textsc{Smart Me Up}}
 
 \newcommand{\rtp}{\textbf{rtp}}
 \newcommand{\rtcp}{\textbf{rtcp}}
@@ -137,7 +137,8 @@ sans ambiguïté.
 nature du stage. Ces dif f érents points restent toutefois ceux attendus par le jury pour
 évaluer votre travail:
 
-\section{Introduction}
+\chapterimage{nature-clouds-hdr-phenomenon.jpg}
+\chapter{Introduction}
 %% Introduire la problématique, les objectifs et l¿articulation du pré-rapport (2¿3
 paragraphes)
 
@@ -246,9 +247,24 @@ finnally use \happyhttp.
 
 \subsection{Minimize the dependency}
 
-c++ -> native code
-\gstreamer pipeline
-reduce dependency -> remove boost
+One of my objective was to create a sofware that is really portable. So, my
+tutor ask me to minimize the number of dependencies, and their complexities.
+
+python ->, cannot assume it is installed on client machine -> use of native code
+(c++).
+
+boost -> considered too complex for my tutor, so I have remove it, and replace
+the part I needed (parse json, read arguments from command line, ¿) by my own
+code.
+
+With the same optique, I have replaced libcurl by HappyHTTP. That second library
+is only one small source file, so it is easier to embed it.
+
+However my main dependency was etheir to \gstreamer of to \ffmpeg/\avconv. Since
+they are both as complex, it was not an arguments in favor of one or another.
+-> more complicated remaining dependancy in my code.
+
+
 no install (\fpm was initialy used to create real .deb package)
 
 \subsection{Build system}
@@ -269,24 +285,51 @@ jni to use our c++ codebase inside java.
 
 android ndk/sdk
 
-\section{Results}
+\subsection{Grab image and send video}
 
-All what I done is still more a proof of concept than something production
-ready.
+\gstreamer pipeline
+\ffmpeg/\avconv work similary.
+
+\subsection{Mistakes}
+
+I have wasted some time during my intership because at a point I was stuck, and
+I had not enough method to find the right solution.
+
+Making pair-programming was a good idea, but we did not use it enough for my
+taste.
+
+Sometime, when I was stuck, I left my desk, to help someone else, and when I
+came back that person help me back. In general, that save us both a lot of time,
+because, it help us to take a more global view on what we were doing. The key
+point of that is that explaining to someone else our problem help us to
+formalize it.
+
+\section{Results}
 
 can compile and run on multiple plateforms~: all \linux (both intel and arm) and
 \windows. A lots of work have also be done for android, but all the work have
 not be finished.
+The program I wrote still need more tuning to be really production ready.
 
-need a lots more tuning
+
 
 \section{Conclusion}
 
-key points:
+The keys points of my intership was:
+\begin{enumerate}
+\item design a sofware architecture
+\item define witch protocoles will be used and how
+\item create a robust build system
+\item understand the link process
+\item build for multiple target (\linux arm and intel, \win, \android)
+\item try to have cross compilation
+\end{enumerate}
 
-cross compilation
-link
-build system
-architecture (protocols/¿)
+It was realy interesting, and now I have a better understanding of the link
+process.
+
+The part that motivate me the most was disigning the communication protocol.
+When we disign a protocol, it have to be both expressive and easy to
+parse/understand, so the result is something really clean.
 
 \end{document}
