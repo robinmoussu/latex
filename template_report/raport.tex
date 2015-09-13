@@ -1,5 +1,6 @@
 \documentclass[a4paper,11pt]{custom}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 %
 %--------------------   start of the 'preamble'
 %
@@ -17,16 +18,68 @@
 %
 %---------------------   end of the 'preamble'
 %
+\newcommand{\smu}{\textsc{Smart Me Up}}
+
+\newcommand{\rtp}{\textbf{rtp}}
+\newcommand{\rtcp}{\textbf{rtcp}}
+\newcommand{\rtsp}{\textbf{rtsp}}
+
+\newcommand{\vlc}{\textbf{vlc}}
+\newcommand{\avconv}{\textbf{avconv}}
+\newcommand{\ffmpeg}{\textbf{ffmpeg}}
+\newcommand{\gstreamer}{\textbf{gstreamer}}
+\newcommand{\curl}{\textbf{curl}}
+\newcommand{\happyhttp}{\textbf{HappyHTTP}}
+
+\newcommand{\mjpeg}{\textbf{mjpeg}}
+\newcommand{\jpeg}{\textbf{jpeg}}
+\newcommand{\vpx}{\textbf{vp8}}
+\newcommand{\mpeg}{\textbf{h264}}
+
+\newcommand{\cmake}{\textbf{cmake}}
+\newcommand{\jni}{\textbf{jni}}
+\newcommand{\fpm}{\textbf{fpm}}
+
+\newcommand{\rpi}{\textbf{raspberry pi}}
+\newcommand{\bbb}{\textbf{beaglebone black}}
+
+\newcommand{\linux}{\textbf{Linux}}
+\newcommand{\win}{\textbf{Windows}}
+\newcommand{\mac}{\textbf{Mac}}
+\newcommand{\android}{\textbf{Android}}
+\newcommand{\ios}{\textbf{ios}}
+
 \begin{document}
 %-----------------------------------------------------------
+
+% \section La page de couverture du rapport (dont vous trouverez un modèle sur 
+% l¿intranet) doit comporter obligatoirement les informations suivantes:
+
+% \item le nom et prénom du stagiaire
+% \item l'indication "stage de deuxième année"
+% \item le nom de l¿enseignant scientif i que membre du jury
+% \item le nom et l'adresse de la structure d¿accueil
+% \item les dates de début et de fi n du stage, et sa durée
+% \item le sujet du stage
+
 \title{
+  %Rapport de Stage Assistant-Ingénieur\\
   Streaming Vidéo
 }
 \author{
   Robin Moussu
+  2A SLE
   \thanks{
     suppervisé par Steven Dupont
   }
+  % effectué à \smu \\
+  % du 15 avril au 15 septembre
+  % \begin{tabular}
+  %{\bf Smart me up}                       &{\bf Responsable de stage}\\
+  %{\footnotesize 4 chemin des prés}       & ~~~Nom Et Prénom Tuteur Entreprise\\
+  %{\footnotesize BP XX}                   & {\bf Tuteur de l'école}\\
+  %{\footnotesize 38xxx Meylan Cedex}      & ~~~Nom et PrénomTuteur Ecole\\
+  % \end{tabular}
 }
 \maketitle
 %-----------------------------------------------------------
@@ -36,27 +89,248 @@ This is a \LaTeX\ template for undergraduate project reports.\\
 Its detailed contents evolve to reflect FAQs.
 \end{abstract}
 %-----------------------------------------------------------
-\chapterimage{nature-clouds-hdr-phenomenon.jpg} % Table of contents heading image
-\tableofcontents
+%\chapterimage{nature-clouds-hdr-phenomenon.jpg}
+%\tableofcontents
 %-----------------------------------------------------------
-\chapterimage{binary.jpg} % Table of contents heading image
-\include{chap1}
+%\chapterimage{binary.jpg}
+%\include{chap1}
+%\chapterimage{Raspberry_Pi_2.jpg}
+%\include{chap2}
+%\chapterimage{webcams.jpg}
+%\include{chap3}
+%\chapterimage{Spider_web_necklace_with_pearls_of_dew.jpg}
+%\include{chap4}
+%-----------------------------------------------------------
+%\chapterimage{Pink_flowers.jpg} % Table of contents heading image
+%\addcontentsline{toc}{chapter}{\numberline{}Bibliography}
+%\include{biblio}
+%-----------------------------------------------------------
+%\appendix
+%\include{app1}
+%\include{app2}
+%\include{app4}
+%\include{app3}
+%\include{app5}
+%-----------------------------------------------------------
+
+
+% Le rapport doit être synthétique et ne pourra donc pas porter sur tout ce
+% que vous avez fait. A titre indicatif, il doit comporter une quinzaine de pages
+% (de ces 15 pages, sont exclues la page de garde, la table des matières, la table des
+% f i gures, ... Il est possible d¿ajouter des annexes).
+
+% Un rapport scientif i que n¿est pas un récit chronologique du déroulement
+% du stage. Il nécessite de prendre de la distance, de recenser toute l¿information
+% utile d¿un travail de plusieurs mois, la hiérarchiser, la fi ltrer et la restructurer en
+% quelques pages. Le discours indirect est de rigueur (sauf pour insister sur la
+% contribution de l¿auteur) et les formulations doivent être précises et exactes.
+% Outre votre capacité à présenter clairement la problématique, l¿existant et la
+% méthodologie mise en ¿uvre, votre contribution personnelle doit apparaître
+% sans ambiguïté. 
+
+% Le squelette suivant est donné à titre indicatif et peut être adapté selon la
+% nature du stage. Ces dif f érents points restent toutefois ceux attendus par le jury pour
+% évaluer votre travail:
+
+\chapterimage{nature-clouds-hdr-phenomenon.jpg}
+\chapter{Introduction}
+%% Introduire la problématique, les objectifs et l¿articulation du pré-rapport (2¿3
+%% paragraphes)
+
+\chapterimage{binary.jpg}
+\chapter{Presentation}
+%% Présenter les éléments du contexte utile à la compréhension du rapport 
+%% (entreprise, service, mission, ¿). Le «copier/coller» des sites web des 
+%% entreprises est à proscrire ! (2 pages maximum) 
+
+\smu is a start-up specialized in video recognition, especialy facial
+recognition.
+
 \chapterimage{Raspberry_Pi_2.jpg}
-\include{chap2}
+\chapter{Goal of the internship}
+%% Présenter de manière concise et intelligible par une personne non spécialiste du
+%% domaine la problématique de votre stage et bien définir l¿existant :
+%% (environ 5 pages)
+%% le problème à résoudre
+%% les objectifs précis attendus 
+%% l¿état de l¿art des solutions existantes et des contraintes fi xées par 
+%% l¿entreprise
+%% votre solution motivée à partir de l¿analyse ci-dessus
+
+My initial goal was to create a software that can stream a video from all type of
+devices to the server of \smu, where it will be analysed. To be more specific,
+it have to support all type of webcam, on \linux, \win and \mac, smartphones'
+cameras (\android, \ios), and ip cameras.
+
+I worked whith Gabriel and Maud, two others interns.
+
+Gabriel goal was to create the server the receive the video stream, and launch
+the analysis using the library developped by smu.
+Maud created the web interface. That website is the place where customer can
+access to the results of their analysis and where they can administrate their
+camera (they have to pay a subscription for all their camera, and the type of
+analysis they chose).
+
+During our intership, we worked in the same office, so we were able to exchange
+a lot. At \smu, we were the `claude` department (it's a pun with `cloud
+computing` with a big french accent :) ).
+
+\subsection{Plateforms}
+
+As I said, my goal was to write a software that could be run everywhere. Or
+course since it will be in c++, 
+multi-plateform/cross compilation.
+
+\subsection{Technologie used}
+
+Our goal (Gabriel, Maud and me) was to select the appropriate technology for
+what we have to do. More precisely:
+\begin{enumerate}
+\item how to capture the images
+\item how to encode them
+\item how to send them
+\item how to communicate between the differents XXX machine
+\end{enumerate}
+And reciprocally how to receive the video stream and how to decode it.
+
+\subsection{synthesis}
+
+Since I have to support a very heterogeneous set a plateform, I had to be very
+generic.
+XXX tradeoff between performance required and bandwith (especialy)
+
 \chapterimage{webcams.jpg}
-\include{chap3}
+\chapter{Methodology}
+%% Décrire votre méthodologie de travail pour la mise en ¿uvre de votre solution 
+
+Our general methodology was to quicly have something that work somewhere, and
+then improve it to make it work everywhere in all conditions.
+
+So, we first test something on our machine, then using multiple machine in our
+office, and finnaly on the cloud.
+
+\subsection{Technologies used}
+
+Firstly, we (Gabriel and me) have together to find an appropriate technologie
+for video streaming. We have conclude that \rtp is a good choise. That was
+motivate because \rtp can be easily replaced by \rtsp that work in a similar
+way, but with encryption. Furthurmore, it can be use in tandem with \rtcp, witch
+carry informations on the stream (like framerate, lag, ¿)
+
+Select the good protocole is of course not enough, so we have cross plateform
+search implementation. \ffmpeg, his fork \avconv, \vlc and \gstreamer where good
+quandidates. \vlc was quicly avoided, because it has too much code that we do not
+need. It was nevertheless usefull for testing purpose. At the beggining, we have
+used \ffmpeg/\avconv, but we finnally found that \gstreamer as better performance
+results.
+
+Having the right protocole and the right implementation is still not enough. We
+had to choose and encoding that fit our needs. What we have wanted was something
+easy to encode, because the client program can run on small hardware, like \rpi,
+\bbb and smartphones. It also have to be lightweight, because we cannot assume
+the our client connection will be fast.
+
+All our tests have been first made on LAN, so mjpeg was a very good quandidate.
+It's just a sequence of \jpeg images, so it was realy, realy fast to encode,
+even on small hardware. As a direct consequence, the delay was excellant,
+however when we made read tests using a server somewhere on the cloud, the
+amount of data needed for the transmission was too hight. So we had to choose
+something else. We have tested \mpeg and \vpx, and the later was keept.
+
+At this point we knew how to grab images, encode them, and send them to a
+server. It's cool, but we need something to ask the permission the server. We
+choose to simply use http request. \curl was a good initial choise, since it is
+a very powerfull library. However, in the optique of minimizing dependances, I
+finnally use \happyhttp.
+
+\subsection{Minimize the dependency}
+
+One of my objective was to create a sofware that is really portable. So, my
+tutor ask me to minimize the number of dependencies, and their complexities.
+
+python ->, cannot assume it is installed on client machine -> use of native code
+(c++).
+
+boost -> considered too complex for my tutor, so I have remove it, and replace
+the part I needed (parse json, read arguments from command line, ¿) by my own
+code.
+
+With the same optique, I have replaced libcurl by HappyHTTP. That second library
+is only one small source file, so it is easier to embed it.
+
+However my main dependency was etheir to \gstreamer of to \ffmpeg/\avconv. Since
+they are both as complex, it was not an arguments in favor of one or another.
+-> more complicated remaining dependancy in my code.
+
+
+no install (\fpm was initialy used to create real .deb package)
+
+\subsection{Build system}
+
+I have developped a build system based on \cmake.
+
+cross-compillation
+
+It was choosen because it is
+cross plateform (that was obviously required), and powerfull enough to fit my
+need. I also wrote a small python script to call \cmake more easyly. I have
+developped it when I was trying to make cross compilation. So in one command, I
+build the whole program for all architecture. XXX
+
+Programming for \linux, on intel and arm device or for \win is quite similar, so
+the build system is the same (we use \cmake). On \android however, we also use
+jni to use our c++ codebase inside java.
+
+\android ndk/sdk
+
+\subsection{Grab image and send video}
+
+\gstreamer pipeline
+\ffmpeg/\avconv work similary.
+
+\subsection{Mistakes}
+
+I have wasted some time during my intership because at a point I was stuck, and
+I had not enough method to find the right solution.
+
+Making pair-programming was a good idea, but we did not use it enough for my
+taste.
+
+Sometime, when I was stuck, I left my desk, to help someone else, and when I
+came back that person help me back. In general, that save us both a lot of time,
+because, it help us to take a more global view on what we were doing. The key
+point of that is that explaining to someone else our problem help us to
+formalize it.
+
 \chapterimage{Spider_web_necklace_with_pearls_of_dew.jpg}
-\include{chap4}
-%-----------------------------------------------------------
+\chapter{Results}
+
+can compile and run on multiple plateforms~: all \linux (both intel and arm) and
+\win. A lots of work have also be done for \android, but all the work have
+not be finished.
+The program I wrote still need more tuning to be really production ready.
+
+
+
 \chapterimage{Pink_flowers.jpg} % Table of contents heading image
-\addcontentsline{toc}{chapter}{\numberline{}Bibliography}
-\include{biblio}
-%-----------------------------------------------------------
-\appendix
-\include{app1}
-\include{app2}
-\include{app4}
-\include{app3}
-\include{app5}
-%-----------------------------------------------------------
+\chapter{Conclusion}
+
+The keys points of my intership was:
+\begin{enumerate}
+\item design a sofware architecture
+\item define witch protocoles will be used and how
+\item create a robust build system
+\item understand the link process
+\item build for multiple target (\linux arm and intel, \win, \android)
+\item try to have cross compilation
+\end{enumerate}
+
+It was realy interesting, and now I have a better understanding of the link
+process.
+
+The part that motivate me the most was disigning the communication protocol.
+When we disign a protocol, it have to be both expressive and easy to
+parse/understand, so the result is something really clean.
+
+\end{document}
 \end{document}
