@@ -150,8 +150,8 @@
     \begin{tikzpicture}%
       \draw[fill=#2]%
              (0,                                   0) %
-          -- (\paperwidth-1.5pt,                   0) %
-          -- (\paperwidth-1.5pt,                   -\headerrightheight) %
+          -- (\paperwidth,                   0) %
+          -- (\paperwidth,                   -\headerrightheight) %
           -- (\headercenter +.5\headercenterspace, -\headerrightheight) %
           -- (\headercenter -.5\headercenterspace, -\headerleftheight) %
           -- (0,                                   -\headerleftheight)
@@ -215,8 +215,8 @@
     \begin{tikzpicture}%
       \draw[fill=lightgray]%
              (0,                                   0) %
-          -- (\paperwidth-1.5pt,                   0) %
-          -- (\paperwidth-1.5pt,                   \footerrightheight) %
+          -- (\paperwidth,                   0) %
+          -- (\paperwidth,                   \footerrightheight) %
           -- (\footercenter +.5\footercenterspace, \footerrightheight) %
           -- (\footercenter -.5\footercenterspace, \footerleftheight) %
           -- (0,                                   \footerleftheight)
@@ -225,7 +225,7 @@
   } \end{textblock*}%
 %
   \begin{textblock*}{\footerlefttextwidth}(\footermargin,\paperheight - \footerleftheight)%
-    \centering%
+    %\centering%
     \begin{minipage}[t][\footerleftheight][c]{.75\footerlefttextwidth plus .25\footerlefttextwidth}%
 }
 
@@ -421,6 +421,9 @@ innerbottommargin=5pt]{cBox}
 % Numbered chapters with mini tableofcontents
 \def\thechapter{\arabic{chapter}}
 \def\@makechapterhead#1{
+\myfootrulebegin[\titleblackmagicmargin]
+\footerlefttext
+\myfootruleend
 \thispagestyle{empty}
 {\centering \normalfont\sffamily
 \ifnum \c@secnumdepth >\m@ne
@@ -429,7 +432,9 @@ innerbottommargin=5pt]{cBox}
 \begin{tikzpicture}[remember picture,overlay]
 \node at (current page.north west)
 {\begin{tikzpicture}[remember picture,overlay]
-\node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{\thechapterimage}};
+\node[anchor=north west,inner sep=0pt] at (\oddsidemargin,0) {
+    \includegraphics[width=\paperwidth]{\thechapterimage}
+};
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Commenting the 3 lines below removes the small contents box in the chapter heading
 %\fill[color=ocre!10!white,opacity=.6] (1cm,0) rectangle (8cm,-7cm);
