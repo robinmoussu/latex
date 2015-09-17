@@ -178,7 +178,7 @@
 }
 
 \renewcommand{\headrule}{%
-  \headerdecoration{DodgerBlue}%
+  \headerdecoration{PaleTurquoise}%
   \headerleftcontent{\headerlefttext}%
   \headerrightcontent{\headerrighttext}%
 }
@@ -213,7 +213,7 @@
 %
   \begin{textblock*}{\paperwidth}(#1,\paperheight - \footerleftheight - 1pt) {%
     \begin{tikzpicture}%
-      \draw[fill=lightgray]%
+      \draw[fill=Azure2]%
              (0,                                   0) %
           -- (\paperwidth,                   0) %
           -- (\paperwidth,                   \footerrightheight) %
