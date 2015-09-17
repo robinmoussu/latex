@@ -52,6 +52,8 @@
 \newcommand{\ios}{\textbf{ios}}
 
 \newcommand{\nth}[1]{#1$^{\text{\tiny th}}$}
+\newcommand{\second}{2$^{\text{\tiny nd}}$}
+\newcommand{\cpp}{c$++$}
 
 \begin{document}
 %-----------------------------------------------------------
@@ -98,11 +100,24 @@
 \maketitle
 
 %-----------------------------------------------------------
-\begin{abstract}\centering
-A couple of sentences on three or four lines to summarise your work.\\ 
-This is a \LaTeX\ template for undergraduate project reports.\\
-Its detailed contents evolve to reflect FAQs.
-\end{abstract}
+
+~
+
+\vspace{\fill}
+\begin{flushright}
+\begin{minipage}[b]{7cm}
+I want to thanks warmly M. Steven Durand (CTO) and M. Loïc Lecerf (CEO) for
+guiding me during my intership, together with M. Olivier Kilh my tutor.
+
+\vspace{0.5em}
+
+My thanks also goes to all the employes and interns of \smu, especialy Maude
+Premillieu and Gabriel Mattos Langeloh. It was realy a pleasant experience to
+work with them.
+\end{minipage}
+\end{flushright}
+\vspace{\fill}
+\vspace{\fill}
 %-----------------------------------------------------------
 %\chapterimage{nature-clouds-hdr-phenomenon.jpg}
 %\tableofcontents
@@ -152,27 +167,42 @@ Its detailed contents evolve to reflect FAQs.
 %% Introduire la problématique, les objectifs et l¿articulation du pré-rapport (2¿3
 %% paragraphes)
 
-\chapterimage{binary.jpg}
-\chapter{Presentation}
-%% Présenter les éléments du contexte utile à la compréhension du rapport 
-%% (entreprise, service, mission, ¿). Le «copier/coller» des sites web des 
-%% entreprises est à proscrire ! (2 pages maximum) 
-
 My internship have been done in \smu, a start-up specialized in facial
 recognition, from June \nth{15} to September \nth{15}. My tutor was Olivier
 Kilh, a researcher in facial recognition. During my internship, I had many
 contact why Steven Durand, the CTO, and Loic Lecerf, the CEO. I have worked whis
 Gabriel Mattos Langeloh and Maude Premillieu, two other interns.
 
-\smu is a start-up specialized in video recognition, especialy facial
+\smu{} is a start-up specialized in video recognition, especialy facial
 recognition.
 
-\smu has developped a library that is able to make real-time facial analisys. My
-goal diring my internship was to create a software. It will be installed on
-\smu's client hardware, will grab a video, and send the stream to \smu's server.
-Gabriel has developped the server side of that project, and Maud the web
-interface were the client 
+\smu{} has developped a library that is able to make real-time facial analisys.
+My goal during my internship was to create a software. This one will be
+installed on \smu's client hardware (\linux, \win{} or \android), then it will
+grab a video, and send the stream to \smu's server. Gabriel has developped the
+server side of that project, and Maud the web interface were the client can
+manage their subscriptions.
 
+\vspace{\fill}
+
+\begin{center}
+\textsc{\textsc{Key points}}
+\end{center}
+
+\begin{itemize}
+\begin{multicols}{2}
+\item \textbf{video capture}
+\item \textbf{video compression}
+\item \textbf{stream protocols (rtp, rtcp)}
+\item \textbf{real time}
+\end{multicols}
+\end{itemize}
+
+\chapterimage{binary.jpg}
+\chapter{Presentation}
+%% Présenter les éléments du contexte utile à la compréhension du rapport 
+%% (entreprise, service, mission, ¿). Le «copier/coller» des sites web des 
+%% entreprises est à proscrire ! (2 pages maximum) 
 
 \chapterimage{Raspberry_Pi_2.jpg}
 \chapter{Goal of the internship}
@@ -187,7 +217,7 @@ interface were the client
 
 My initial goal was to create a software that can stream a video from all type of
 devices to the server of \smu, where it will be analysed. To be more specific,
-it have to support all type of webcam, on \linux, \win and \mac, smartphones'
+it have to support all type of webcam, on \linux, \win{} and \mac, smartphones'
 cameras (\android, \ios), and ip cameras.
 
 I worked whith Gabriel and Maud, two others interns.
@@ -205,9 +235,14 @@ computing` with a big french accent :) ).
 
 \subsection{Plateforms}
 
-As I said, my goal was to write a software that could be run everywhere. Or
-course since it will be in c++, 
-multi-plateform/cross compilation.
+As I said, my goal was to write a software that could be run virtualy
+everywhere. To be more specific, my initial targets were \linux{} (on PC, and
+embedded devices), \win, \android, \mac{} and \ios. It was a bit too ambitious, so
+the two XXXderniersXXX were XXXabandonnés.
+
+That sofware as to be written in \cpp, and as to be easy to use. As a
+consequence of using native language, my build system has to be able to create
+executable for all plateforms.
 
 \subsection{Technologie used}
 
@@ -225,7 +260,8 @@ And reciprocally how to receive the video stream and how to decode it.
 
 Since I have to support a very heterogeneous set a plateform, I had to be very
 generic.
-XXX tradeoff between performance required and bandwith (especialy)
+The main complicated part was to make tradeoff between performance required for
+video encoding and the available bandwith. The better
 
 \chapterimage{webcams.jpg}
 \chapter{Methodology}
@@ -240,34 +276,34 @@ office, and finnaly on the cloud.
 \subsection{Technologies used}
 
 Firstly, we (Gabriel and me) have together to find an appropriate technologie
-for video streaming. We have conclude that \rtp is a good choise. That was
-motivate because \rtp can be easily replaced by \rtsp that work in a similar
+for video streaming. We have conclude that \rtp{} is a good choise. That was
+motivate because \rtp{} can be easily replaced by \rtsp{} that work in a similar
 way, but with encryption. Furthurmore, it can be use in tandem with \rtcp, witch
 carry informations on the stream (like framerate, lag, ¿)
 
 Select the good protocole is of course not enough, so we have cross plateform
-search implementation. \ffmpeg, his fork \avconv, \vlc and \gstreamer where good
-quandidates. \vlc was quicly avoided, because it has too much code that we do not
+search implementation. \ffmpeg, his fork \avconv, \vlc{} and \gstreamer{} where good
+quandidates. \vlc{} was quicly avoided, because it has too much code that we do not
 need. It was nevertheless usefull for testing purpose. At the beggining, we have
-used \ffmpeg/\avconv, but we finnally found that \gstreamer as better performance
+used \ffmpeg/\avconv, but we finnally found that \gstreamer{} as better performance
 results.
 
 Having the right protocole and the right implementation is still not enough. We
 had to choose and encoding that fit our needs. What we have wanted was something
 easy to encode, because the client program can run on small hardware, like \rpi,
-\bbb and smartphones. It also have to be lightweight, because we cannot assume
+\bbb{} and smartphones. It also have to be lightweight, because we cannot assume
 the our client connection will be fast.
 
 All our tests have been first made on LAN, so mjpeg was a very good quandidate.
-It's just a sequence of \jpeg images, so it was realy, realy fast to encode,
+It's just a sequence of \jpeg{} images, so it was realy, realy fast to encode,
 even on small hardware. As a direct consequence, the delay was excellant,
 however when we made read tests using a server somewhere on the cloud, the
 amount of data needed for the transmission was too hight. So we had to choose
-something else. We have tested \mpeg and \vpx, and the later was keept.
+something else. We have tested \mpeg{} and \vpx, and the later was keept.
 
 At this point we knew how to grab images, encode them, and send them to a
 server. It's cool, but we need something to ask the permission the server. We
-choose to simply use http request. \curl was a good initial choise, since it is
+choose to simply use http request. \curl{} was a good initial choise, since it is
 a very powerfull library. However, in the optique of minimizing dependances, I
 finnally use \happyhttp.
 
@@ -286,35 +322,40 @@ code.
 With the same optique, I have replaced libcurl by HappyHTTP. That second library
 is only one small source file, so it is easier to embed it.
 
-However my main dependency was etheir to \gstreamer of to \ffmpeg/\avconv. Since
+However my main dependency was etheir to \gstreamer{} of to \ffmpeg/\avconv. Since
 they are both as complex, it was not an arguments in favor of one or another.
 -> more complicated remaining dependancy in my code.
 
-
-no install (\fpm was initialy used to create real .deb package)
+In the optique of being as simple as possible for the user to test that sofware,
+I had to design my sofware in a way it could be used without installation.
+(\fpm{} was initialy used to create real .deb package)
 
 \subsection{Build system}
 
 I have developped a build system based on \cmake.
 
-cross-compillation
-
 It was choosen because it is
 cross plateform (that was obviously required), and powerfull enough to fit my
-need. I also wrote a small python script to call \cmake more easyly. I have
+need. I also wrote a small python script to call \cmake{} more easyly. I have
 developped it when I was trying to make cross compilation. So in one command, I
 build the whole program for all architecture. XXX
 
-Programming for \linux, on intel and arm device or for \win is quite similar, so
-the build system is the same (we use \cmake). On \android however, we also use
-jni to use our c++ codebase inside java.
+cross-compillation
+Our initial goal was to have a cross-plateform build system. In that ideal
+scenario, when I want to create a new release of my software, I have
 
-\android ndk/sdk
+The build process for \linux, on intel and arm device or for \win{} is quite
+similar (except some fiew \#ifdef), so the build system is the same (we use
+\cmake). On \android{} however, The main has to be written in java. So, I have
+used \jni{} to build my \cpp{} codebase and linked it to java. So I can share my
+work also on that plateform.
+
+\android{} ndk/sdk
 
 \subsection{Grab image and send video}
 
-\gstreamer pipeline
-\ffmpeg/\avconv work similary.
+\gstreamer{} pipeline
+\ffmpeg/\avconv{} work similary.
 
 \subsection{Mistakes}
 
@@ -333,7 +374,7 @@ formalize it.
 \chapterimage{Spider_web_necklace_with_pearls_of_dew.jpg}
 \chapter{Results}
 
-can compile and run on multiple plateforms~: all \linux (both intel and arm) and
+can compile and run on multiple plateforms~: all \linux{} (both intel and arm) and
 \win. A lots of work have also be done for \android, but all the work have
 not be finished.
 The program I wrote still need more tuning to be really production ready.
@@ -349,7 +390,7 @@ The keys points of my intership was:
 \item define witch protocoles will be used and how
 \item create a robust build system
 \item understand the link process
-\item build for multiple target (\linux arm and intel, \win, \android)
+\item build for multiple target (\linux{} arm and intel, \win, \android)
 \item try to have cross compilation
 \end{enumerate}
 
