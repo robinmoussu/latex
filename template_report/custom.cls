@@ -251,10 +251,10 @@
 \newlength{\headertitleposition}
 \newlength{\headerauthorposition}
 
-\setlength{\headertitlewidth}       {.5\paperwidth}%
-\setlength{\headerauthorwidth}      {.5\paperwidth}%
-\setlength{\headertitleposition}    {.4\paperheight}%
-\setlength{\headerauthorposition}   {.56\paperheight}%
+\setlength{\headertitlewidth}       {.6\paperwidth}%
+\setlength{\headerauthorwidth}      {.6\paperwidth}%
+\setlength{\headertitleposition}    {.3\paperheight}%
+\setlength{\headerauthorposition}   {.5\paperheight}%
 
 \newlength{\titleblackmagicmargin}
 \setlength{\titleblackmagicmargin}  {-5mm}%
@@ -306,8 +306,8 @@
 
 \renewcommand{\thanks}[1]{
   \begin{minipage}{\headerauthorwidth}%
+    \vspace{1em}
     \centering
-    \itshape
     \Large
     #1%
   \end{minipage}%
