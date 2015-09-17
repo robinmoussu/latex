@@ -217,16 +217,17 @@ manage their subscriptions.
 
 My initial goal was to create a software that can stream a video from all type of
 devices to the server of \smu, where it will be analysed. To be more specific,
-it have to support all type of webcam, on \linux, \win{} and \mac, smartphones'
-cameras (\android, \ios), and ip cameras.
+it have to support all type of webcam, on \linux, \win{} and \mac, smartphones
+(\android, \ios), and ip cameras.
 
-I worked whith Gabriel and Maud, two others interns.
+I have worked together whith Gabriel and Maud, two others interns.
 
 Gabriel goal was to create the server the receive the video stream, and launch
 the analysis using the library developped by smu.
-Maud created the web interface. That website is the place where customer can
+
+Maud has created the web interface. That website is the place where customer can
 access to the results of their analysis and where they can administrate their
-camera (they have to pay a subscription for all their camera, and the type of
+cameras (they have to pay a subscription for all their camera, and the type of
 analysis they chose).
 
 During our intership, we worked in the same office, so we were able to exchange
@@ -248,20 +249,24 @@ executable for all plateforms.
 
 Our goal (Gabriel, Maud and me) was to select the appropriate technology for
 what we have to do. More precisely:
-\begin{enumerate}
+\begin{itemize}
 \item how to capture the images
 \item how to encode them
 \item how to send them
-\item how to communicate between the differents XXX machine
-\end{enumerate}
-And reciprocally how to receive the video stream and how to decode it.
+\item how to etablish connection between clients' software and \smu{} servers
+\end{itemize}
+
+Reciprocally, Gabriel has to receive the video stream and decode it.
 
 \subsection{synthesis}
 
 Since I have to support a very heterogeneous set a plateform, I had to be very
 generic.
 The main complicated part was to make tradeoff between performance required for
-video encoding and the available bandwith. The better
+video encoding and the available bandwith. The better the compression was, the
+highter time it took to compress the images. 
+On slow CPU hardware (smartphones and embedded devices, like \rpi{} and \bbb{},
+it was a real challenge to found the right algorithm.
 
 \chapterimage{webcams.jpg}
 \chapter{Methodology}
@@ -385,14 +390,14 @@ The program I wrote still need more tuning to be really production ready.
 \chapter{Conclusion}
 
 The keys points of my intership was:
-\begin{enumerate}
+\begin{itemize}
 \item design a sofware architecture
 \item define witch protocoles will be used and how
 \item create a robust build system
 \item understand the link process
 \item build for multiple target (\linux{} arm and intel, \win, \android)
 \item try to have cross compilation
-\end{enumerate}
+\end{itemize}
 
 It was realy interesting, and now I have a better understanding of the link
 process.
