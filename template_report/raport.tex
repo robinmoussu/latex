@@ -4,6 +4,7 @@
 \usepackage[left=2.5cm,right=2.5cm]{geometry}
 \usepackage{indentfirst}
 \usepackage[official]{eurosym}
+\usepackage{relsize}
 
 %
 %--------------------   start of the 'preamble'
@@ -34,6 +35,7 @@
 \newcommand{\gstreamer}{\textbf{gstreamer}}
 \newcommand{\curl}{\textbf{curl}}
 \newcommand{\happyhttp}{\textbf{HappyHTTP}}
+\newcommand{\libcurl}{\textbf{libcurl}}
 
 \newcommand{\mjpeg}{\textbf{mjpeg}}
 \newcommand{\jpeg}{\textbf{jpeg}}
@@ -57,7 +59,13 @@
 
 \newcommand{\nth}[1]{#1$^{\text{\tiny th}}$}
 \newcommand{\second}{2$^{\text{\tiny nd}}$}
-\newcommand{\cpp}{c$++$}
+
+%C plus plus
+\newcommand{\cpp}{%
+  C\kern-.1667em\raise.30ex\hbox{\smaller{++}}%
+  \spacefactor1000%
+}
+\newcommand{\json}{\textbf{json}}
 
 \begin{document}
 %-----------------------------------------------------------
@@ -106,8 +114,19 @@
 %-----------------------------------------------------------
 
 ~
+\thispagestyle{empty}
 
-\newpage
+\headerdecoration[-.5cm]{PaleTurquoise}%
+\headerleftcontent{\headerlefttext}%
+\headerrightcontent{\headerrighttext}%
+\myfootrulebegin[-.5cm]
+\myfootruleend
+
+~
+
+\clearpage
+
+\pagenumbering{arabic}
 
 ~
 
@@ -209,8 +228,10 @@ manage their subscriptions.
 \begin{multicols}{2}
 \item \textbf{video capture}
 \item \textbf{video compression}
+\item \cpp
 \item \textbf{stream protocols (rtp, rtcp)}
 \item \textbf{real time}
+\\
 \end{multicols}
 \end{itemize}
 
@@ -286,7 +307,7 @@ During our intership, we worked in the same office, so we were able to exchange
 a lot. At \smu, we were the \claude{} department (it's a pun with \textit{cloud
 computing} with a big french accent :) ).
 
-\subsection{Technologie choise}
+\subsection{Technologics choises}
 
 Our goal (Gabriel, Maud and me) was to select the appropriate technology for
 what we have to do. To be more specific:
@@ -339,21 +360,49 @@ generic.
 The main complicated part was to make tradeoff between performance required for
 video encoding and the available bandwith. To lower the required bandwith, we
 can use a better compression algorithm, however better algorithm mean highter
-compression time, so worst lattency, and higher cpu usage.
+compression time, so worst lattency, and higher cpu usage. On slow CPU hardware
+(smartphones and embedded devices like \rpi{} and \bbb{}) it was a real
+challenge to found the right algorithm.
 
-On slow CPU hardware (smartphones and embedded devices like \rpi{} and \bbb{})
-it was a real challenge to found the right algorithm.
+The results of the analisys of our needs for the \claude{} project have lead to
+the sofware organization presented on figure~\ref{fig:architecture}. That figure
+is exclacted from the documentation Gabriel has wrote. To be more clear, what I
+call http gateway is the \textit{serveur HTTP}. The \textit{source} is anything
+with a webcam (a pc, an embeded device, or a smartphone).
+
+My contribution on the project was the source, and the specification of the
+communications between HTTP gateway and streaming and analysis server. Gabriel
+have worked on the video \& analisys server, and Maud on the rest (her intership
+was longer).
+
+\begin{figure}
+  \centering
+  \def\svgwidth{\columnwidth}
+  \input{architecture.pdf_tex}
+  \label{fig:architecture}
+  \caption{presentation of the \claude{} project structure}.
+\end{figure}
 
 \chapterimage{webcams.jpg}
 \chapter{Methodology}
 \label{chap:Methodology}
 %% Décrire votre méthodologie de travail pour la mise en ¿uvre de votre solution 
 
-Our general methodology was to quicly have something that work somewhere, and
-then improve it to make it work everywhere in all conditions.
+\subsection{Organisation}
 
-So, we first test something on our machine, then using multiple machine in our
-office, and finnaly on the cloud.
+During all my intership, I had two small meeting per week (called \textit{point
+claude}) with Steven Durand and Loïc Lecerf. The others interns of the \claude{}
+project (Maude and Gabriel) were also there. During thoses meeting, we presented
+the work we had done since the last time, and then we decide what to do next.
+Since none of the employees of \smu have look our code during our intership (as
+least for the \claude{} project, it was their only way to know what we were
+doing.
+
+Our general methodology was to quicly have something that work somewhere, and
+then improve it by small iteration to make it work everywhere in all conditions.
+As a consequence, we first test something on our machine, then using multiple
+machine in local network, and finaly on the cloud.
+
 
 \subsection{Technologies used}
 
@@ -364,11 +413,11 @@ way, but with encryption. Furthurmore, it can be use in tandem with \rtcp, witch
 carry informations on the stream (like framerate, lag, ¿)
 
 Select the good protocole is of course not enough, so we have cross plateform
-search implementation. \ffmpeg, his fork \avconv, \vlc{} and \gstreamer{} where good
-quandidates. \vlc{} was quicly avoided, because it has too much code that we do not
-need. It was nevertheless usefull for testing purpose. At the beggining, we have
-used \ffmpeg/\avconv, but we finnally found that \gstreamer{} as better performance
-results.
+search implementation. \ffmpeg, his fork \avconv, \vlc{} and \gstreamer{} where
+good quandidates. \vlc{} was quicly avoided, because it has too much code that
+we do not need. It was nevertheless usefull for testing purpose. At the
+beggining, we have used \ffmpeg/\avconv, but we finally found that \gstreamer{}
+as better performance results.
 
 Having the right protocole and the right implementation is still not enough. We
 had to choose and encoding that fit our needs. What we have wanted was something
@@ -385,24 +434,42 @@ something else. We have tested \mpeg{} and \vpx, and the later was keept.
 
 At this point we knew how to grab images, encode them, and send them to a
 server. It's cool, but we need something to ask the permission the server. We
-choose to simply use http request. \curl{} was a good initial choise, since it is
-a very powerfull library. However, in the optique of minimizing dependances, I
-finnally use \happyhttp.
+choose to simply use http request. \curl{} was a good initial choise, since it
+is a very powerfull library. However, in the optique of minimizing dependances,
+I finally use \happyhttp.
 
 \subsection{Minimize the dependency}
 
-One of my objective was to create a sofware that is really portable. So, my
-tutor ask me to minimize the number of dependencies, and their complexities.
+One of my objective was to create a sofware whose source code is really
+portable. So, my tutor ask me to minimize the number of dependencies, and their
+complexities.
 
-python ->, cannot assume it is installed on client machine -> use of native code
-(c++).
+For prototyping, I have used some python and shell scripts. Since we cannot
+assume that they are installed on our client machine, my tutor ask me to use
+native code (to be more specific \cpp). Binary package are not transfereable
+across operating system and cpu, I had to generate binaries for all targets.
 
-boost -> considered too complex for my tutor, so I have remove it, and replace
-the part I needed (parse json, read arguments from command line, ¿) by my own
-code.
+In July, I have wrote a software that did the work, but with too many
+dependencies. I had used boost for arguments and \json{} parsing, and curl for http
+request. I have also used gstreamer for video (grab image, compress using \vpx{}
+and send using \rtp/\rtcp) but it was a hard dependency.
 
-With the same optique, I have replaced libcurl by HappyHTTP. That second library
-is only one small source file, so it is easier to embed it.
+Removing boost and curl was too complicated, so I re-write my software, but much
+faster than the first time, since I already know what I want to do, and how to
+do it.
+
+To replace boost, I have wrote a minimal \json{} parser (for the sub-part of
+\json{} we use for the communication between the client and the http gateway).
+To parse the arguments provided to the program, I have made a manual read of
+the arguments on \verb+argv+. Of course my own code have less possibilities than
+boost, but it was less complex, and that was what I was asked for.
+
+With the similar optique, I have replaced \libcurl{} by \happyhttp. That second
+library is only one small source file, so it is easier to embed it. Furthurmore
+the employees of \smu{} were already using it. With some take back, I think that
+using \libcurl{} in the first place was a good idea, since it had help me to
+understant the errors easily when we was creating the http protocol between the
+client software and the http gateway.
 
 However my main dependency was etheir to \gstreamer{} of to \ffmpeg/\avconv. Since
 they are both as complex, it was not an arguments in favor of one or another.
