@@ -499,6 +499,9 @@ similar (except some fiew \#ifdef), so the build system is the same (we use
 used \jni{} to build my \cpp{} codebase and linked it to java. So I can share my
 work also on that plateform.
 
+\subsection{Android}
+
+Android sofware has be
 \android{} ndk/sdk
 
 \subsection{Grab image and send video}
@@ -523,20 +526,21 @@ formalize it.
 \chapterimage{Spider_web_necklace_with_pearls_of_dew.jpg}
 \chapter{Results}
 
-can compile and run on multiple plateforms~: all \linux{} (both intel and arm) and
-\win. A lots of work have also be done for \android, but all the work have
-not be finished.
-The program I wrote still need more tuning to be really production ready.
-
-
+To sum up, at the end of my intership, I have wrote a sofware that can compile
+and run on multiple plateforms~: \linux{} (both intel and arm) and \win. A lots
+of work have also be done for \android, but not everything have been finished.
+My program is able to ask the htpp gateway the autorization to start the stream.
+Then it grab images, compress them using \vpx{} encoding, and send them using a
+\rtp{}/\rtcp{} stream. All that is done using a gstreamer backend. The program I
+wrote still need more tuning to be faster, especially on embedded hardware.
 
 \chapterimage{Pink_flowers.jpg} % Table of contents heading image
-\chapter{Conclusion}
+\chapter{Personnal conclusion}
 
 The keys points of my intership was:
 \begin{itemize}
 \item design a sofware architecture
-\item define witch protocoles will be used and how
+\item define witch protocols will be used and how
 \item create a robust build system
 \item understand the link process
 \item build for multiple target (\linux{} arm and intel, \win, \android)
@@ -546,9 +550,11 @@ The keys points of my intership was:
 It was realy interesting, and now I have a better understanding of the link
 process.
 
-The part that motivate me the most was disigning the communication protocol.
-When we disign a protocol, it have to be both expressive and easy to
-parse/understand, so the result is something really clean.
+The part that motivate me the most was designing the communication protocol.
+When designing a protocol, we have to take care of making it both expressive and
+easy to parse/understand. I found that the result is pretty clean, and it was a
+good experience to work with Gabriel and Maud under the direction of Steven
+Durand and Loïc Lecerf.
 
 \end{document}
 \end{document}
