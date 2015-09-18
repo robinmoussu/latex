@@ -335,10 +335,13 @@ already use in the company.
 
 Since I have to support a very heterogeneous set a plateform, I had to be very
 generic.
+
 The main complicated part was to make tradeoff between performance required for
-video encoding and the available bandwith. The better the compression was, the
-highter time it took to compress the images. 
-On slow CPU hardware (smartphones and embedded devices, like \rpi{} and \bbb{},
+video encoding and the available bandwith. To lower the required bandwith, we
+can use a better compression algorithm, however better algorithm mean highter
+compression time, so worst lattency, and higher cpu usage.
+
+On slow CPU hardware (smartphones and embedded devices like \rpi{} and \bbb{})
 it was a real challenge to found the right algorithm.
 
 \chapterimage{webcams.jpg}
