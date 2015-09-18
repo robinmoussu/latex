@@ -255,6 +255,8 @@ on the \claude{} project.
 %% l¿entreprise
 %% votre solution motivée à partir de l¿analyse ci-dessus
 
+\subsection{General organisation}
+
 My initial goal was to create a software that can stream a video from all type of
 devices to the server of \smu, where it will be analysed. To be more specific,
 it have to support all type of webcam, on \linux, \win{} and \mac, smartphones
@@ -263,7 +265,7 @@ it have to support all type of webcam, on \linux, \win{} and \mac, smartphones
 I have worked together whith Gabriel and Maud, two others interns.
 
 Gabriel goal was to create the server the receive the video stream, and launch
-the analysis using the library developped by smu.
+the analysis using the library developped by \smu.
 
 Maud has created the web interface. That website is the place where customer can
 access to the results of their analysis and where they can administrate their
@@ -271,32 +273,53 @@ cameras (they have to pay a subscription for all their camera, and the type of
 analysis they chose).
 
 During our intership, we worked in the same office, so we were able to exchange
-a lot. At \smu, we were the \claude{} department (it's a pun with `cloud
-computing` with a big french accent :) ).
+a lot. At \smu, we were the \claude{} department (it's a pun with \textit{cloud
+computing} with a big french accent :) ).
+
+\subsection{Technologie choise}
+
+Our goal (Gabriel, Maud and me) was to select the appropriate technology for
+what we have to do. To be more specific:
+\begin{itemize}
+\item How to capture the images
+\item How to encode them
+\item How to send them to \smu{} server.
+\end{itemize}
+
+And furthurmore
+\begin{itemize}
+\item How to etablish connection between clients' software and \smu{} servers
+\end{itemize}
+
+Reciprocally, Gabriel has to receive the video stream and decode it.
+
+Our first task was to learn how video are streamed in general. That part is
+explain in details in the next part (part~\ref{chap:Methodology}). The objective
+was to found witch protocols are used for grapping encode and send image, and
+libraries that can do it.
+
+Our second goal was to define how our sofware will exchange informations. Since
+clients machine, and \smu{} server are all links to internet, we have choose to
+use http request. We have defined all the message we can send, and their
+structure. **** exemple annexe ou partie 3
 
 \subsection{Plateforms}
 
 As I said, my goal was to write a software that could be run virtualy
 everywhere. To be more specific, my initial targets were \linux{} (on PC, and
-embedded devices), \win, \android, \mac{} and \ios. It was a bit too ambitious, so
-the two XXXderniersXXX were XXXabandonnés.
+embedded devices like \rpi or \bbb), \win, \android, \mac{} and \ios. It was a
+bit too ambitious, so the last two were dropped.
 
-That sofware as to be written in \cpp, and as to be easy to use. As a
-consequence of using native language, my build system has to be able to create
-executable for all plateforms.
+All employees in \smu work on ubuntu (a \linux distribution), so I have first
+developped my solution for linux, keeping in mind that I will have to port it
+after, so I never use plateform specific stuff. Then I port it to linux arm (I
+have test it on \rpi and \bbb). After that, I try to create a \android
+application, and finnaly for \win.
 
-\subsection{Technologie used}
-
-Our goal (Gabriel, Maud and me) was to select the appropriate technology for
-what we have to do. More precisely:
-\begin{itemize}
-\item how to capture the images
-\item how to encode them
-\item how to send them
-\item how to etablish connection between clients' software and \smu{} servers
-\end{itemize}
-
-Reciprocally, Gabriel has to receive the video stream and decode it.
+I was requested to write my software in \cpp. As a consequence of using native
+language, my build system has to be able to create executable for all
+plateforms. I have choose to use \cmake{} as build system, since \cmake{} was
+already use in the company.
 
 \subsection{synthesis}
 
@@ -310,6 +333,7 @@ it was a real challenge to found the right algorithm.
 
 \chapterimage{webcams.jpg}
 \chapter{Methodology}
+\label{chap:Methodology}
 %% Décrire votre méthodologie de travail pour la mise en ¿uvre de votre solution 
 
 Our general methodology was to quicly have something that work somewhere, and
