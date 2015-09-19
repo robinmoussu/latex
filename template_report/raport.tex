@@ -9,7 +9,7 @@
 %
 %--------------------   start of the 'preamble'
 %
-\usepackage{graphicx,amssymb,amstext,amsmath,multicol}
+\usepackage{graphicx,amssymb,amstext,amsmath,multicol,wrapfig}
 %
 %%    homebrew commands -- to save typing
 \newcommand\etc{\textsl{etc}}
@@ -209,16 +209,17 @@ contact why Steven Durand, the CTO, and Loic Lecerf, the CEO. I have worked whis
 Gabriel Mattos Langeloh and Maude Premillieu, two other interns.
 
 \smu{} is a start-up specialized in video recognition, especialy facial
-recognition.
+recognition. His employees have developped a library that is able to make
+real-time facial analisys. My goal during my internship was to create a
+software. This one will be installed on \smu's client hardware (\linux, \win{}
+or \android), then it will grab a video, and send the stream to \smu's server.
+Gabriel has developped the server side of that project, and Maud the web
+interface were the client can manage their subscriptions.
 
-\smu{} has developped a library that is able to make real-time facial analisys.
-My goal during my internship was to create a software. This one will be
-installed on \smu's client hardware (\linux, \win{} or \android), then it will
-grab a video, and send the stream to \smu's server. Gabriel has developped the
-server side of that project, and Maud the web interface were the client can
-manage their subscriptions.
-
-*** Plan
+First I will present \smu{} and its employees. Then I will introduce the goal of
+my intership, and the choises I have made. Next, I will describe the
+methodology I have used during my intership. Afterward I will present the
+results of my work and finnaly conclude.
 
 \vspace{\fill}
 
@@ -226,16 +227,27 @@ manage their subscriptions.
 \textsc{\textsc{Key points}}
 \end{center}
 
-\begin{itemize}
 \begin{multicols}{2}
+\begin{itemize}
 \item \textbf{video capture}
 \item \textbf{video compression}
-\item \cpp
 \item \textbf{stream protocols (rtp, rtcp)}
+\item \textbf{\cpp}
 \item \textbf{real time}
-\\
-\end{multicols}
+\item \textbf{cross-compilation}
 \end{itemize}
+\end{multicols}
+
+\newpage
+
+\chapterimage{blanc.jpg}
+\headerdecoration[-.5cm]{PaleTurquoise}%
+\headerleftcontent{\headerlefttext}%
+\headerrightcontent{\headerrighttext}%
+
+\tableofcontents
+
+\clearpage
 
 \chapterimage{binary.jpg}
 \chapter{Presentation}
@@ -243,39 +255,66 @@ manage their subscriptions.
 %% (entreprise, service, mission, ¿). Le «copier/coller» des sites web des 
 %% entreprises est à proscrire ! (2 pages maximum) 
 
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=4cm]{smartmeup.jpg}
+  \label{fig:smartmeup}
+  \caption{\smu's logo}.
+\end{figure}
+
 \section{The company}
 
-\smu is a start up from Meylan whitch has create a library for facial
+\smu{} is a start up from Meylan whitch has create a library for facial
 analysis. That solution is usable as a base that can be embeded is any device,
-like drone, robots, interactives ads,…
+like drone, robots, interactives advertissements,…
 
-\smu was found in February 2012 by Loïc Lecerf. He has a PhD in artificial
-intelligence, and has found is start-up by selling a website he had created.
+\smu{} was found in February 2012 by Loïc Lecerf. He has a PhD in artificial
+intelligence. The initial founding for his start-up came from the selling of
+a website he had previously created.
 
-\smu has found its first client in 2014: Netatmo (in domotic solution) and
-Photomaton (to ensure the conformity of official photos). Then three new members
-has been hired: Olivier Kihl and Johf Ruz Hernandez (doctors in artificial
-inteligence and image recognition) and Steven Durand (politecthnicien). A new
-office has been create in Paris. The revenue of \smu in 2014 was 225'000\euro.
+\begin{wrapfigure}{r}{5cm}
+  \centering
+  \includegraphics[width=4cm]{french-tech.jpg}
+  \label{fig:frenchtech}
+  \caption{French Tech's logo}.
+\end{wrapfigure}
 
-In January 2015, \smu has participate in the CES (Consumer Electronics Show) in
+The firsts client of \smu{} are Netatmo (in domotic solution) and Photomaton (to
+ensure conformity of official photos). After finding thoses customers, three new
+members has been hired: Steven Durand (polytecthnicien), Olivier Kihl and John
+Ruz Hernandez (doctors in artificial inteligence and image recognition). A new
+office has been create in Paris. The revenue of \smu{} in 2014 was 225'000\euro.
+
+In January 2015, \smu{} has participate in the CES (Consumer Electronics Show) in
 Las Vegas. That event has increase it popularity, and new clients have been
-found, including SNCF. Nowadays, \smu want to make a fundrasing of 1 to 2
-millions euros.
+found, including SNCF. \smu{} was as well present at the \textbf{French Tech}
+(an organization that promote the french start-up). Nowadays, \smu{} want to
+make a fundrasing of 1 to 2 millions euros.
 
 \section{The employees}
+
+The organization chart is presented on the figure~\ref{fig:organigramme}.
 
 \smu is a start-up of seven employees. Loïc Lecerf is the PDG and founder,
 Matthieu Marquenet is the commercial director, and Jessica Lecerf is the
 administrative director. For R\&D, the CTO is Steven Durand, and three
 reserchers work under his orders: Oliver Kihl, Johf Ruiz Hernandez and
-Enguerrand Quilliard. As soon as they will optain their foundraising, they will
-hire new permanents.
+Enguerrand Quilliard. As soon as they will optain their foundraising, \smu{}
+will hire new permanents.
 
 During this summer, 7 interns has worked in \smu. Amélie Fondevilla, Adrien
 Saumureau, Baptiste Josi, Sara Akaoka Bdassi and Sébastien Detroyat have work on
 specific project. Gabriel Mattos Langeloh, Maude Premillieu and myself have work
 on the \claude{} project.
+
+\vspace{\fill}
+\begin{figure}[h!]
+  \centering
+  \def\svgwidth{\columnwidth}
+  \includegraphics[width=\textwidth]{organigramme.jpg}
+  \label{fig:organigramme}
+  \caption{organization chart of \smu}.
+\end{figure}
 
 \chapterimage{Raspberry_Pi_2.jpg}
 \chapter{Goal of the internship}
@@ -288,28 +327,32 @@ on the \claude{} project.
 %% l¿entreprise
 %% votre solution motivée à partir de l¿analyse ci-dessus
 
-\subsection{General organisation}
+\section{The \claude{} project}
+
+I have worked together whith Gabriel and Maud, two others interns. Our goal was
+to grab videos from customers' cameras, and to analyse them on \smu's server
+inside the cloud. At \smu, we were the \claude{} department (it's a pun with
+\textit{cloud computing} with a big french accent $:$-$)$ ). During our
+intership, we worked in the same office, so we were able to exchange a lot.
+
+Even if Oliver Kilh was my tutor, in facts it was Steven Durand and Loïc Lecerf
+who suppervise me, as well as the others interns of the \claude{} project.
 
 My initial goal was to create a software that can stream a video from all type of
-devices to the server of \smu, where it will be analysed. To be more specific,
-it have to support all type of webcam, on \linux, \win{} and \mac, smartphones
+devices to the servers of \smu, where it will be analysed. To be more specific,
+I have to support all type of webcam, on \linux, \win{} and \mac, smartphones
 (\android, \ios), and ip cameras.
 
-I have worked together whith Gabriel and Maud, two others interns.
-
-Gabriel goal was to create the server the receive the video stream, and launch
-the analysis using the library developped by \smu.
+Gabriel goal was to create the softwares used on the server. Thoses sofwares
+have to receive the video stream, and analyse them using the library developped
+by \smu.
 
 Maud has created the web interface. That website is the place where customer can
 access to the results of their analysis and where they can administrate their
-cameras (they have to pay a subscription for all their camera, and the type of
-analysis they chose).
+cameras (the clients have to pay a subscription for all their camera, and the
+type of analysis they have chosen).
 
-During our intership, we worked in the same office, so we were able to exchange
-a lot. At \smu, we were the \claude{} department (it's a pun with \textit{cloud
-computing} with a big french accent :) ).
-
-\subsection{Technologics choises}
+\section{Technologics choises}
 
 Our goal (Gabriel, Maud and me) was to select the appropriate technology for
 what we have to do. To be more specific:
@@ -324,19 +367,17 @@ And furthurmore
 \item How to etablish connection between clients' software and \smu{} servers
 \end{itemize}
 
-Reciprocally, Gabriel has to receive the video stream and decode it.
-
 Our first task was to learn how video are streamed in general. That part is
-explain in details in the next part (part~\ref{chap:Methodology}). The objective
+explain in details later (in the part~\ref{chap:Methodology}). The objective
 was to found witch protocols are used for grapping encode and send image, and
-libraries that can do it.
+libraries that can do it. XXXX
 
 Our second goal was to define how our sofware will exchange informations. Since
 clients machine, and \smu{} server are all links to internet, we have choose to
 use http request. We have defined all the message we can send, and their
 structure. **** exemple annexe ou partie 3
 
-\subsection{Plateforms}
+\section{Plateforms}
 
 As I said, my goal was to write a software that could be run virtualy
 everywhere. To be more specific, my initial targets were \linux{} (on PC, and
@@ -354,7 +395,7 @@ language, my build system has to be able to create executable for all
 plateforms. I have choose to use \cmake{} as build system, since \cmake{} was
 already use in the company.
 
-\subsection{synthesis}
+\section{Synthesis}
 
 Since I have to support a very heterogeneous set a plateform, I had to be very
 generic.
@@ -390,7 +431,7 @@ was longer).
 \label{chap:Methodology}
 %% Décrire votre méthodologie de travail pour la mise en ¿uvre de votre solution 
 
-\subsection{Organisation}
+\section{Organisation}
 
 During all my intership, I had two small meeting per week (called \textit{point
 claude}) with Steven Durand and Loïc Lecerf. The others interns of the \claude{}
@@ -406,6 +447,7 @@ As a consequence, we first test something on our machine, then using multiple
 machine in local network, and finaly on the cloud.
 
 
+\section{Challenges}
 \subsection{Technologies used}
 
 Firstly, we (Gabriel and me) have together to find an appropriate technologie
@@ -481,16 +523,33 @@ In the optique of being as simple as possible for the user to test that sofware,
 I had to design my sofware in a way it could be used without installation.
 (\fpm{} was initialy used to create real .deb package)
 
+\section{Solving problems}
+
+During my intership, I have wasted some time because at some point I was stuck,
+and I had not enough method to find the right solution in a short time. Making
+pair-programming was a good idea, but we did not use it enough for my taste.
+
+Sometime, when I was stuck, I left my desk, to help someone else, and when I
+came back that person help me back. In general, that save us both a lot of time,
+because, it help us to take a more global view on what we were doing. The key
+point of that is that explaining to someone else our problem help us to
+formalize it.
+
+\chapterimage{technology-computer-chips-gigabyte.jpg}
+\chapter{Results}
+
+\section{Technologies used}
+
 \subsection{Build system}
 
-I have developped a build system based on \cmake.
-
-It was choosen because it is
+I have developped a build system based on \cmake. It was choosen because it is
 cross plateform (that was obviously required), and powerfull enough to fit my
 need. I also wrote a small python script to call \cmake{} more easyly. I have
 developped it when I was trying to make cross compilation. So in one command, I
-build the whole program for all architecture. XXX
+build the whole program for all architecture. At the end, I used it just as an
+helper.
 
+XXX
 cross-compillation
 Our initial goal was to have a cross-plateform build system. In that ideal
 scenario, when I want to create a new release of my software, I have
@@ -501,32 +560,21 @@ similar (except some fiew \#ifdef), so the build system is the same (we use
 used \jni{} to build my \cpp{} codebase and linked it to java. So I can share my
 work also on that plateform.
 
-\subsection{Android}
-
-Android sofware has be
-\android{} ndk/sdk
-
 \subsection{Grab image and send video}
 
 \gstreamer{} pipeline
 \ffmpeg/\avconv{} work similary.
 
-\subsection{Mistakes}
+\subsection{Android}
 
-I have wasted some time during my intership because at a point I was stuck, and
-I had not enough method to find the right solution.
+Android sofware has to be in java. Since my work was done in \cpp, I have use
+\jni, that allow me to call \cpp code from java. I have also use tha \android{}
+sdk and ndk as well as the gstreamer sdk. Using thoses software tools as allow
+me to easily start to port my software. However, some differences in the usage
+of \gstreamer{} on \android{} have made the developpement more difficult, and I
+had not enough time to finish it.
 
-Making pair-programming was a good idea, but we did not use it enough for my
-taste.
-
-Sometime, when I was stuck, I left my desk, to help someone else, and when I
-came back that person help me back. In general, that save us both a lot of time,
-because, it help us to take a more global view on what we were doing. The key
-point of that is that explaining to someone else our problem help us to
-formalize it.
-
-\chapterimage{Spider_web_necklace_with_pearls_of_dew.jpg}
-\chapter{Results}
+\section{Conclusion}
 
 To sum up, at the end of my intership, I have wrote a sofware that can compile
 and run on multiple plateforms~: \linux{} (both intel and arm) and \win. A lots
@@ -539,24 +587,33 @@ wrote still need more tuning to be faster, especially on embedded hardware.
 \chapterimage{Pink_flowers.jpg} % Table of contents heading image
 \chapter{Personnal conclusion}
 
-The keys points of my intership was:
+To sum up, the keys points of my intership were:
+\begin{multicols}{2}
 \begin{itemize}
 \item design a sofware architecture
 \item define witch protocols will be used and how
 \item create a robust build system
 \item understand the link process
-\item build for multiple target (\linux{} arm and intel, \win, \android)
+\item how to build for multiple target (\linux{} arm and intel, \win, \android)
 \item try to have cross compilation
 \end{itemize}
-
-It was realy interesting, and now I have a better understanding of the link
-process.
+\end{multicols}
 
 The part that motivate me the most was designing the communication protocol.
 When designing a protocol, we have to take care of making it both expressive and
 easy to parse/understand. I found that the result is pretty clean, and it was a
 good experience to work with Gabriel and Maud under the direction of Steven
 Durand and Loïc Lecerf.
+
+The major amount of work was the build process and its fine details. Building
+for one architecture is realy easy, however when we want to support many more
+system, it become more complicated. \cmake{} was realy usefull to simplify that
+task. What was too complicated for me was cross-compiling with many dependencies
+at the same time, using static link. Despite everything, I have learned a lot of
+that process.
+
+To summurize, that intership was really instructive, and I feel that I have a
+finer understanding of the \cpp{} build process.
 
 \end{document}
 \end{document}
