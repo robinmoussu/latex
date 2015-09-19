@@ -6,6 +6,14 @@
   \PassOptionsToClass{\CurrentOption}{article}
 }
 
+\DeclareOption{11pt}{
+  \PassOptionsToClass{\CurrentOption}{article}
+}
+
+\DeclareOption{12pt}{
+  \PassOptionsToClass{\CurrentOption}{article}
+}
+
 %% Custom package options
 \DeclareOption{sansserif}{
   \PassOptionsToPackage{\CurrentOption}{paxcommands}
