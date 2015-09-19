@@ -265,7 +265,7 @@ results of my work and finnaly conclude.
 
 \section{The company}
 
-\smu{} is a start up from Meylan whitch has create a library for facial
+\smu{}\footnote{http://www.smartmeup.org/} is a start up from Meylan whitch has create a library for facial
 analysis. That solution is usable as a base that can be embeded is any device,
 like drone, robots, interactives advertissements,…
 
@@ -273,22 +273,23 @@ like drone, robots, interactives advertissements,…
 intelligence. The initial founding for his start-up came from the selling of
 a website he had previously created.
 
-\begin{wrapfigure}{r}{5cm}
-  \centering
-  \includegraphics[width=4cm]{french-tech.jpg}
-  \label{fig:frenchtech}
-  \caption{French Tech's logo}.
-\end{wrapfigure}
-
 The firsts client of \smu{} are Netatmo (in domotic solution) and Photomaton (to
 ensure conformity of official photos). After finding thoses customers, three new
 members has been hired: Steven Durand (polytecthnicien), Olivier Kihl and John
 Ruz Hernandez (doctors in artificial inteligence and image recognition). A new
 office has been create in Paris. The revenue of \smu{} in 2014 was 225'000\euro.
 
+\begin{wrapfigure}[8]{r}{5cm}
+  \centering
+  \includegraphics[width=4cm]{french-tech.jpg}
+  \label{fig:frenchtech}
+  \caption{French Tech's logo}.
+\end{wrapfigure}
+
 In January 2015, \smu{} has participate in the CES (Consumer Electronics Show) in
 Las Vegas. That event has increase it popularity, and new clients have been
-found, including SNCF. \smu{} was as well present at the \textbf{French Tech}
+found, including SNCF. \smu{} was as well present at the \textbf{French
+Tech}\footnote{http://www.lafrenchtech.com/la-french-tech}
 (an organization that promote the french start-up). Nowadays, \smu{} want to
 make a fundrasing of 1 to 2 millions euros.
 
@@ -518,6 +519,7 @@ using \vpx{} and send using \rtp/\rtcp). Only the last was a requiered
 dependency.
 
 \subsection{Reducing complexicity}
+\label{sec:complexicity}
 
 Removing \boost{} and \curl{} was too complicated, so I re-write my software,
 but much faster than the first time, since I already know what I want to do, and
@@ -553,6 +555,15 @@ because, it help us to take a more global view on what we were doing. The key
 point of that is that explaining to someone else our problem help us to
 formalize it.
 
+\section{Writing the documentation}
+
+During my intership, I have contributed to the writing of to type of
+documentation. The first is the documentation of the http protocol used for the
+communication. This one have been wrote gradually. The second one is the source
+code documentation. I have mainly wrote it at the end of my intership.
+\textbf{Doxygen}\footnote{http://www.stack.nl/~dimitri/doxygen/} have been used.
+It is a powerfull documentation processor, commonly used.
+
 \chapterimage{technology-computer-chips-gigabyte.jpg}
 \chapter{Results}
 
@@ -580,6 +591,7 @@ work also on that plateform.
 
 \subsection{Grab image and send video}
 
+As I have explained
 \gstreamer{} pipeline
 \ffmpeg/\avconv{} work similary.
 
@@ -594,9 +606,16 @@ had not enough time to finish it.
 
 \subsection{Installer}
 
-In the optique of being as simple as possible for the user to test that sofware,
-I had to design my sofware in a way it could be used without installation.
-(\fpm{} was initialy used to create real .deb package)
+In July, I have created an installer for linux, using
+\fpm{}\footnote{https://github.com/jordansissel/fpm}. It is a software that can
+create \textbf{.deb} (debian/ubuntu package), \textbf{.rmp} (used on other
+linux), \textbf{tar} package,… I was realy easy to do, and I will use it again
+if need be.
+
+However, in August, the objective have change a bit, an now, we had to create a
+demonstrator. So it has to be as easy as possible, so remove the installation
+step was requiered. Removing the installator was taking part of the clean
+process I have explain before (section \ref{sec:complexicity}).
 
 \section{Conclusion}
 
