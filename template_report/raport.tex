@@ -1,15 +1,31 @@
 \documentclass[a4paper,11pt]{custom}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[left=2.5cm,right=2.5cm]{geometry}
-\usepackage{indentfirst}
 \usepackage[official]{eurosym}
-\usepackage{relsize}
 
 %
 %--------------------   start of the 'preamble'
 %
-\usepackage{graphicx,amssymb,amstext,amsmath,multicol,wrapfig}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{xspace}
+\usepackage{listingsutf8}
+\usepackage{relsize}
+\usepackage{indentfirst}
+
+%\usepackage{makeidx}
+%\usepackage{multirow}
+%\usepackage{textcomp}
+
+% Font selection
+%\usepackage{amssymb}
+%\usepackage{sectsty}
 %
 %%    homebrew commands -- to save typing
 \newcommand\etc{\textsl{etc}}
@@ -25,48 +41,57 @@
 %
 \newcommand{\smu}{\textsc{Smart Me Up}}
 
-\newcommand{\rtp}{\textbf{rtp}}
-\newcommand{\rtcp}{\textbf{rtcp}}
-\newcommand{\rtsp}{\textbf{rtsp}}
+\newcommand{\rtp}{\textbf{rtp}\xspace}
+\newcommand{\rtcp}{\textbf{rtcp}\xspace}
+\newcommand{\rtsp}{\textbf{rtsp}\xspace}
 
-\newcommand{\vlc}{\textbf{vlc}}
-\newcommand{\avconv}{\textbf{avconv}}
-\newcommand{\ffmpeg}{\textbf{ffmpeg}}
-\newcommand{\gstreamer}{\textbf{gstreamer}}
-\newcommand{\curl}{\textbf{curl}}
-\newcommand{\boost}{\textbf{boost}}
-\newcommand{\happyhttp}{\textbf{HappyHTTP}}
-\newcommand{\libcurl}{\textbf{libcurl}}
+\newcommand{\vlc}{\textbf{vlc}\xspace}
+\newcommand{\avconv}{\textbf{avconv}\xspace}
+\newcommand{\ffmpeg}{\textbf{ffmpeg}\xspace}
+\newcommand{\gstreamer}{\textbf{gstreamer}\xspace}
+\newcommand{\Gstreamer}{\textbf{Gstreamer}\xspace}
+\newcommand{\curl}{\textbf{curl}\xspace}
+\newcommand{\boost}{\textbf{boost}\xspace}
+\newcommand{\happyhttp}{\textbf{HappyHTTP}\xspace}
+\newcommand{\libcurl}{\textbf{libcurl}\xspace}
 
-\newcommand{\mjpeg}{\textbf{mjpeg}}
-\newcommand{\jpeg}{\textbf{jpeg}}
-\newcommand{\vpx}{\textbf{vp8}}
-\newcommand{\mpeg}{\textbf{h264}}
+\newcommand{\mjpeg}{\textbf{mjpeg}\xspace}
+\newcommand{\jpeg}{\textbf{jpeg}\xspace}
+\newcommand{\vpx}{\textbf{vp8}\xspace}
+\newcommand{\mpeg}{\textbf{h264}\xspace}
 
-\newcommand{\cmake}{\textbf{cmake}}
-\newcommand{\jni}{\textbf{jni}}
-\newcommand{\fpm}{\textbf{fpm}}
+\newcommand{\cmake}{\textbf{cmake}\xspace}
+\newcommand{\jni}{\textbf{jni}\xspace}
+\newcommand{\fpm}{\textbf{fpm}\xspace}
+\newcommand{\bash}{\textbf{bash}\xspace}
+\newcommand{\python}{\textbf{python}\xspace}
 
-\newcommand{\rpi}{\textbf{raspberry pi}}
-\newcommand{\bbb}{\textbf{beaglebone black}}
+\newcommand{\command}[1]{\textbf{#1}\xspace}
 
-\newcommand{\linux}{\textbf{Linux}}
-\newcommand{\win}{\textbf{Windows}}
-\newcommand{\mac}{\textbf{Mac}}
-\newcommand{\android}{\textbf{Android}}
-\newcommand{\ios}{\textbf{iOS}}
+\newcommand{\rpi}{\textbf{raspberry pi}\xspace}
+\newcommand{\bbb}{\textbf{beaglebone black}\xspace}
 
-\newcommand{\claude}{\textit{Claude}}
+\newcommand{\linux}{\textbf{Linux}\xspace}
+\newcommand{\win}{\textbf{Windows}\xspace}
+\newcommand{\mac}{\textbf{Mac}\xspace}
+\newcommand{\android}{\textbf{Android}\xspace}
+\newcommand{\ios}{\textbf{iOS}\xspace}
 
-\newcommand{\nth}[1]{#1$^{\text{\tiny th}}$}
-\newcommand{\second}{2$^{\text{\tiny nd}}$}
+\newcommand{\claude}{\textit{Claude}\xspace}
+
+\newcommand{\nth}[1]{#1$^{\text{\tiny th}\xspace}$}
+\newcommand{\second}{2$^{\text{\tiny nd}\xspace}$}
 
 %C plus plus
 \newcommand{\cpp}{%
-  C\kern-.1667em\raise.30ex\hbox{\smaller{++}}%
+  C\kern-.1667em\raise.30ex\hbox{\smaller{++}\xspace}%
   \spacefactor1000%
 }
-\newcommand{\json}{\textbf{json}}
+\newcommand{\clang}{%
+  C\kern-.1667em%
+  \xspace%
+}
+\newcommand{\json}{\textbf{json}\xspace}
 
 \setlength{\parskip}{1em}
 
@@ -429,7 +454,8 @@ was longer).
 \end{figure}
 
 \chapterimage{webcams.jpg}
-\chapter{Methodology and implementation}
+\chapter{Methodology and alternatives}
+\label{sec:methodology}
 %% Décrire votre méthodologie de travail pour la mise en ¿uvre de votre solution 
 
 \section{Organisation}
@@ -496,7 +522,7 @@ choose to simply use http request. \curl{} was a good initial choise, since it
 is a very powerfull library. However, in the optique of minimizing dependances,
 I finally use \happyhttp. The request are formating is \json.
 
-*** exemple ici
+The documentation can be found is the appendix~\ref{sec:documentation}
 
 \section{Minimize the dependency}
 
@@ -569,40 +595,107 @@ It is a powerfull documentation processor, commonly used.
 
 \section{Technologies used}
 
+\subsection{Generality}
+
+I have wrote a software in \cpp that grab image and send the stream via \rtp to
+the server of \smu. The protocoles used have been described previously (on
+part~\ref{sec:methodology}). In that section, I am going to describe the
+implementation details.
+
 \subsection{Build system}
 
 I have developped a build system based on \cmake. It was choosen because it is
-cross plateform (that was obviously required), and powerfull enough to fit my
-need. I also wrote a small python script to call \cmake{} more easyly. I have
-developped it when I was trying to make cross compilation. So in one command, I
-build the whole program for all architecture. At the end, I used it just as an
+cross plateform (that was obviously required since I huve to support many
+system), and powerfull enough to fit my need. Furthurmore \cmake is also used on
+other projects in \smu.
+
+Our initial goal was to have a cross-plateform build system. In that ideal
+scenario, when I want to create a new release of my software, I can create all
+the binaries from the same host. At the beggining of August, I had set up that
+type of build system. Like this, from my ubuntu, I was able to build binaries
+not only for x86\_64 \linux, but also for arm \linux.
+
+However, when I have try to staticly link all the dependencies,
+cross-compilation has become too complicated to maintain. In effect, \gstreamer
+has a lot of dependances, including the \textbf{glib}. During the link process,
+everything as previously build for the destination architecture, so in this
+case, have to be previously cross-compiled. That took me too much time to
+maintain, and as a consequence I have stopped to developpe it and I have come
+back to a more simple build system.
+
+In addittion to the \cmake files, I have also wrote a small \python script
+to call \cmake more easyly. I have developped it when I was trying to make
+cross compilation. So in one command, I build the whole program for all
+architectures. After the drop of the cross-compilation, I used it just as an
 helper.
 
-XXX
-cross-compillation
-Our initial goal was to have a cross-plateform build system. In that ideal
-scenario, when I want to create a new release of my software, I have
-
 The build process for \linux, on intel and arm device or for \win{} is quite
-similar (except some fiew \#ifdef), so the build system is the same (we use
-\cmake). On \android{} however, The main has to be written in java. So, I have
-used \jni{} to build my \cpp{} codebase and linked it to java. So I can share my
-work also on that plateform.
+similar (except some fiew `\#ifdef`) thanks to \cmake. On \android{} however,
+The main has to be written in java. So, I have used \jni{} to build my \cpp{}
+codebase and linked it to java. Thus I can reutilize my work across all systems.
 
 \subsection{Grab image and send video}
 
-As I have explained
-\gstreamer{} pipeline
-\ffmpeg/\avconv{} work similary.
+As I have explained, \gstreamer have been choosen. It have a lots of binding
+(including \cpp), but I finnaly choose to use the \clang api, since it have the
+best documentation. \Gstreamer is pretty easy to use when you have understood
+some basics stuff. \Gstreamer use a textual representation of the acquisition
+proccess, called a pipeline.
+
+The listing~\ref{fig:exctractcppcode} describe the command used to describe the
+\gstreamer pipeline. It grab a video using `autovideosrc`. Then it set some
+attribute. After that the stream is encoding in \vpx with `vp8enc` and some
+tuning for performance (`speed=1 thread=2`). And finally the stream is sent
+using \rtp, and add \rtcp informations. This is an extract of the \cpp code
+I have wrote. The easier way to test it, it to use the \bash command
+\command{gst-launch} that used the same syntax.
+
+\begin{figure}
+\begin{lstlisting}
+string cmd { "gstrtpbin name=rtpbin autovideosrc"
+        " ! videorate"
+        " ! videoscale"
+        " ! ffmpegcolorspace"
+        " ! video/x-raw-yuv,width=" + video_width + ",height=" + video_height +
+        " ! vp8enc speed=1 threads=2"
+        " ! rtpvp8pay"
+        " ! rtpbin.send_rtp_sink_0 rtpbin.send_rtp_src_0"
+        " ! udpsink host=" + video_url + " port=" + rtp_port +
+             " rtpbin.send_rtcp_src_0 "
+        " ! udpsink host=" + video_url + " port=" + rtcp_port +
+             " sync=false async=false udpsrc port=" + local_rtcp_port + " "
+        " ! rtpbin.recv_rtcp_sink_0"};
+auto pipeline = gst_parse_launch( cmd.c_str(), &error );
+\end{lstlisting}
+\label{fig:exctractcppcode}
+\caption{Exctract of \cpp code: gstreamer pipeline used for emission}.
+\end{figure}
+
+Before using \gstreamer, I have used \ffmpeg/\avconv. They work similary (a
+\clang API, and a \bash command). However the syntax is not the same.
 
 \subsection{Android}
 
 Android sofware has to be in java. Since my work was done in \cpp, I have use
-\jni, that allow me to call \cpp code from java. I have also use tha \android{}
-sdk and ndk as well as the gstreamer sdk. Using thoses software tools as allow
-me to easily start to port my software. However, some differences in the usage
-of \gstreamer{} on \android{} have made the developpement more difficult, and I
-had not enough time to finish it.
+\jni, that allow me to call \cpp code from java. \jni use makefile, so I had to
+adapt my build process in consequence. My \cpp code have to create a dynamic
+library, and a small \cpp file make the glue between my code and the interface
+(in java).
+
+The interface used on mobile has been design by Maud. A screeshot is presented
+on figure~\ref{fig:smumobile}.
+
+\begin{figure}
+\centering
+\includegraphics[height=8cm]{smu_mobile.jpg}
+\caption{Mobile interface}
+\label{fig:smumobile}
+\end{figure}
+
+I have also use the \android{} sdk and ndk as well as the gstreamer sdk. Using
+thoses software tools as allow me to easily start to port my software. However,
+some differences in the usage of \gstreamer{} on \android{} have made the
+developpement more difficult, and I had not enough time to finish it.
 
 \subsection{Installer}
 
@@ -610,12 +703,13 @@ In July, I have created an installer for linux, using
 \fpm{}\footnote{https://github.com/jordansissel/fpm}. It is a software that can
 create \textbf{.deb} (debian/ubuntu package), \textbf{.rmp} (used on other
 linux), \textbf{tar} package,… I was realy easy to do, and I will use it again
-if need be.
+for another project if need be.
 
-However, in August, the objective have change a bit, an now, we had to create a
-demonstrator. So it has to be as easy as possible, so remove the installation
-step was requiered. Removing the installator was taking part of the clean
-process I have explain before (section \ref{sec:complexicity}).
+However, in August, the objective of my intership have change a bit, and at this
+point, we had to create a demonstrator. Therefore my software has to be as easy
+as possible to use, so removing the installation step was requiered. That was
+taking part of the clean process I have explain before (section
+\ref{sec:complexicity}).
 
 \section{Conclusion}
 
@@ -659,5 +753,13 @@ that process.
 To summurize, that intership was really instructive, and I feel that I have a
 finer understanding of the \cpp{} build process.
 
-\end{document}
+\appendix
+
+\chapterimage{blanc}
+\chapter*{Appendix}
+
+\chapter{Communication documentation}
+\label{sec:documentation}
+\input{md_source_source.tex}
+
 \end{document}

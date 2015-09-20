@@ -14,6 +14,10 @@
   \PassOptionsToClass{\CurrentOption}{article}
 }
 
+\DeclareOption{a4paper}{
+  \PassOptionsToClass{\CurrentOption}{article}
+}
+
 %% Custom package options
 \DeclareOption{sansserif}{
   \PassOptionsToPackage{\CurrentOption}{paxcommands}

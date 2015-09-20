@@ -1,0 +1,139 @@
+This appendix is extracted from the documentation wrote by all the members of
+the \claude project.
+
+\section*{source documentation}
+
+This page describes the H\-T\-T\-P requests sent by a video source to the H\-T\-T\-P server and their respective responses.
+
+In all requests presented here, errors may occur -\/ in this case, the response
+will be a J\-S\-O\-N object of the following form\-: \begin{verbatim}{
+    "error_code": ERROR_CODE,
+    "error_txt": ERROR_TXT
+}
+\end{verbatim}
+
+
+where E\-R\-R\-O\-R\-\_\-\-C\-O\-D\-E is an integer constant specified for each kind of error. For each request, we give the possible E\-R\-R\-O\-R\-\_\-\-C\-O\-D\-Es.
+
+\subsection*{Identification }
+
+\subsubsection*{get an utilization id}
+
+The {\bfseries source} {\bfseries must} ask the {\bfseries http server} to get an utilization id\-: \begin{verbatim}{
+    "action": "new_utilization_id",
+    "key": API_KEY
+}
+\end{verbatim}
+
+
+The response will be\-: \begin{verbatim}{
+    "utilization_id" : UTILIZATION_ID
+}
+\end{verbatim}
+
+
+Possible error codes\-: 4011
+
+\subsection*{Stream creation }
+
+First the {\bfseries source} {\bfseries must} notify the {\bfseries http server} that it wants to start a stream. \begin{verbatim}{
+    "action": "start_stream",
+    "key": API_KEY,
+    "utilization_id": UTILIZATION_ID,
+    "width": VIDEO_WIDTH,
+    "height": VIDEO_HEIGHT
+}
+\end{verbatim}
+
+
+Then, the {\bfseries http server} {\bfseries must} respond with the following informations\-: \begin{verbatim}{
+    "url": STREAMING_SERVER_URL,
+    "rtp_port": RTP_STREAMING_PORT,
+    "rtcp_port": RTCP_STREAMING_PORT
+}
+\end{verbatim}
+
+
+Possible error codes\-: 4013, 4091, 5031
+
+At this point, the stream has to be started. When it is done, the {\bfseries source} {\bfseries has to} verify that the stream has been established\-: \begin{verbatim}{
+    "action": "validate_stream",
+    "utilization_id": UTILIZATION_ID
+}
+\end{verbatim}
+
+
+The response is \-: \begin{verbatim}{
+    "validation_code": VALIDATION_CODE,
+    "validation_txt": EXPLANATION_OF_STREAM_STATUS
+}
+\end{verbatim}
+
+
+Where the {\ttfamily V\-A\-L\-I\-D\-A\-T\-I\-O\-N\-\_\-\-C\-O\-D\-E} is 0 if the stream is successfully captured. A value of {\ttfamily V\-A\-L\-I\-D\-A\-T\-I\-O\-N\-\_\-\-C\-O\-D\-E} different from 0 means that the server failed to capture the stream.
+
+Possible error codes\-: 5031
+
+\subsection*{Stopping a stream }
+
+The source must send to the {\bfseries http server} the following request\-: \begin{verbatim}{
+    "action": "stop_stream"
+    "utilization_id": UTILIZATION_ID,
+}
+\end{verbatim}
+
+
+The response is \begin{verbatim}{
+    "ok": "stream stopped successfully"
+}
+\end{verbatim}
+
+
+Possible error codes\-: 4092, 5005, 5031 
+
+\subsection*{Error Message Formating }
+
+In case of failure, the http status code {\bfseries must be} any of the error status, like {\ttfamily 400\-: Bad Request}. The json {\bfseries must} contain an {\ttfamily error\-\_\-code} field to add more information on the failure\-: \begin{verbatim}{
+    "error_code": INTEGER
+}
+\end{verbatim}
+
+
+If needed, the json {\bfseries could} have a {\ttfamily error\-\_\-txt} field to add text informations\-: \begin{verbatim}{
+    "error_code": INTEGER
+    "error_txt": MESSAGE
+}
+\end{verbatim}
+
+
+\subsection*{Error code }
+
+The error code are custom codes used to indicate the exact type of error. They are linked to the code status of the message with the first 3 digits.
+
+\begin{tabular}{|r|l|}
+\hline
+\textbf{Value}&\textbf{Description}\\\cline{1-2}
+4001 &Missing arguments in request \-: no action argument \\\cline{1-2}
+4002 &Missing arguments in request \-: no key argument \\\cline{1-2}
+4003 &Missing arguments in request \-: no utilization\-\_\-id argument \\\cline{1-2}
+4004 &Missing arguments in request \-: missing a video stream descriptor (width, height,key) \\\cline{1-2}
+4005 &Missing arguments in request \-: no data parameter \\\cline{1-2}
+4006 &Missing arguments in request\-: missing admin credentials or request arguments \\\cline{1-2}
+4011 &Identification Error \-: non valid A\-P\-I key \\\cline{1-2}
+4012 &Identification Error \-: non valid utilization identifier \\\cline{1-2}
+4013 &Identification Error \-: utilization identifier and A\-P\-I key not compatible \\\cline{1-2}
+4051 &Forbidden \-: unconfigured A\-P\-I key (missing expression) \\\cline{1-2}
+4052 &Forbidden \-: unconfigured utilization (missing compatible A\-P\-I key) \\\cline{1-2}
+4053 &Forbidden \-: invalid administrator credentials \\\cline{1-2}
+4081 &Request Timeout \-: stream not received before timeout \\\cline{1-2}
+4091 &Conflict \-: stream already active \\\cline{1-2}
+4092 &Conflict \-: stream not running \\\cline{1-2}
+4093 &Conflict \-: stream not analysed \\\cline{1-2}
+4151 &Unsupported Media Type \-: the codec of the stream is not supported \\\cline{1-2}
+5001 &Internal Server Error \-: cannot initialize stream listener \\\cline{1-2}
+5002 &Internal Server Error \-: cannot capture the stream (possible timeout) \\\cline{1-2}
+5003 &Internal Server Error \-: cannot process 'get\-\_\-data' \\\cline{1-2}
+5004 &Internal Server Error \-: cannot update the stream status \\\cline{1-2}
+5011 &Not Implemented \-: unknown action \\\cline{1-2}
+5031 &Service Unavailable \-: cannot access to the video server \\\cline{1-2}
+\end{tabular}
