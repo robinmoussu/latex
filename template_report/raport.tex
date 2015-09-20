@@ -2,7 +2,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[left=2.5cm,right=2.5cm]{geometry}
+\usepackage[a4paper,left=2.5cm,right=2.5cm]{geometry}
 \usepackage[official]{eurosym}
 
 %
@@ -39,7 +39,7 @@
 %
 %---------------------   end of the 'preamble'
 %
-\newcommand{\smu}{\textsc{Smart Me Up}}
+\newcommand{\smu}{\textsc{Smart Me Up}\xspace}
 
 \newcommand{\rtp}{\textbf{rtp}\xspace}
 \newcommand{\rtcp}{\textbf{rtcp}\xspace}
@@ -84,8 +84,8 @@
 
 %C plus plus
 \newcommand{\cpp}{%
-  C\kern-.1667em\raise.30ex\hbox{\smaller{++}\xspace}%
-  \spacefactor1000%
+  C\kern-.1667em\raise.30ex\hbox{\smaller{++}}%
+  \spacefactor1000\xspace%
 }
 \newcommand{\clang}{%
   C\kern-.1667em%
@@ -94,6 +94,8 @@
 \newcommand{\json}{\textbf{json}\xspace}
 
 \setlength{\parskip}{1em}
+\widowpenalty=10000
+\clubpenalty=10000
 
 \begin{document}
 %-----------------------------------------------------------
@@ -229,7 +231,7 @@ work with them.
 My internship have been done in \smu, a start-up specialized in facial
 recognition, from June \nth{15} to September \nth{15}. My tutor was Olivier
 Kilh, a researcher in facial recognition. During my internship, I had many
-contact why Steven Durand, the CTO, and Loïc Lecerf, the CEO. I have worked with
+contact with Steven Durand, the CTO, and Loïc Lecerf, the CEO. I have worked with
 Gabriel Mattos Langeloh and Maude Premillieu, two other interns.
 
 \smu{} is a start-up specialized in video recognition, more precisely in facial
@@ -297,7 +299,7 @@ like drone, robots, interactive advertisements, …
 intelligence. The initial founding for his start-up came from the selling of
 a website he had previously created.
 
-The first clients of \smu{} are Netatmo (in home automation solution) and Photomaton (to
+The first clients of \smu{} are Netatmo (for home automation) and Photomaton (to
 ensure conformity of official photos). After finding those customers, three new
 members has been hired: Steven Durand (polytecthnicien), Olivier Kihl and John
 Ruz Hernandez (doctors in artificial intelligence and image recognition). A new
@@ -315,7 +317,7 @@ Las Vegas. That event has increase it popularity, and new clients have been
 found, including SNCF. \smu{} was as well present at the \textbf{French
 Tech}\footnote{http://www.lafrenchtech.com/la-french-tech}
 (an organization that promote the french start-up). Nowadays, \smu{} want to
-make a fundraising of 1 to 2 millions euros.
+make a fundraising of 1 up to 2 millions euros.
 
 \section{The employees}
 
@@ -338,7 +340,7 @@ on the \claude{} project.
   \def\svgwidth{\columnwidth}
   \includegraphics[width=\textwidth]{organigramme.jpg}
   \label{fig:organigramme}
-  \caption{Organization chart of \smu}.
+  \caption{Organization chart of \smu (summer 2015)}.
 \end{figure}
 
 \chapterimage{Raspberry_Pi_2.jpg}
@@ -356,12 +358,14 @@ on the \claude{} project.
 
 I have worked together with Gabriel and Maud, two others interns. Our goal was
 to grab videos from customers' cameras, and to analyze them on \smu's server
-inside the cloud. At \smu, we were the \claude{} department (it's a pun with
+(deployed on Amazon\footnote{https://aws.amazon.com/} and
+ovh\footnote{https://www.ovh.com/us/}'s cloud). At \smu, we were the \claude{}
+department (it's a pun with
 \textit{cloud computing} with a big french accent $:$-$)$ ). During our
 internship, we worked in the same office, so we were able to exchange a lot.
 
 Even if Oliver Kilh was my tutor, in facts it was Steven Durand and Loïc Lecerf
-who supervise me and the others interns of the \claude{} project.
+who supervised me and the others interns of the \claude{} project.
 
 My initial goal was to create a software that can stream a video from all type of
 devices to the servers of \smu, where it will be analyzed. To be more specific,
@@ -394,25 +398,25 @@ And furthermore
 
 Our first task was to learn how video are streamed in general. That part is
 explained in details later (in the section~\ref{sec:technologies}). The objective
-was to found witch protocols are used for grabbing encode and send image. Of
-course it was not in our plan to reinvent the well, so we also add to choose a
+was to found witch protocols are used for grabbing, encoding and sending images. Of
+course it was not in our plan to reinvent the well, so we also had to choose a
 library that implement those protocols.
 
-Our second goal was to define how our software will exchange information. Since
-clients machine, and \smu{} server are all links to internet, we have chosen to
-use http request. We have defined all messages we can send, and their
-structure. The methodology and the result is explained in the
+Our second goal was to define how ours softwares will exchange informations.
+Since clients machine, and \smu{} server are all links to internet, we have
+chosen to use http request. We have defined all messages type, what we can send,
+and their structure. The methodology and the result is explained in the
 section~\ref{sec:communication}.
 
 \section{Platforms}
 
-As I said, my personal goal was to written a software that could be run virtually
+As I said, my personal goal was to write a software that could be run virtually
 everywhere. To be more specific, my initial targets were \linux{} (on PC, and
 embedded devices like \rpi or \bbb), \win, \android, \mac{} and \ios. It was a
 bit too ambitious, so the last two were dropped.
 
 All employees in \smu work on Ubuntu (a \linux{} distribution), so I have first
-developed my solution for Linux (x86_64), keeping in mind that I will have to port it
+developed my solution for Linux (x86\_64), keeping in mind that I will have to port it
 after, so I never use platform specific stuff. Then I port it to Linux arm (I
 have tested it on \rpi{} and \bbb). After that, I try to create an \android{}
 application, and finally for \win.
@@ -424,7 +428,7 @@ already use in the company.
 
 \section{Synthesis}
 
-Since I have to support a very heterogeneous set a platform, I had to be very
+Since I have to support a very heterogeneous set of platforms, I had to be very
 generic.
 
 The main complicated part was to make tradeoff between performance required for
@@ -436,12 +440,12 @@ challenge to found the right algorithm.
 
 The results of the analysis of our needs for the \claude{} project have lead to
 the software organization presented on figure~\ref{fig:architecture}. That figure
-is extracted from the documentation Gabriel has written. To be more clear, what I
-will later call \textit{http gateway} is the \textit{server HTTP}. The \textit{source} is anything
+is extracted from the documentation Gabriel wrote. To be more clear, what I
+will later call \textit{http gateway} is the \textit{serveur HTTP}. The \textit{source} is anything
 with a webcam (a PC, an embedded device, or a smartphone).
 
 My contribution on the project was the source, and the specification of the
-communications between HTTP gateway and streaming and analysis server. Gabriel
+communications between HTTP gateway and streaming \& analysis server. Gabriel
 have worked on the video \& analysis server, and Maud on the rest (her internship
 was longer).
 
@@ -464,13 +468,13 @@ claude}) with Steven Durand and Loïc Lecerf. The others intern of the \claude{}
 project (Maude and Gabriel) were also there. During those meeting, we presented
 the work we had done since the last time, and then we decide what to do next.
 Since none of the employees of \smu{} have look our code during our internship (as
-least for the \claude{} project, it was their only way to know what we were
+least for the \claude{} project), it was their only way to know what we were
 doing.
 
 Our general methodology was to quickly have something that work somewhere, and
 then improve it by small iteration to make it work everywhere in all conditions.
-As a consequence, we first test something on our machine, then using multiple
-machine in local network, and finally on the cloud.
+As a consequence, we first tested something on our machine, then using multiple
+machines in local network, and finally on the cloud.
 
 
 \section{Technologies used}
@@ -510,13 +514,13 @@ to encode it, even on small hardware. As a direct consequence, the delay was
 excellent. However, when we have made the firsts real tests using a server
 somewhere on the cloud, we have discovered that the amount of data needed for the
 transmission was too high. So we had to choose something else less eager in
-bandwith. We have tested \mpeg{} and \vpx, and we have chosen the later.
+bandwith. We have tested \mpeg{} and \vpx encoding, and we have chosen the later.
 
 \subsection{Communication between devices}
 \label{sec:communication}
 
 At this point we knew how to grab images, encode them, and send them to a
-server. It's cool, but we need something to ask the permission the server. We
+server. It's cool, but we need something to ask the permission to the server. We
 choose to simply use http request. \curl{} was a good initial choice, since it
 is a very powerful library. However, in the perspective of minimizing dependencies,
 I finally use \happyhttp. The request are formatting is \json.
@@ -537,10 +541,10 @@ machine, my tutor ask me to use native code (to be more specific \cpp). Binary
 package are not transferable across operating system and cpu, so I had to
 generate binaries for all targets.
 
-In July, I have written a software that did the work, but with too many
+In July, I have written a software that did the work, although with too many
 dependencies. I had used \boost{} for arguments and json parsing, and \curl{}
 for http request. I have also used \gstreamer{} for video (grab image, compress
-using \vpx{} and send using \rtp/\rtcp). Only the last was a required
+using \vpx{} and send using \rtp/\rtcp). Only the last one was a required
 dependency.
 
 \subsection{Reducing complexity}
@@ -568,7 +572,8 @@ Despite everything my main dependency was either \gstreamer{} or
 favor of one or another. At the end, \gstreamer{} (and its own dependencies) is
 the last remaining in my code, even if it is the most complicated.
 
-\section{Solving problems}
+\section{Methodology}
+\subsection{Solving problems}
 
 During my internship, I have wasted some time because at some point I was stuck,
 and I had not enough method to find the right solution in a short time. Making
@@ -580,11 +585,12 @@ because, it has helped us to take a more global view on what we were doing. The 
 point of that is that explaining to someone else our problem help us to
 formalize it.
 
-\section{Writing the documentation}
+\subsection{Writing the documentation}
 
 During my internship, I have contributed to the writing of to type of
 documentation. The first is the documentation of the http protocol used for the
-communication. This one have been written gradually. The second one is the source
+communication. This one have been written gradually. An extract is presented in
+appendix~\ref{sec:documentation}. The second one is the source
 code documentation. I have mainly written it at the end of my internship.
 \textbf{Doxygen}\footnote{http://www.stack.nl/~dimitri/doxygen/} have been used.
 It is a powerful documentation processor, commonly used.
@@ -617,7 +623,7 @@ not only for x86\_64 \linux, but also for arm \linux.
 However, when I have tried to statically link all the dependencies,
 cross-compilation has become too complicated to maintain. In effect, \gstreamer
 has a lot of dependencies, including the \textbf{glib}. During the link process,
-everything as previously build for the destination architecture, so in this
+everything need to be previously built for the destination architecture, so in this
 case, have to be previously cross-compiled. That took me too much time to
 maintain, and as a consequence I have stopped to develop it and I have come
 back to a more simple build system.
@@ -625,15 +631,15 @@ back to a more simple build system.
 In addition to the \cmake files, I have also written a small \python script
 to call \cmake more easily. I have developed it when I was trying to make
 cross compilation. So in one command, I build the whole program for all
-architectures. After the drop of the cross-compilation, I used it just as a
+architectures. After the drop of the cross-compilation, it was just used as a
 helper.
 
-The build process for \linux, on x86_64 and arm device or for \win{} is quite
+The build process for \linux, on x86\_64 and arm devices or for \win{} is quite
 similar (except some few `\#ifdef`) thanks to \cmake. On \android{} however,
 The main has to be written in java. So, I have used \jni{} to build my \cpp{}
 codebase and linked it to java. Thus, I can reutilize my work across all systems.
 
-\subsection{Grab image and send video}
+\subsection{Video stream}
 
 As I have explained, \gstreamer have been chosen. It has lots of binding
 (including \cpp), but I finally choose to use the \clang api, since it have the
@@ -696,6 +702,19 @@ those software tools as allow me to easily start to port my software. However,
 some differences in the usage of \gstreamer{} on \android{} have made the
 development more difficult, and I had not enough time to finish it.
 
+\subsection{Debugging}
+
+Debugging is an important step in software lifecycle. The main debug tool we have
+used with Gabriel is \textbf{logging}. We have both add a lot of debug
+informations, printed to \textbf{stdlog}. Each step can be identified, so we knew
+at any time what our program was doing. When something went wrong, we was able
+to watch our logs, and compared them. In this way, we was able to identify
+the problems and to determine if it was a client or a server side issue.
+
+When my software was compiled for \android, I have used \textbf{adb} to print
+\textbf{stdlog} on my terminal. I was really easy to debug using the log. Thus,
+I was able to confirm each step one by one, and adapt my code quickly.
+
 \subsection{Installer}
 
 In July, I have created an installer for linux, using
@@ -713,12 +732,17 @@ taking part of the clean process I have explained before (section
 \section{Conclusion}
 
 To sum up, at the end of my internship, I have written a software that can compile
-and run on multiple platforms~: \linux{} (both x86_64 and arm) and \win. A lot
+and run on multiple platforms~: \linux{} (both x86\_64 and arm) and \win. A lot
 of work have also been done for \android, but not everything have been finished.
-My program is able to ask the htpp gateway the authorization to start the stream.
+
+My program is able to ask the \textbf{htpp gateway} the authorization to start the stream.
 Then it grabs images, compress them using \vpx{} encoding, and send them using a
 \rtp{}/\rtcp{} stream. All that is done using a gstreamer back end. The program I
 wrote still need more tuning to be faster, especially on embedded hardware.
+
+All the code is documented using \textbf{Doxygen}, as well as the http protocol.
+All the important steps of the program are \textbf{logged} to stdlog to help
+debugging.
 
 %\chapterimage{Pink_flowers.jpg} % Table of contents heading image
 \chapterimage{binary.jpg}
@@ -731,7 +755,7 @@ To sum up, the keys points of my internship were:
 \item define witch protocols will be used and how
 \item create a robust build system
 \item understand the link process
-\item how to build for multiple target (\linux{} arm and x86_64, \win, \android)
+\item how to build for multiple target (\linux{} arm and x86\_64, \win, \android)
 \item try to have cross compilation
 \end{itemize}
 \end{multicols}
@@ -757,7 +781,7 @@ finer understanding of the \cpp{} build process.
 \chapterimage{blanc}
 \chapter*{Appendix}
 
-\chapter{Communication documentation}
+\chapter{HTTP protocol documentation}
 \label{sec:documentation}
 \input{md_source_source.tex}
 
