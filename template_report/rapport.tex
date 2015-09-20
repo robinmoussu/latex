@@ -1,0 +1,802 @@
+\documentclass[a4paper,11pt]{custom}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,left=2.5cm,right=2.5cm]{geometry}
+\usepackage[official]{eurosym}
+
+%
+%--------------------   start of the 'preamble'
+%
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{wrapfig}
+\usepackage{xspace}
+\usepackage{listingsutf8}
+\usepackage{relsize}
+\usepackage{indentfirst}
+
+%\usepackage{makeidx}
+%\usepackage{multirow}
+%\usepackage{textcomp}
+
+% Font selection
+%\usepackage{amssymb}
+%\usepackage{sectsty}
+%
+%%    homebrew commands -- to save typing
+\newcommand\etc{\textsl{etc}}
+\newcommand\eg{\textsl{eg.}\ }
+\newcommand\etal{\textsl{et al.}}
+\newcommand\Quote[1]{\lq\textsl{#1}\rq}
+\newcommand\fr[2]{{\textstyle\frac{#1}{#2}}}
+\newcommand\miktex{\textsl{MikTeX}}
+\newcommand\comp{\textsl{The Companion}}
+\newcommand\nss{\textsl{Not so Short}}
+%
+%---------------------   end of the 'preamble'
+%
+\newcommand{\smu}{\textsc{Smart Me Up}\xspace}
+
+\newcommand{\rtp}{\textbf{rtp}\xspace}
+\newcommand{\rtcp}{\textbf{rtcp}\xspace}
+\newcommand{\rtsp}{\textbf{rtsp}\xspace}
+
+\newcommand{\vlc}{\textbf{vlc}\xspace}
+\newcommand{\avconv}{\textbf{avconv}\xspace}
+\newcommand{\ffmpeg}{\textbf{ffmpeg}\xspace}
+\newcommand{\gstreamer}{\textbf{gstreamer}\xspace}
+\newcommand{\Gstreamer}{\textbf{Gstreamer}\xspace}
+\newcommand{\curl}{\textbf{curl}\xspace}
+\newcommand{\boost}{\textbf{boost}\xspace}
+\newcommand{\happyhttp}{\textbf{HappyHTTP}\xspace}
+\newcommand{\libcurl}{\textbf{libcurl}\xspace}
+
+\newcommand{\mjpeg}{\textbf{mjpeg}\xspace}
+\newcommand{\jpeg}{\textbf{jpeg}\xspace}
+\newcommand{\vpx}{\textbf{vp8}\xspace}
+\newcommand{\mpeg}{\textbf{h264}\xspace}
+
+\newcommand{\cmake}{\textbf{cmake}\xspace}
+\newcommand{\jni}{\textbf{jni}\xspace}
+\newcommand{\fpm}{\textbf{fpm}\xspace}
+\newcommand{\bash}{\textbf{bash}\xspace}
+\newcommand{\python}{\textbf{python}\xspace}
+
+\newcommand{\command}[1]{\textbf{#1}\xspace}
+
+\newcommand{\rpi}{\textbf{raspberry pi}\xspace}
+\newcommand{\bbb}{\textbf{beaglebone black}\xspace}
+
+\newcommand{\linux}{\textbf{Linux}\xspace}
+\newcommand{\win}{\textbf{Windows}\xspace}
+\newcommand{\mac}{\textbf{Mac}\xspace}
+\newcommand{\android}{\textbf{Android}\xspace}
+\newcommand{\ios}{\textbf{iOS}\xspace}
+
+\newcommand{\claude}{\textit{Claude}\xspace}
+
+\newcommand{\nth}[1]{#1$^{\text{\tiny th}\xspace}$}
+\newcommand{\second}{2$^{\text{\tiny nd}\xspace}$}
+
+%C plus plus
+\newcommand{\cpp}{%
+  C\kern-.1667em\raise.30ex\hbox{\smaller{++}}%
+  \spacefactor1000\xspace%
+}
+\newcommand{\clang}{%
+  C\kern-.1667em%
+  \xspace%
+}
+\newcommand{\json}{\textbf{json}\xspace}
+
+\setlength{\parskip}{1em}
+\widowpenalty=10000
+\clubpenalty=10000
+
+\begin{document}
+%-----------------------------------------------------------
+
+% \section La page de couverture du rapport (dont vous trouverez un modèle sur 
+% l¿intranet) doit comporter obligatoirement les informations suivantes:
+
+% \item le nom et prénom du stagiaire
+% \item l'indication "stage de deuxième année"
+% \item le nom de l¿enseignant scientif i que membre du jury
+% \item le nom et l'adresse de la structure d¿accueil
+% \item les dates de début et de fi n du stage, et sa durée
+% \item le sujet du stage
+
+\title{
+  Live video streaming
+}
+\author{
+  Robin Moussu 2A SLE
+  \thanks{
+  \begin{tabular}{c}
+    \textit{internship of 2$^{nd}$ year as}\\
+    \textit{engineer assistant}\\
+    \vspace{2em}\\
+    \begin{tabular}{rcl}
+      15 June &--& 15 September\\
+      \multicolumn{3}{c}{3 months}\\
+      \\
+      tutor &--& Olivier Kilh \\
+      supervised by &--& Steven Durand \\
+      Ensimag tutor &--& Roland Groz\\
+      \\
+    \end{tabular}
+    \vspace{2em}\\
+    \smu\\
+    4 chemin des prés\\
+    Meylan\\
+  \end{tabular}
+  }
+}
+\date{
+  September 2015
+}
+\maketitle
+
+%-----------------------------------------------------------
+
+~
+\thispagestyle{empty}
+
+\headerdecoration[-.5cm]{PaleTurquoise}%
+\headerleftcontent{\headerlefttext}%
+\headerrightcontent{\headerrighttext}%
+\myfootrulebegin[-.5cm]
+\myfootruleend
+
+~
+
+\clearpage
+
+\pagenumbering{arabic}
+
+~
+
+\vspace{\fill}
+\begin{flushright}
+\begin{minipage}[b]{7cm}
+I want to thank warmly M. Steven Durand (CTO) and M. Loïc Lecerf (CEO) for
+guiding me during my internship, together with M. Olivier Kilh my tutor.
+
+\vspace{0.5em}
+
+My thanks also goes to all the employs and interns of \smu, specially Maude
+Premillieu and Gabriel Mattos Langeloh. It was really a pleasant experience to
+work with them.
+\end{minipage}
+\end{flushright}
+\vspace{\fill}
+\vspace{\fill}
+
+
+\newpage
+~
+\newpage
+
+%-----------------------------------------------------------
+%\chapterimage{nature-clouds-hdr-phenomenon.jpg}
+%\tableofcontents
+%-----------------------------------------------------------
+%\chapterimage{binary.jpg}
+%\include{chap1}
+%\chapterimage{Raspberry_Pi_2.jpg}
+%\include{chap2}
+%\chapterimage{webcams.jpg}
+%include{chap3}
+%\chapterimage{Spider_web_necklace_with_pearls_of_dew.jpg}
+%\include{chap4}
+%-----------------------------------------------------------
+%\chapterimage{Pink_flowers.jpg} % Table of contents heading image
+%\addcontentsline{toc}{chapter}{\numberline{}Bibliography}
+%\include{biblio}
+%-----------------------------------------------------------
+%\appendix
+%\include{app1}
+%\include{app2}
+%\include{app4}
+%\include{app3}
+%\include{app5}
+%-----------------------------------------------------------
+
+
+% Le rapport doit être synthétique et ne pourra donc pas porter sur tout ce
+% que vous avez fait. A titre indicatif, il doit comporter une quinzaine de pages
+% (de ces 15 pages, sont exclues la page de garde, la table des matières, la table des
+% f i gures, ... Il est possible d¿ajouter des annexes).
+
+% Un rapport scientif i que n¿est pas un récit chronologique du déroulement
+% du stage. Il nécessite de prendre de la distance, de recenser toute l¿information
+% utile d¿un travail de plusieurs mois, la hiérarchiser, la fi ltrer et la restructurer en
+% quelques pages. Le discours indirect est de rigueur (sauf pour insister sur la
+% contribution de l¿auteur) et les formulations doivent être précises et exactes.
+% Outre votre capacité à présenter clairement la problématique, l¿existant et la
+% méthodologie mise en ¿uvre, votre contribution personnelle doit apparaître
+% sans ambiguïté. 
+
+% Le squelette suivant est donné à titre indicatif et peut être adapté selon la
+% nature du stage. Ces dif f érents points restent toutefois ceux attendus par le jury pour
+% évaluer votre travail:
+
+\chapterimage{nature-clouds-hdr-phenomenon.jpg}
+\chapter{Introduction}
+
+My internship have been done in \smu, a start-up specialized in facial
+recognition, from June \nth{15} to September \nth{15}. My tutor was Olivier
+Kilh, a researcher in facial recognition. During my internship, I had many
+contacts with Steven Durand, the CTO, and Loïc Lecerf, the CEO. I have worked with
+Gabriel Mattos Langeloh and Maude Premillieu, two other interns.
+
+\smu{} is a start-up specialized in video recognition, more precisely in facial
+recognition. Its employees have developed a library that is able to make
+real-time facial analysis. My goal during my internship was to create a
+software. This one will be installed on \smu's client hardware (\linux, \win{}
+or \android), then it will grab a video, and send the stream to \smu's server.
+Gabriel has developed the server side of that project, and Maud the web
+interface were the client can manage their subscriptions.
+
+First I will present \smu{} and its employees. Then I will introduce the goal of
+my internship, and the choices I have made. Next, I will describe the
+methodology I have used during my internship. Afterward I will present the
+results of my work and finally conclude.
+
+\vspace{\fill}
+
+\begin{center}
+\textsc{\textsc{Key points}}
+\end{center}
+
+\begin{multicols}{2}
+\begin{itemize}
+\item \textbf{video capture}
+\item \textbf{video compression}
+\item \textbf{stream protocols (rtp, rtcp)}
+\item \textbf{\cpp}
+\item \textbf{real time}
+\item \textbf{cross-compilation}
+\end{itemize}
+\end{multicols}
+
+\newpage
+
+\chapterimage{blanc.jpg}
+\headerdecoration[-.5cm]{PaleTurquoise}%
+\headerleftcontent{\headerlefttext}%
+\headerrightcontent{\headerrighttext}%
+
+\tableofcontents
+
+\clearpage
+
+\chapterimage{logo_smu.jpg}
+\chapter{Presentation}
+%% Présenter les éléments du contexte utile à la compréhension du rapport 
+%% (entreprise, service, mission, ¿). Le «copier/coller» des sites web des 
+%% entreprises est à proscrire ! (2 pages maximum) 
+
+%\begin{figure}[h!]
+  %\centering
+  %\includegraphics[width=4cm]{smartmeup.jpg}
+  %\label{fig:smartmeup}
+  %\caption{\smu's logo}.
+%\end{figure}
+
+\section{The company}
+
+\smu{}\footnote{http://www.smartmeup.org/} is a start up from Meylan which has
+created a library for facial
+analysis. That solution is usable as a base that can be embedded is any device,
+like drone, robots, interactive advertisements, …
+
+\smu{} was found in February 2012 by Loïc Lecerf. He has a PhD in artificial
+intelligence. The initial founding for his start-up came from the selling of
+a website he had previously created.
+
+The first clients of \smu{} are Netatmo (for home automation) and Photomaton (to
+ensure conformity of official photos). After finding those customers, three new
+members has been hired: Steven Durand (polytecthnicien), Olivier Kihl and John
+Ruz Hernandez (doctors in artificial intelligence and image recognition). A new
+office has been created in Paris. The revenue of \smu{} in 2014 was 225'000\euro.
+
+\begin{wrapfigure}[8]{r}{5cm}
+  \centering
+  \includegraphics[width=4cm]{french-tech.jpg}
+  \label{fig:frenchtech}
+  \caption{French Tech's logo}.
+\end{wrapfigure}
+
+In January 2015, \smu{} has participated in the CES (Consumer Electronics Show) in
+Las Vegas. That event has increase it popularity, and new clients have been
+found, including SNCF. \smu{} was as well present at the \textbf{French
+Tech}\footnote{http://www.lafrenchtech.com/la-french-tech}
+(an organization that promote the french start-up). Nowadays, \smu{} want to
+make a fundraising of 1 up to 2 millions euros.
+
+\section{The employees}
+
+The organization chart is presented on the figure~\ref{fig:organigramme}.
+
+\smu is a start-up of seven employees. Loïc Lecerf is the PDG and founder,
+Matthieu Marquenet is the commercial director, and Jessica Lecerf is the
+administrative director. For R\&D, the CTO is Steven Durand, and three
+researchers work under his orders: Oliver Kihl, John Ruiz Hernandez and
+Enguerrand Quilliard. As soon as they will obtain their fundraising, \smu{}
+will hire new permanents.
+
+During this summer, 7 interns has worked in \smu. Amélie Fondevilla, Adrien
+Saumureau, Baptiste Josi, Sara Akaoka Bdassi and Sébastien Detroyat have work on
+specific project. Gabriel Mattos Langeloh, Maude Premillieu and myself have work
+on the \claude{} project.
+
+\begin{figure}
+  \centering
+  \def\svgwidth{\columnwidth}
+  \includegraphics[width=\textwidth]{organigramme.jpg}
+  \label{fig:organigramme}
+  \caption{Organization chart of \smu (summer 2015)}.
+\end{figure}
+
+\chapterimage{Raspberry_Pi_2.jpg}
+\chapter{Goals of the internship}
+%% Présenter de manière concise et intelligible par une personne non spécialiste du
+%% domaine la problématique de votre stage et bien définir l¿existant :
+%% (environ 5 pages)
+%% le problème à résoudre
+%% les objectifs précis attendus 
+%% l¿état de l¿art des solutions existantes et des contraintes fi xées par 
+%% l¿entreprise
+%% votre solution motivée à partir de l¿analyse ci-dessus
+
+\section{The \claude{} project}
+
+I have worked together with Gabriel and Maud, two others interns. Our goal was
+to grab videos from customers' cameras, and to analyze them on \smu's server
+(deployed on Amazon\footnote{https://aws.amazon.com/} and
+ovh\footnote{https://www.ovh.com/us/}'s cloud). At \smu, we were the \claude{}
+department (it's a pun with
+\textit{cloud computing} with a big french accent $:$-$)$ ). During our
+internship, we worked in the same office, so we were able to exchange a lot.
+
+Even if Oliver Kilh was my tutor, in facts it was Steven Durand and Loïc Lecerf
+who supervised me and the others interns of the \claude{} project.
+
+My initial goal was to create a software that can stream a video from all type of
+devices to the servers of \smu, where it will be analyzed. To be more specific,
+I had to support all type of webcam, on \linux, \win{} and \mac, smartphones
+(\android, \ios), and ip cameras.
+
+Gabriel goal was to create the software used on the server. Those softwares
+have to receive the video stream, and analyze them using the library developed
+by \smu.
+
+Maud has created the web interface. That website is the place where customer can
+access to the results of their analysis and where they can administrate their
+cameras (the clients have to pay a subscription for all their camera, and the
+type of analysis they have chosen).
+
+\section{Technological choices}
+
+Our goal (Gabriel, Maud and me) was to select the appropriate technology for
+what we have to do. To be more specific:
+\begin{itemize}
+\item How to capture the images
+\item How to encode them
+\item How to send them to \smu{} server.
+\end{itemize}
+
+And furthermore
+\begin{itemize}
+\item How to establish connection between clients' software and \smu{} servers
+\end{itemize}
+
+Our first task was to learn how video are streamed in general. That part is
+explained in details later (in the section~\ref{sec:technologies}). The objective
+was to found witch protocols are used for grabbing, encoding and sending images. Of
+course it was not in our plan to reinvent the well, so we also had to choose a
+library that implement those protocols.
+
+Our second goal was to define how ours softwares will exchange informations.
+Since clients machine, and \smu{} server are all links to internet, we have
+chosen to use http request. We have defined all messages type, what we can send,
+and their structure. The methodology and the result is explained in the
+section~\ref{sec:communication}.
+
+\section{Platforms}
+
+As I said, my personal goal was to write a software that could be run virtually
+everywhere. To be more specific, my initial targets were \linux{} (on PC, and
+embedded devices like \rpi or \bbb), \win, \android, \mac{} and \ios. It was a
+bit too ambitious, so the last two were dropped.
+
+All employees in \smu work on Ubuntu (a \linux{} distribution), so I have first
+developed my solution for Linux (x86\_64), keeping in mind that I will have to port it
+after, so I never use platform specific stuff. Then I port it to Linux arm (I
+have tested it on \rpi{} and \bbb). After that, I try to create an \android{}
+application, and finally for \win.
+
+I was requested to write my software in \cpp. As a consequence of using native
+language, my build system has to be able to create executable for all
+platforms. I have chosen to use \cmake{} as build system, since \cmake{} was
+already use in the company.
+
+\section{Synthesis}
+
+Since I have to support a very heterogeneous set of platforms, I had to be very
+generic.
+
+The main complicated part was to make tradeoff between performance required for
+video encoding and the available bandwith. To lower the required bandwith, we
+can use a better compression algorithm, however better algorithm mean higher
+compression time, so worse latency, and higher CPU usage. On slow CPU hardware
+(smartphones and embedded devices like \rpi{} and \bbb{}) it was a real
+challenge to found the right algorithm.
+
+The results of the analysis of our needs for the \claude{} project have lead to
+the software organization presented on figure~\ref{fig:architecture}. That figure
+is extracted from the documentation Gabriel wrote. To be more clear, what I
+will later call \textit{http gateway} is the \textit{serveur HTTP}. The \textit{source} is anything
+with a webcam (a PC, an embedded device, or a smartphone).
+
+My contribution on the project was the source, and the specification of the
+communications between HTTP gateway and streaming \& analysis server. Gabriel
+have worked on the video \& analysis server, and Maud on the rest (her internship
+was longer).
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{architecture.jpg}
+  \label{fig:architecture}
+  \caption{presentation of the \claude{} project structure}.
+\end{figure}
+
+\chapterimage{webcams.jpg}
+\chapter{Methodology and alternatives}
+\label{sec:methodology}
+%% Décrire votre méthodologie de travail pour la mise en ¿uvre de votre solution 
+
+\section{Organisation}
+
+During all my internship, I had two small meeting per week (called \textit{point
+claude}) with Steven Durand and Loïc Lecerf. The others intern of the \claude{}
+project (Maude and Gabriel) were also there. During those meeting, we presented
+the work we had done since the last time, and then we decide what to do next.
+Since none of the employees of \smu{} have look our code during our internship (as
+least for the \claude{} project), it was their only way to know what we were
+doing.
+
+Our general methodology was to quickly have something that work somewhere, and
+then improve it by small iteration to make it work everywhere in all conditions.
+As a consequence, we first tested something on our machine, then using multiple
+machines in local network, and finally on the cloud.
+
+
+\section{Technologies used}
+\label{sec:technologies}
+
+The main challenge of that internship was to found the right technology to
+achieve the goal that I have been entrusted.
+
+\subsection{Network protocol}
+
+Firstly, we (Gabriel and me) have worked together to find the appropriate
+protocol for video streaming. We have concluded that \rtp{} is a good choice.
+That was motivated because \rtp{} can be easily replaced by \rtsp{} that work
+similarly, but with encryption. Furthermore, it can be use in tandem with
+\rtcp, witch carry information on the stream (like framerate, lag, and others
+useful information to analyze the quality of the stream).
+
+Select the right protocol is of course not enough, and since we have planed to
+support multiples platform, we have search implementations that match this
+requirement. \ffmpeg{} (and his fork \avconv), \vlc{} and \gstreamer{} where good
+candidates. \vlc{} was quickly avoided, because it has too much code that we do
+not need. It was nevertheless useful for testing purpose. In July, we have used
+\ffmpeg/\avconv, but we finally found that \gstreamer{} as better performance
+results.
+
+\subsection{Video encoding}
+
+Having the right network protocol is still not enough. We had to choose an
+encoding that fit our needs. What we want is something fast to encode,
+because the client program can run on small hardware, and because low latency
+was unavoidable. The resulted stream has also to be lightweight, because we
+could not assume that \smu's client will have a fast internet connection.
+
+All our tests have been first made on LAN, so \mjpeg{} was a very good
+candidate. It's just a sequence of \jpeg{} images, so it is really, really fast
+to encode it, even on small hardware. As a direct consequence, the delay was
+excellent. However, when we have made the firsts real tests using a server
+somewhere on the cloud, we have discovered that the amount of data needed for the
+transmission was too high. So we had to choose something else less eager in
+bandwith. We have tested \mpeg{} and \vpx encoding, and we have chosen the later.
+
+\subsection{Communication between devices}
+\label{sec:communication}
+
+At this point we knew how to grab images, encode them, and send them to a
+server. It's cool, but we need something to ask the permission to the server. We
+choose to simply use http request. \curl{} was a good initial choice, since it
+is a very powerful library. However, in the perspective of minimizing dependencies,
+I finally use \happyhttp. The request are formatting is \json.
+
+The documentation can be found is the appendix~\ref{sec:documentation}
+
+\section{Minimize the dependency}
+
+One of my objective was to create a software whose source code is really
+portable. For making that task easier, my tutor ask me to minimize the number of
+dependencies, and their complexities.
+
+\subsection{Prototyping}
+
+When I was prototyping, I have used some python and shell scripts to work
+faster. Since we cannot assume that those languages are installed on our client
+machine, my tutor ask me to use native code (to be more specific \cpp). Binary
+package are not transferable across operating system and cpu, so I had to
+generate binaries for all targets.
+
+In July, I have written a software that did the work, although with too many
+dependencies. I had used \boost{} for arguments and json parsing, and \curl{}
+for http request. I have also used \gstreamer{} for video (grab image, compress
+using \vpx{} and send using \rtp/\rtcp). Only the last one was a required
+dependency.
+
+\subsection{Reducing complexity}
+\label{sec:complexity}
+
+Removing \boost{} and \curl{} was too complicated, so I re-write my software,
+but much faster than the first time, since I already know what I want to do, and
+how to do it.
+
+To replace \boost{}, I have written a minimal \json{} parser (for the sub-part of
+json used for the communication between the client and the http gateway).
+To parse the arguments provided to the program, I have made a manual read of
+the arguments on \verb+argv+. Of course my own code have fewer possibilities than
+\boost{}, but it was less complex, and that was what I was asked for.
+
+With the similar perspective, I have replaced \libcurl{} by \happyhttp. That second
+library is only one small source file, so it is easier to embed it. Furthermore,
+the employees of \smu{} were already using it. With some take back, I think that
+using \libcurl{} during the prototyping was a good idea. Indeed, it had helped me to
+understand the errors easily when we (Gabriel and me) were creating the http
+protocol between the client software and the http gateway.
+
+Despite everything my main dependency was either \gstreamer{} or
+\ffmpeg/\avconv. Since they are both as complex, it was not an argument in
+favor of one or another. At the end, \gstreamer{} (and its own dependencies) is
+the last remaining in my code, even if it is the most complicated.
+
+\section{Methodology}
+\subsection{Solving problems}
+
+During my internship, I have wasted some time because at some point I was stuck,
+and I had not enough method to find the right solution in a short time. Making
+pair-programming was a good idea, but we did not use it enough for my taste.
+
+Sometime, when I was stuck, I left my desk, to help someone else, and when I
+came back that person help me back. In general, that save us both a lot of time,
+because, it has helped us to take a more global view on what we were doing. The key
+point of that is that explaining to someone else our problem help us to
+formalize it.
+
+\subsection{Writing the documentation}
+
+During my internship, I have contributed to the writing of to type of
+documentation. The first is the documentation of the http protocol used for the
+communication. This one have been written gradually. An extract is presented in
+appendix~\ref{sec:documentation}. The second one is the source
+code documentation. I have mainly written it at the end of my internship.
+\textbf{Doxygen}\footnote{http://www.stack.nl/~dimitri/doxygen/} have been used.
+It is a powerful documentation processor, commonly used.
+
+\chapterimage{technology-computer-chips-gigabyte.jpg}
+\chapter{Results}
+
+\section{Technologies used}
+
+\subsection{Generality}
+
+I have written a software in \cpp that grab image and send the stream via \rtp to
+the server of \smu. The protocols used have been described previously (on
+part~\ref{sec:methodology}). In that section, I am going to describe the
+implementation details.
+
+\subsection{Build system}
+
+I have developed a build system based on \cmake. It was chosen because it is
+cross platform (that was obviously required since I have to support many
+systems), and powerful enough to fit my need. Furthermore, \cmake is also used on
+other projects in \smu.
+
+Our initial goal was to have a cross-plateform build system. In that ideal
+scenario, when I want to create a new release of my software, I can create all
+the binaries from the same host. At the beginning of August, I had set up that
+type of build system. Like this, from my Ubuntu, I was able to build binaries
+not only for x86\_64 \linux, but also for arm \linux.
+
+However, when I have tried to statically link all the dependencies,
+cross-compilation has become too complicated to maintain. In effect, \gstreamer
+has a lot of dependencies, including the \textbf{glib}. During the link process,
+everything need to be previously built for the destination architecture, so in this
+case, have to be previously cross-compiled. That took me too much time to
+maintain, and as a consequence I have stopped to develop it and I have come
+back to a more simple build system.
+
+In addition to the \cmake files, I have also written a small \python script
+to call \cmake more easily. I have developed it when I was trying to make
+cross compilation. So in one command, I build the whole program for all
+architectures. After the drop of the cross-compilation, it was just used as a
+helper.
+
+The build process for \linux, on x86\_64 and arm devices or for \win{} is quite
+similar (except some few `\#ifdef`) thanks to \cmake. On \android{} however,
+The main has to be written in java. So, I have used \jni{} to build my \cpp{}
+codebase and linked it to java. Thus, I can reutilize my work across all systems.
+
+\subsection{Video stream}
+
+As I have explained, \gstreamer have been chosen. It has lots of binding
+(including \cpp), but I finally choose to use the \clang api, since it have the
+best documentation. \Gstreamer is pretty easy to use when you have understood
+some basics stuff. \Gstreamer use a textual representation of the acquisition
+process, called a pipeline.
+
+The listing~\ref{fig:exctractcppcode} describe the command used to describe the
+\gstreamer pipeline. It grabs a video using `autovideosrc`. Then it set some
+attribute. After that the stream is encoding in \vpx with `vp8enc` and some
+tuning for performance (`speed=1 thread=2`). And finally the stream is sent
+using \rtp, and add \rtcp information. This is an extract of the \cpp code
+I have written. The easier way to test it, it to use the \bash command
+\command{gst-launch} that used the same syntax.
+
+\begin{figure}
+\begin{lstlisting}
+string cmd { "gstrtpbin name=rtpbin autovideosrc"
+        " ! videorate"
+        " ! videoscale"
+        " ! ffmpegcolorspace"
+        " ! video/x-raw-yuv,width=" + video_width + ",height=" + video_height +
+        " ! vp8enc speed=1 threads=2"
+        " ! rtpvp8pay"
+        " ! rtpbin.send_rtp_sink_0 rtpbin.send_rtp_src_0"
+        " ! udpsink host=" + video_url + " port=" + rtp_port +
+             " rtpbin.send_rtcp_src_0 "
+        " ! udpsink host=" + video_url + " port=" + rtcp_port +
+             " sync=false async=false udpsrc port=" + local_rtcp_port + " "
+        " ! rtpbin.recv_rtcp_sink_0"};
+auto pipeline = gst_parse_launch( cmd.c_str(), &error );
+\end{lstlisting}
+\label{fig:exctractcppcode}
+\caption{Extract of \cpp code: gstreamer pipeline used for emission}.
+\end{figure}
+
+Before using \gstreamer, I have used \ffmpeg/\avconv. They work similarly (a
+\clang API, and a \bash command). However, the syntax is not the same.
+
+\subsection{Android}
+
+Android software has to be in java. Since my work was done in \cpp, I have use
+\jni, that allow me to call \cpp code from java. \jni use makefile, so I had to
+adapt my build process in consequence. My \cpp code have to create a dynamic
+library, and a small \cpp file make the glue between my code and the interface
+(in java).
+
+The interface used on mobile has been design by Maud. A screenshot is presented
+on figure~\ref{fig:smumobile}.
+
+\begin{figure}
+\centering
+\includegraphics[height=8cm]{smu_mobile.jpg}
+\caption{Mobile interface}
+\label{fig:smumobile}
+\end{figure}
+
+I have also used the \android{} sdk and ndk as well as the gstreamer sdk. Using
+those software tools as allow me to easily start to port my software. However,
+some differences in the usage of \gstreamer{} on \android{} have made the
+development more difficult, and I had not enough time to finish it.
+
+\subsection{Installer}
+
+In July, I have created an installer for linux, using
+\fpm{}\footnote{https://github.com/jordansissel/fpm}. It is a software that can
+create \textbf{.deb} (Debian/Ubuntu package), \textbf{.rmp} (used on other
+Linux), \textbf{tar} package, … I was really easy to do, and I will use it again
+for another project if need be.
+
+However, in August, the objective of my internship have change a bit, and at this
+point, we had to create a demonstrator. Therefore, my software has to be as easy
+as possible to use, so removing the installation step was required. That was
+taking part of the clean process I have explained before (section
+\ref{sec:complexity}).
+
+\section{Analyze results}
+
+\subsection{Debugging}
+
+Debugging is an important step in software lifecycle. The main debug tool we have
+used with Gabriel is \textbf{logging}. We have both add a lot of debug
+informations, printed to \textbf{stdlog}. Each step can be identified, so we knew
+at any time what our program was doing. When something went wrong, we was able
+to watch our logs, and compared them. In this way, we was able to identify
+the problems and to determine if it was a client or a server side issue.
+
+When my software was compiled for \android, I have used \textbf{adb} to print
+\textbf{stdlog} on my terminal. I was really easy to debug using the log. Thus,
+I was able to confirm each step one by one, and adapt my code quickly.
+
+\subsection{Performance}
+
+To measure the performance of our solution, Gabriel has written tools, that
+extract the following informations:
+\begin{itemize}
+\item number of image analyzed per second
+\item delay between the capture and the end of analyze
+\item many statistics that came from the result of the analysis
+\item if the stream is currently registered/active/analyzed
+\item …
+\end{itemize}
+
+\section{Conclusion}
+
+To sum up, at the end of my internship, I have written a software that can compile
+and run on multiple platforms~: \linux{} (both x86\_64 and arm) and \win. A lot
+of work have also been done for \android, but not everything have been finished.
+
+My program is able to ask the \textbf{htpp gateway} the authorization to start the stream.
+Then it grabs images, compress them using \vpx{} encoding, and send them using a
+\rtp{}/\rtcp{} stream. All that is done using a gstreamer back end. The program I
+wrote still need more tuning to be faster, especially on embedded hardware.
+
+All the code is documented using \textbf{Doxygen}, as well as the http protocol.
+All the important steps of the program are \textbf{logged} to stdlog to help
+to debug.
+
+%\chapterimage{Pink_flowers.jpg} % Table of contents heading image
+\chapterimage{binary.jpg}
+\chapter{Personal conclusion}
+
+To sum up, the keys points of my internship were:
+\begin{multicols}{2}
+\begin{itemize}
+\item design a software architecture
+\item define witch protocols will be used and how
+\item create a robust build system
+\item understand the link process
+\item how to build for multiple target (\linux{} arm and x86\_64, \win, \android)
+\item try to have cross compilation
+\end{itemize}
+\end{multicols}
+
+The part that motivate me the most was designing the communication protocol.
+When designing a protocol, we have to take care of making it both expressive and
+easy to parse/understand. I found that the result is pretty clean, and it was a
+good experience to work with Gabriel and Maud under the direction of Steven
+Durand and Loïc Lecerf.
+
+The major amount of work was the build process and its fine details. Building
+for one architecture is really easy, however when we want to support many more
+system, it becomes more complicated. \cmake{} was really useful to simplify that
+task. What was too complicated for me was cross-compiling with many dependencies
+at the same time, using static link. Despite everything, I have learned a lot of
+that process.
+
+To summarize, that internship was really instructive, and I feel that I have a
+finer understanding of the \cpp{} build process.
+
+\appendix
+
+\chapterimage{blanc}
+\chapter*{Appendix}
+
+\chapter{HTTP protocol documentation}
+\label{sec:documentation}
+\input{md_source_source.tex}
+
+\end{document}
