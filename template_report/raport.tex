@@ -121,12 +121,12 @@
     \textit{engineer assistant}\\
     \vspace{2em}\\
     \begin{tabular}{rcl}
-      15 june &--& 15 september\\
+      15 June &--& 15 September\\
       \multicolumn{3}{c}{3 months}\\
       \\
       tutor &--& Olivier Kilh \\
       supervised by &--& Steven Durand \\
-      ensimag tutor &--& Roland Groz\\
+      Ensimag tutor &--& Roland Groz\\
       \\
     \end{tabular}
     \vspace{2em}\\
@@ -137,7 +137,7 @@
   }
 }
 \date{
-  September, 2015
+  September 2015
 }
 \maketitle
 
@@ -231,7 +231,7 @@ work with them.
 My internship have been done in \smu, a start-up specialized in facial
 recognition, from June \nth{15} to September \nth{15}. My tutor was Olivier
 Kilh, a researcher in facial recognition. During my internship, I had many
-contact with Steven Durand, the CTO, and Loïc Lecerf, the CEO. I have worked with
+contacts with Steven Durand, the CTO, and Loïc Lecerf, the CEO. I have worked with
 Gabriel Mattos Langeloh and Maude Premillieu, two other interns.
 
 \smu{} is a start-up specialized in video recognition, more precisely in facial
@@ -372,7 +372,7 @@ devices to the servers of \smu, where it will be analyzed. To be more specific,
 I had to support all type of webcam, on \linux, \win{} and \mac, smartphones
 (\android, \ios), and ip cameras.
 
-Gabriel goal was to create the software used on the server. Those software
+Gabriel goal was to create the software used on the server. Those softwares
 have to receive the video stream, and analyze them using the library developed
 by \smu.
 
@@ -702,19 +702,6 @@ those software tools as allow me to easily start to port my software. However,
 some differences in the usage of \gstreamer{} on \android{} have made the
 development more difficult, and I had not enough time to finish it.
 
-\subsection{Debugging}
-
-Debugging is an important step in software lifecycle. The main debug tool we have
-used with Gabriel is \textbf{logging}. We have both add a lot of debug
-informations, printed to \textbf{stdlog}. Each step can be identified, so we knew
-at any time what our program was doing. When something went wrong, we was able
-to watch our logs, and compared them. In this way, we was able to identify
-the problems and to determine if it was a client or a server side issue.
-
-When my software was compiled for \android, I have used \textbf{adb} to print
-\textbf{stdlog} on my terminal. I was really easy to debug using the log. Thus,
-I was able to confirm each step one by one, and adapt my code quickly.
-
 \subsection{Installer}
 
 In July, I have created an installer for linux, using
@@ -729,6 +716,33 @@ as possible to use, so removing the installation step was required. That was
 taking part of the clean process I have explained before (section
 \ref{sec:complexity}).
 
+\section{Analyze results}
+
+\subsection{Debugging}
+
+Debugging is an important step in software lifecycle. The main debug tool we have
+used with Gabriel is \textbf{logging}. We have both add a lot of debug
+informations, printed to \textbf{stdlog}. Each step can be identified, so we knew
+at any time what our program was doing. When something went wrong, we was able
+to watch our logs, and compared them. In this way, we was able to identify
+the problems and to determine if it was a client or a server side issue.
+
+When my software was compiled for \android, I have used \textbf{adb} to print
+\textbf{stdlog} on my terminal. I was really easy to debug using the log. Thus,
+I was able to confirm each step one by one, and adapt my code quickly.
+
+\subsection{Performance}
+
+To measure the performance of our solution, Gabriel has written tools, that
+extract the following informations:
+\begin{itemize}
+\item number of image analyzed per second
+\item delay between the capture and the end of analyze
+\item many statistics that came from the result of the analysis
+\item if the stream is currently registered/active/analyzed
+\item …
+\end{itemize}
+
 \section{Conclusion}
 
 To sum up, at the end of my internship, I have written a software that can compile
@@ -742,7 +756,7 @@ wrote still need more tuning to be faster, especially on embedded hardware.
 
 All the code is documented using \textbf{Doxygen}, as well as the http protocol.
 All the important steps of the program are \textbf{logged} to stdlog to help
-debugging.
+to debug.
 
 %\chapterimage{Pink_flowers.jpg} % Table of contents heading image
 \chapterimage{binary.jpg}
