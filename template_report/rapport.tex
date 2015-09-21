@@ -228,23 +228,22 @@ work with them.
 \chapterimage{nature-clouds-hdr-phenomenon.jpg}
 \chapter{Introduction}
 
-My internship have been done in \smu, a start-up specialized in facial
+My internship has been done in \smu, a start-up specialized in facial
 recognition, from June \nth{15} to September \nth{15}. My tutor was Olivier
 Kilh, a researcher in facial recognition. During my internship, I had many
-contacts with Steven Durand, the CTO, and Loïc Lecerf, the CEO. I have worked with
-Gabriel Mattos Langeloh and Maude Premillieu, two other interns.
+contacts with Steven Durand, the CTO, and Loïc Lecerf, the CEO. I worked with
+Gabriel Mattos Langeloh and Maude Premillieu, two fellow interns.
 
-\smu{} is a start-up specialized in video recognition, more precisely in facial
-recognition. Its employees have developed a library that is able to make
-real-time facial analysis. My goal during my internship was to create a
-software. This one will be installed on \smu's client hardware (\linux, \win{}
-or \android), then it will grab a video, and send the stream to \smu's server.
-Gabriel has developed the server side of that project, and Maud the web
-interface were the client can manage their subscriptions.
+\smu{} employees have developed a library that is able to make
+real-time facial analysis. My goal during my internship was to create the
+client part of the \smu solution. It is a cross-plateform software (\linux,
+\win{} or \android) that grabs a video from a webcam, and sends it
+stream to \smu's server. Gabriel has developed the server side of that project,
+and Maud the web interface were the client can manage their subscriptions.
 
 First I will present \smu{} and its employees. Then I will introduce the goal of
-my internship, and the choices I have made. Next, I will describe the
-methodology I have used during my internship. Afterward I will present the
+my internship, and the choices I made. Next, I will describe the
+methodology I used during my internship. Afterward I will present the
 results of my work and finally conclude.
 
 \vspace{\fill}
@@ -438,7 +437,7 @@ compression time, so worse latency, and higher CPU usage. On slow CPU hardware
 (smartphones and embedded devices like \rpi{} and \bbb{}) it was a real
 challenge to found the right algorithm.
 
-The results of the analysis of our needs for the \claude{} project have lead to
+The results of the analysis of our needs for the \claude{} project has lead to
 the software organization presented on figure~\ref{fig:architecture}. That figure
 is extracted from the documentation Gabriel wrote. To be more clear, what I
 will later call \textit{http gateway} is the \textit{serveur HTTP}. The \textit{source} is anything
@@ -446,7 +445,7 @@ with a webcam (a PC, an embedded device, or a smartphone).
 
 My contribution on the project was the source, and the specification of the
 communications between HTTP gateway and streaming \& analysis server. Gabriel
-have worked on the video \& analysis server, and Maud on the rest (her internship
+has worked on the video \& analysis server, and Maud on the rest (her internship
 was longer).
 
 \begin{figure}
@@ -471,7 +470,7 @@ Since none of the employees of \smu{} have look our code during our internship (
 least for the \claude{} project), it was their only way to know what we were
 doing.
 
-Our general methodology was to quickly have something that work somewhere, and
+Our general methodology was to quickly has something that work somewhere, and
 then improve it by small iteration to make it work everywhere in all conditions.
 As a consequence, we first tested something on our machine, then using multiple
 machines in local network, and finally on the cloud.
@@ -506,7 +505,7 @@ Having the right network protocol is still not enough. We had to choose an
 encoding that fit our needs. What we want is something fast to encode,
 because the client program can run on small hardware, and because low latency
 was unavoidable. The resulted stream has also to be lightweight, because we
-could not assume that \smu's client will have a fast internet connection.
+could not assume that \smu's clients will have a fast internet connection.
 
 All our tests have been first made on LAN, so \mjpeg{} was a very good
 candidate. It's just a sequence of \jpeg{} images, so it is really, really fast
@@ -557,7 +556,7 @@ how to do it.
 To replace \boost{}, I have written a minimal \json{} parser (for the sub-part of
 json used for the communication between the client and the http gateway).
 To parse the arguments provided to the program, I have made a manual read of
-the arguments on \verb+argv+. Of course my own code have fewer possibilities than
+the arguments on \verb+argv+. Of course my own code has fewer possibilities than
 \boost{}, but it was less complex, and that was what I was asked for.
 
 With the similar perspective, I have replaced \libcurl{} by \happyhttp. That second
@@ -585,14 +584,14 @@ because, it has helped us to take a more global view on what we were doing. The 
 point of that is that explaining to someone else our problem help us to
 formalize it.
 
-\subsection{Writing the documentation}
+\subsection{Writing documentations}
 
 During my internship, I have contributed to the writing of to type of
 documentation. The first is the documentation of the http protocol used for the
-communication. This one have been written gradually. An extract is presented in
+communication. This one has been written gradually. An extract is presented in
 appendix~\ref{sec:documentation}. The second one is the source
 code documentation. I have mainly written it at the end of my internship.
-\textbf{Doxygen}\footnote{http://www.stack.nl/~dimitri/doxygen/} have been used.
+\textbf{Doxygen}\footnote{http://www.stack.nl/~dimitri/doxygen/} has been used.
 It is a powerful documentation processor, commonly used.
 
 \chapterimage{technology-computer-chips-gigabyte.jpg}
@@ -623,8 +622,8 @@ not only for x86\_64 \linux, but also for arm \linux.
 However, when I have tried to statically link all the dependencies,
 cross-compilation has become too complicated to maintain. In effect, \gstreamer
 has a lot of dependencies, including the \textbf{glib}. During the link process,
-everything need to be previously built for the destination architecture, so in this
-case, have to be previously cross-compiled. That took me too much time to
+everything need to be previously built for the destination architecture, so in
+this case, has to be previously cross-compiled. That took me too much time to
 maintain, and as a consequence I have stopped to develop it and I have come
 back to a more simple build system.
 
@@ -641,8 +640,8 @@ codebase and linked it to java. Thus, I can reutilize my work across all systems
 
 \subsection{Video stream}
 
-As I have explained, \gstreamer have been chosen. It has lots of binding
-(including \cpp), but I finally choose to use the \clang api, since it have the
+As I have explained, \gstreamer has been chosen. It has lots of binding
+(including \cpp), but I finally choose to use the \clang api, since it has the
 best documentation. \Gstreamer is pretty easy to use when you have understood
 some basics stuff. \Gstreamer use a textual representation of the acquisition
 process, called a pipeline.
@@ -683,7 +682,7 @@ Before using \gstreamer, I have used \ffmpeg/\avconv. They work similarly (a
 
 Android software has to be in java. Since my work was done in \cpp, I have use
 \jni, that allow me to call \cpp code from java. \jni use makefile, so I had to
-adapt my build process in consequence. My \cpp code have to create a dynamic
+adapt my build process in consequence. My \cpp code has to create a dynamic
 library, and a small \cpp file make the glue between my code and the interface
 (in java).
 
@@ -702,7 +701,7 @@ those software tools as allow me to easily start to port my software. However,
 some differences in the usage of \gstreamer{} on \android{} have made the
 development more difficult, and I had not enough time to finish it.
 
-\subsection{Installer}
+\subsection{Install process}
 
 In July, I have created an installer for linux, using
 \fpm{}\footnote{https://github.com/jordansissel/fpm}. It is a software that can
@@ -710,7 +709,7 @@ create \textbf{.deb} (Debian/Ubuntu package), \textbf{.rmp} (used on other
 Linux), \textbf{tar} package, … I was really easy to do, and I will use it again
 for another project if need be.
 
-However, in August, the objective of my internship have change a bit, and at this
+However, in August, the objective of my internship has change a bit, and at this
 point, we had to create a demonstrator. Therefore, my software has to be as easy
 as possible to use, so removing the installation step was required. That was
 taking part of the clean process I have explained before (section
@@ -747,11 +746,11 @@ extract the following informations:
 
 To sum up, at the end of my internship, I have written a software that can compile
 and run on multiple platforms~: \linux{} (both x86\_64 and arm) and \win. A lot
-of work have also been done for \android, but not everything have been finished.
+of work has also been done for \android, but not everything has been finished.
 
 My program is able to ask the \textbf{htpp gateway} the authorization to start the stream.
 Then it grabs images, compress them using \vpx{} encoding, and send them using a
-\rtp{}/\rtcp{} stream. All that is done using a gstreamer back end. The program I
+\rtp{}/\rtcp{} protocol. All that is done using a gstreamer back end. The program I
 wrote still need more tuning to be faster, especially on embedded hardware.
 
 All the code is documented using \textbf{Doxygen}, as well as the http protocol.
@@ -762,7 +761,7 @@ to debug.
 \chapterimage{binary.jpg}
 \chapter{Personal conclusion}
 
-To sum up, the keys points of my internship were:
+To sum up, the keys points of my internship were to:
 \begin{multicols}{2}
 \begin{itemize}
 \item design a software architecture
@@ -770,11 +769,11 @@ To sum up, the keys points of my internship were:
 \item create a robust build system
 \item understand the link process
 \item how to build for multiple target (\linux{} arm and x86\_64, \win, \android)
-\item try to have cross compilation
+\item try to obtain cross compilation
 \end{itemize}
 \end{multicols}
 
-The part that motivate me the most was designing the communication protocol.
+The part that motivates me the most was to design the communication protocol.
 When designing a protocol, we have to take care of making it both expressive and
 easy to parse/understand. I found that the result is pretty clean, and it was a
 good experience to work with Gabriel and Maud under the direction of Steven
@@ -782,10 +781,10 @@ Durand and Loïc Lecerf.
 
 The major amount of work was the build process and its fine details. Building
 for one architecture is really easy, however when we want to support many more
-system, it becomes more complicated. \cmake{} was really useful to simplify that
-task. What was too complicated for me was cross-compiling with many dependencies
-at the same time, using static link. Despite everything, I have learned a lot of
-that process.
+systems, it becomes more complicated. \cmake{} was really useful to simplify that
+task. What was too complicated for me was cross-compiling with that many
+dependencies at the same time, using static link. Despite everything, I have
+learned a lot of that experience.
 
 To summarize, that internship was really instructive, and I feel that I have a
 finer understanding of the \cpp{} build process.
