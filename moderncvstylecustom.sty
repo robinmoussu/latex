@@ -72,6 +72,7 @@
   \ifthenelse{\lengthtest{\makecvtitlenamewidth=0pt}}% check for dummy value (equivalent to \ifdim\makecvtitlenamewidth=0pt)
     {\setlength{\makecvtitlenamewidth}{\textwidth-\makecvtitledetailswidth-\makecvtitlepicturewidth}}%
     {}%
+    \hspace{0.5cm}
   \begin{minipage}[b]{\makecvtitlenamewidth}%
     \newsavebox{\cvtitlecontent}%
     \savebox{\cvtitlecontent}{%
@@ -86,6 +87,7 @@
     % optional quote
   \end{minipage}%
   \hfill%
+  \vspace{-1cm}
   % detailed information
   \llap{\usebox{\makecvtitledetailsbox}}% \llap is used to suppress the width of the box, allowing overlap if the value of makecvtitlenamewidth is forced
   % optional photo (rendering)
