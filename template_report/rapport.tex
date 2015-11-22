@@ -646,34 +646,13 @@ best documentation. \Gstreamer is pretty easy to use when you have understood
 some basics stuff. \Gstreamer use a textual representation of the acquisition
 process, called a pipeline.
 
-The listing~\ref{fig:exctractcppcode} describe the command used to describe the
-\gstreamer pipeline. It grabs a video using `autovideosrc`. Then it set some
-attribute. After that the stream is encoding in \vpx with `vp8enc` and some
-tuning for performance (`speed=1 thread=2`). And finally the stream is sent
-using \rtp, and add \rtcp information. This is an extract of the \cpp code
-I have written. The easier way to test it, it to use the \bash command
-\command{gst-launch} that used the same syntax.
-
-\begin{figure}
-\begin{lstlisting}
-string cmd { "gstrtpbin name=rtpbin autovideosrc"
-        " ! videorate"
-        " ! videoscale"
-        " ! ffmpegcolorspace"
-        " ! video/x-raw-yuv,width=" + video_width + ",height=" + video_height +
-        " ! vp8enc speed=1 threads=2"
-        " ! rtpvp8pay"
-        " ! rtpbin.send_rtp_sink_0 rtpbin.send_rtp_src_0"
-        " ! udpsink host=" + video_url + " port=" + rtp_port +
-             " rtpbin.send_rtcp_src_0 "
-        " ! udpsink host=" + video_url + " port=" + rtcp_port +
-             " sync=false async=false udpsrc port=" + local_rtcp_port + " "
-        " ! rtpbin.recv_rtcp_sink_0"};
-auto pipeline = gst_parse_launch( cmd.c_str(), &error );
-\end{lstlisting}
-\label{fig:exctractcppcode}
-\caption{Extract of \cpp code: gstreamer pipeline used for emission}.
-\end{figure}
+When you use \gstreamer, you describe want you want to do across a pipeline.
+First, \gstreamer grabs a video using `autovideosrc`. Then it set some
+attributes. After that the stream is encoding in \vpx with `vp8enc` and some
+tuning for performance. And finally the stream is send
+using \rtp, and add \rtcp informations. The easier way to test it, it to use the
+\bash command \command{gst-launch} that used the same syntax than
+the `gst\_parse\_launch()` of the C API.
 
 Before using \gstreamer, I have used \ffmpeg/\avconv. They work similarly (a
 \clang API, and a \bash command). However, the syntax is not the same.
