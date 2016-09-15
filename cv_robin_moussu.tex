@@ -16,16 +16,16 @@
 
 % \setlength{\hintscolumnwidth}{22mm}
 
-\newcommand{\cvformation}{\cventry}
-% \newcommand{\cvformation}[7][.25em]{%
-%  \cvitem[#1]{#2}{%
-%    {\textbf{#3}}%
-%    \ifthenelse{\equal{#4}{}}{}{, {\textit{#4}}}%
-%    \ifthenelse{\equal{#5}{}}{}{, #5}%
-%    \ifthenelse{\equal{#6}{}}{}{, #6}%
-%    \ifx&#7&%
-%      \else{\hfill\small#7}\fi}
-%}
+%\newcommand{\cvformation}{\cventry}
+ \newcommand{\cvformation}[7][.25em]{%
+  \cvitem[#1]{#2}{%
+    {\textbf{#3}}%
+    \ifthenelse{\equal{#4}{}}{}{, {\textit{#4}}}%
+    \ifthenelse{\equal{#5}{}}{}{, #5}%
+    \ifthenelse{\equal{#6}{}}{}{, #6}%
+    \ifx&#7&%
+      \else{\newline#7}\fi}
+}
 \newcommand{\cvstage}[7][.25em]{%
   \cvitem[#1]{#2}{%
     {\textbf{#7}}%
@@ -64,6 +64,11 @@
   \end{tabular}%
   \par\addvspace{#1}}
 
+% calculate age
+\newcounter{age}
+\setcounter{age}{\the\year}
+\addtocounter{age}{-1992}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %C plus plus
@@ -82,13 +87,13 @@
 \firstname{Robin}
 \familyname{Moussu}
 \title{Développeur logiciel}
-\address{4 rue Pierre et Marie Curie}{38400 Saint-Martin d'Heres}
+\address{17 rue Pasteur}{38400 Saint-Martin d'Heres}
 \phone[mobile]{06 95 07 44 23}
 \email{robin.moussu@gmail.com}
 \extrainfo{
   \linkedinsocialsymbol \githubsocialsymbol robinmoussu
   \makenewline
-  23 ans
+  \arabic{age} ans
 }
 \photo{photo.jpg}
 
@@ -97,14 +102,14 @@
 \maketitle
 
 \vspace{\fill}
-\hspace{1.5cm} Je suis actuellement à la recherche d'un stage de fin d'étude afin de valider ma formation d'ingénieur en informatique. Je suis tout particulièrement intéressé par l'informatique bas-niveau (notamment l'analyse de la mémoire), et par l'optimisation (en mémoire et en vitesse).
+\hspace{1.5cm} Je viens de terminer ma formation d'ingénieur en informatique, et je suis actuellement à la recherche d'un emploi. Je suis tout particulièrement intéressé par l'informatique bas-niveau (notamment l'analyse de la mémoire), et par l'optimisation (en mémoire et en vitesse).
 \vspace{\fill}
 
 \section{Compétences}
 
 \cvitem{Langages}{\xx{\cpp}, \xx{C}, \xx{ruby}, ada, asm, java, vhdl}
-\cvitem{Embarqué}{\pic, \stm, arduino, rasberry pi}
 \cvitem{Outils}{\xx{git}, gcc, clang, Doxygen} 
+%\cvitem{Embarqué}{\pic, \stm, arduino, rasberry pi}
 \cvitem{Conception}{Design patterns, \uml{}} 
 \cvitem{Autre}{\xx{Linux}, Latex, \ldots}
 
@@ -114,13 +119,14 @@
 
 \section{Formation}
  
-\cvformation{Depuis 2013}{Grenoble INP}{Grenoble}{Phelma puis Ensimag}{}{Spécialité en Systemes et Logiciels Embarqués}
+\cvformation{2013--2016}{Grenoble INP}{Grenoble}{Phelma puis Ensimag}{}{Spécialité en Systemes et Logiciels Embarqués}
 \cvformation{2011--2013}{DUT GEII}{Grenoble}{IUT 1}{}{Génie électronique et informatique industrielle}
 \cvformation{2010--2011}{Prépa intégré}{Valence}{Esisar}{}{Électronique, informatique, système embarqué et réseaux}
-\cvformation{2010}{Baccalauréat S}{Gap}{Lycée Dominique Villars}{}{Mention bien}
+\cvformation{2010}{Baccalauréat S}{Gap}{Lycée Dominique Villars (Mention bien)}{}{}
 
 \section{Stages}
 
+\cvstage{2016}{}{MathWorks (logiciel Polyspace)}{Montbonnot, Isère}{6 mois}{Analyse d'alias \& séparation de contextes (C++ et SML)}
 \cvstage{2015}{}{Start Me Up}{Meylan, Isère}{3 mois}{Streaming video (C++)}
 \cvstage{2014}{}{Kalray}{Montbonnot, Isère}{3 mois}{\textbf{Description d'architecture processeur many-core} (ruby)}
 \cvstage{2013}{}{Max Technologies}{Brossard, \textbf{Canada}}{3 mois}{\textbf{Portage de code} du langage C vers le langage \labview}
@@ -137,10 +143,12 @@
 
 %\cvitemwithcomment{Projet}{Conception d'un clavier ergonomique}{réalisation matérielle et logicielle}
 \cventry{Robotique}{Coupe de France de Robotique}{
-    club Robotronik de Phelma (103\textsuperscript{ème} en 2015,
-    91\textsuperscript{ème} en 2014), club de robotique de l'Esisar (en
-    2011)}{}{}{}
-\cvitemwithcomment{}{Coupe inter-IUT à Vierzon}{2012 (IUT GEII de Grenoble, demi-finale)}
+    club Robotronik de Phelma
+	    (2015~: 103\textsuperscript{ème},
+	    2014~: 91\textsuperscript{ème}),
+    club de robotique de l'Esisar (2011)
+    }{}{}{}
+\cvitemwithcomment{}{Coupe inter-IUT à Vierzon, IUT GEII de Grenoble, 2012, demi-finale}{}
 %\cvitemwithcomment{Loisirs}{Jeu de société, vélo, escalade}{}
 
 \end{document}
