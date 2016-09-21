@@ -1,8 +1,9 @@
-FILE=cv_robin_moussu
+all: fr en
 
-all: $(FILE).pdf
+fr: cv_robin_moussu.pdf
+en: cv_robin_moussu.en.pdf
 
-$(FILE).pdf: $(FILE).tex moderncvstylecustom.sty photo.jpg
+%.pdf: %.tex moderncvstylecustom.sty photo.jpg
 	 latexmk -pdf $<
 
 .PHONY: clean mrproper
@@ -12,4 +13,4 @@ clean:
 	latexmk -c
 
 mrproper: clean
-	rm -f rapport.pdf
+	rm -f cv_robin_moussu.pdf cv_robin_moussu.en.pdf
