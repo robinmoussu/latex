@@ -1,7 +1,7 @@
 all: fr en
 
 fr: cv_robin_moussu.pdf
-en: cv_robin_moussu.en.pdf
+en: cv_robin_moussu_en.pdf
 
 %.pdf: %.tex moderncvstylecustom.sty photo.jpg
 	 latexmk -pdf $<
@@ -13,4 +13,4 @@ clean:
 	latexmk -c
 
 mrproper: clean
-	rm -f cv_robin_moussu.pdf cv_robin_moussu.en.pdf
+	rm -f cv_robin_moussu.pdf cv_robin_moussu_en.pdf
