@@ -53,7 +53,24 @@
      \ifthenelse{\equal{#5}{}}{}{, #5}%
      \ifthenelse{\equal{#6}{}}{}{, #6}%
      \ifx&#7&%
-       \else{\hfill\break\small#7}\fi}
+       \else{\hfill{}#7}\fi}
+ }
+
+\newcommand{\cvcomptwo}[7][.25em]{%
+   \cvitem[#1]{#2}{%
+     {\textbf{#3}}%
+ %
+     \ifthenelse{\equal{#4}{}}{%
+       \ifthenelse{\equal{#5}{}}{%
+         \ifthenelse{\equal{#6}{}}{%
+         }{, #6}%
+       }{, #5}%
+     }{, \slshape#4}%
+ %
+     \ifthenelse{\equal{#5}{}}{}{, #5}%
+     \ifthenelse{\equal{#6}{}}{}{, #6}%
+     \ifx&#7&%
+       \else{\hfill{}\break{}\small{}#7}\fi}
  }
 
 
@@ -105,6 +122,7 @@
 
 \vspace{\fill}
 \hspace{1.5cm} Je viens de terminer ma formation d'ingénieur en informatique, et je suis actuellement à la recherche d'un emploi. Je suis tout particulièrement intéressé par l'informatique bas-niveau (notamment l'analyse de la mémoire), et par l'optimisation (en mémoire et en vitesse).
+
 \vspace{\fill}
 
 \section{Compétences}
