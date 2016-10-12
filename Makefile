@@ -3,8 +3,11 @@ all: fr en
 fr: cv_robin_moussu.pdf
 en: cv_robin_moussu_en.pdf
 
-%.pdf: %.tex moderncvstylecustom.sty photo.jpg
+cv_robin_moussu.pdf: cv_robin_moussu.tex moderncvstylecustom.sty photo.jpg
 	 latexmk -pdf $<
+
+cv_robin_moussu_en.pdf: cv_robin_moussu.tex moderncvstylecustom.sty photo.jpg
+	 pdflatex "\def\isenglish{1} \input{$<}" -job-name=cv_robin_moussu_en
 
 .PHONY: clean mrproper
 
