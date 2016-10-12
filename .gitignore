@@ -2,3 +2,7 @@
 *.log
 *.toc
 *.ptc
+*.fdb_latexmk
+*.fls
+*.out
+.pdf
