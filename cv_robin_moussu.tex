@@ -70,7 +70,7 @@
      \ifthenelse{\equal{#5}{}}{}{, #5}%
      \ifthenelse{\equal{#6}{}}{}{, #6}%
      \ifx&#7&%
-       \else{\hfill{}\break{}\small{}#7}\fi}
+       \else{\hfill{}\break{}#7}\fi}
  }
 
 
@@ -130,15 +130,15 @@
 
 \vspace{\fill}
 
-\hspace{1.5cm} \fr{Je viens de terminer ma formation d'ingénieur en informatique, et je suis actuellement à la recherche d'un emploi. Je suis tout particulièrement intéressé par l'informatique bas-niveau (notamment l'analyse de la mémoire), et par l'optimisation (en mémoire et en vitesse).}
-\en{I just graduated from Grenoble INP, a computer science engineering school, and I am currently searching for a job. I am especially interested in algorithmic and I would like to used all the competences I learned during my schooling, thus working on low-level simulation motivates me.}
+\hspace{1.5cm} \fr{Je viens de terminer ma formation d'ingénieur en informatique, et je suis actuellement à la recherche d'un emploi.}
+\en{I just graduated from Grenoble INP, a computer science engineering school, and I am currently searching for a job.}
 
 \vspace{\fill}
 
 \section{\fr{Compétences}\en{Competences}}
 
 \cvitem{\fr{Langages}\en{Languages}}{\xx{\cpp} (\fr{mon langage de prédilection}\en{my favorite language}), \xx{C}, \xx{ruby}, ada, asm, vhdl}
-\cvitem{\fr{Outils}\en{Utils}}{\xx{git}, gcc, clang, Doxygen, \textbf{KiCad}, Lt Spice} 
+\cvitem{\fr{Outils}\en{Utils}}{\xx{git}, gcc, clang, Doxygen} 
 %\cvitem{Embedded}{\pic, \stm, arduino, rasberry pi}
 \cvitem{\fr{Conception}\en{Methods}}{Design patterns, \uml{}} 
 \cvitem{\fr{Autre}\en{Other}}{\xx{Linux}, Latex, \ldots}
@@ -170,21 +170,26 @@
 \vspace{1em}
 
 %\cvitemwithcomment{Projet}{Conception d'un clavier ergonomique}{réalisation matérielle et logicielle}
-\cventry{\fr{Robotique}\en{Robotics}}{\fr{Coupe de France de Robotique}\en{French cup of Robotics}}{
-  \fr{
-    club Robotronik de Phelma
-	    (2015~: 103\textsuperscript{ème},
-	    2014~: 91\textsuperscript{ème}),
-    club de robotique de l'Esisar (2011)
+\cvcomptwo{\fr{Robotique}\en{Robotics}}{\fr{Coupe de France de Robotique}\en{French cup of Robotics}}{}{}{}{
+  {\small
+    \fr{
+      Phelma: Robotronik
+              (2015~: 103\textsuperscript{e},
+              2014~: 91\textsuperscript{e}),
+      club de robotique de l'Esisar (2011)
+    }
+    \en{
+      Phelma: Robotronik
+              (2015:~103\textsuperscript{th},
+              2014:~91\textsuperscript{th}),
+      robotics club of Esisar (2011)
+    }
   }
-  \en{
-    Robotronik club of Phelma
-	    (2015:~103\textsuperscript{th},
-	    2014:~91\textsuperscript{th}),
-    robotics club of Esisar (2011)
+  \break
+  {
+  \textbf{\fr{Coupe inter-IUT}\en{inter-IUT cups}}, Vierzon, 2012, IUT GEII \fr{de}\en{of} Grenoble, \fr{demi-finale}\en{semi-final}
   }
-    }{}{}{}
-\cvitemwithcomment{}{\fr{Coupe inter-IUT à Vierzon, IUT GEII de Grenoble, 2012, demi-finale}\en{inter-IUT cups at Vierzon, IUT GEII of Grenoble, 2012, semi-final}}{}
+}
 %\cvitemwithcomment{Loisirs}{Jeu de société, vélo, escalade}{}
 
 \end{document}
