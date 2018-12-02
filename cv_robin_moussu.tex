@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{moderncv}
+﻿\documentclass[12pt,a4paper]{moderncv}
 %\moderncvtheme[orange]{custom}
 \moderncvstyle{classic}
 \moderncvcolor{orange}
@@ -29,6 +29,16 @@
       \else{\newline#7}\fi}
 }
 \newcommand{\cvstage}[7][.25em]{%
+  \cvitem[#1]{#2}{%
+    {\textbf{#7}}%
+    \ifx&#6&%
+      \else{\hfill\small#6}\fi
+    \newline%
+    \textit{#4}%
+    \ifthenelse{\equal{#5}{}}{}{, #5}%
+  }
+}
+\newcommand{\cvwork}[7][.25em]{%
   \cvitem[#1]{#2}{%
     {\textbf{#7}}%
     \ifx&#6&%
@@ -114,11 +124,11 @@
 \firstname{Robin}
 \familyname{Moussu}
 \title{\fr{Développeur logiciel}\en{Software engineer}}
-\address{17 rue Pasteur}{38400 Saint-Martin d'Heres}
+\address{11 rue du grand mur}{06250 Mougin}
 \phone[mobile]{06 95 07 44 23}
 \email{robin.moussu@gmail.com}
 \extrainfo{
-  \linkedinsocialsymbol \githubsocialsymbol robinmoussu
+  \linkedinsocialsymbol \gitlabsocialsymbol \githubsocialsymbol robinmoussu
   \makenewline
   \arabic{age} \fr{ans}\en{years old}
 }
@@ -130,66 +140,64 @@
 
 \vspace{\fill}
 
-\hspace{1.5cm} \fr{Je viens de terminer ma formation d'ingénieur en informatique, et je suis actuellement à la recherche d'un emploi.}
-\en{I just graduated from Grenoble INP, a computer science engineering school, and I am currently searching for a job.}
+\hspace{1.5cm} \fr{Je travaille actuellement chez Astek, pour le compte d'Amadeus, en tant que développeur back-end. Mon environnement de travail est multi-culturel, et j'utilise l'anglais quotidiennement. Chez ce client, je travaille principalement en \cpp, scala et shell.}
+\en{I am currently working at Astek, with Amadeus as a client as back-end developer. My working environment is multi-cultural, and as such I am using English daily. At Amadeus, I use mainly \cpp, scala and shell programming language.}
 
 \vspace{\fill}
 
 \section{\fr{Compétences}\en{Competences}}
 
-\cvitem{\fr{Langages}\en{Languages}}{\xx{\cpp} (\fr{mon langage de prédilection}\en{my favorite language}), \xx{C}, \xx{ruby}, ada, asm, vhdl}
+\cvitem{\fr{Langages}\en{Languages}}{\xx{\cpp} (\fr{mon langage de prédilection}\en{my favorite language}), shell, \xx{C}, scala, \xx{ruby}, ada, asm, vhdl}
 \cvitem{\fr{Outils}\en{Utils}}{\xx{git}, gcc, clang, Doxygen} 
 %\cvitem{Embedded}{\pic, \stm, arduino, rasberry pi}
 \cvitem{\fr{Conception}\en{Methods}}{Design patterns, \uml{}} 
-\cvitem{\fr{Autre}\en{Other}}{\xx{Linux}, Latex, \ldots}
+\cvitem{\fr{Autre}\en{Other}}{\xx{Linux}, Latex, Markdown, \ldots}
 
 \vspace{1em}
 
-\cvitemwithcomment{\fr{Anglais}\en{English}}{\fr{Compétences techniques, niveau C1}\en{Technical knowledge, C1 level}}{\hfill{}Bulats: 79 (2014), Toeic: 740 (2013)}{}
+\cvitemwithcomment{\fr{Anglais}\en{English}}{\fr{Utilisation quotidienne, niveau C1}\en{Daily usage, C1 level}}{\hfill{}Bulats: 79 (2014), Toeic: 740 (2013)}{}
+
+\section{\fr{Expérience professionnelle}\en{Professional experience}}
+
+\cvwork{2016--2018}{}{\fr{Astek (chez le client Amadeus)}\en{Astek for Amadeus client (on-site)}}{Sophia Antipolis}{2 \fr{ans}\en{years}}{\fr{développeur logiciel back-end}\en{back-end software developer} (\cpp, scala, shell)}
 
 \section{Formation}
 
 \cvformation{2013--2016}{Grenoble INP}{Grenoble}{Phelma \fr{puis}\en{then} Ensimag}{}{\fr{Spécialité en Systemes et Logiciels Embarqués}\en{Specialization in system and embedded software}}
 \cvformation{2011--2013}{DUT GEII}{Grenoble}{IUT 1}{}{\fr{Génie électronique et informatique industrielle}\en{Electronic engineering and industrial data processing}}
-\cvformation{2010--2011}{Prépa intégré}{Valence}{Esisar}{}{\fr{Électronique, informatique, système embarqué et réseaux}\en{Electronics, computer science, embedded system and network}}
+%\cvformation{2010--2011}{Prépa intégré}{Valence}{Esisar}{}{\fr{Électronique, informatique, système embarqué et réseaux}\en{Electronics, computer science, embedded system and network}}
 \cvformation{2010}{Baccalauréat S}{Gap}{Lycée Dominique Villars (\fr{Mention bien}\en{with honors})}{}{}
 
 \section{\fr{Stages}\en{Internships}}
 
-\cvstage{2016}{}{MathWorks (\fr{logiciel Polyspace}\en{on Polyspace software})}{Montbonnot, Isère}{6 \fr{mois}\en{month}}{\fr{Analyse d'alias \& séparation de contextes (C++ et SML)}\en{Alias analysis and context splitting (C++ and SML)}}
-\cvstage{2015}{}{Start Me Up}{Meylan, Isère}{3 \fr{mois}\en{month}}{\fr{Streaming video (C++)}\en{Video streaming (C++)}}
-\cvstage{2014}{}{Kalray}{Montbonnot, Isère}{3 \fr{mois}\en{month}}{\fr{Description d'architecture processeur many-core}\en{Description of many-core processor architecture} (ruby)}
+\cvstage{2016}{}{MathWorks (\fr{logiciel Polyspace}\en{on Polyspace software})}{Montbonnot}{6 \fr{mois}\en{month}}{\fr{Analyse d'alias \& séparation de contextes (\cpp et SML)}\en{Alias analysis and context splitting (\cpp and SML)}}
+% \cvstage{2015}{}{Start Me Up}{Meylan}{3 \fr{mois}\en{month}}{\fr{Streaming video (\cpp)}\en{Video streaming (\cpp)}}
+% \cvstage{2014}{}{Kalray}{Montbonnot}{3 \fr{mois}\en{month}}{\fr{Description d'architecture processeur many-core}\en{Description of many-core processor architecture} (ruby)}
 \cvstage{2013}{}{Max Technologies}{Brossard, \textbf{Canada}}{3 \fr{mois}\en{month}}{\fr{\textbf{Portage de code} du langage C vers le langage \labview}\en{Code re-writing from C to \labview}}
 
 \section{\fr{Expériences personnelles}\en{Personal experiences}}
 
-\cvcomp{2015}{\fr{Contribution à Firefox}\en{Contribution to Firefox}}{\fr{projet scolaire}\en{scholar project}}{}{\fr{par groupe de 5}\en{by group of 5 students}}{\fr{1 mois}\en{1 month}} %{Correction de bugs et amélioration de la partie audio et graphique de Firefox}
-\cvcomp{2015}{\fr{Conception d'un compilateur}\en{Conception of a compiler}}{\fr{projet scolaire}\en{scholar project}}{}{\fr{par groupe de 5}\en{by group of 5 students}}{\fr{1 mois}\en{1 month}} %{Implémentation en java d'un compilateur et de sa librairie mathématique pour le Déca, un langage proche du java}
-\cvcomptwo{2011-2015}{\fr{Responsable de classe}\en{Class representative}}{Ensimag, Phelma \fr{et}\en{and} IUT}{Grenoble}{}{\fr{Participation au conseil d’administration (durant mon IUT)}\en{Participation to the board of directors during my IUT}}
-
-\vspace{1em}
+% \cvcomp{2015}{\fr{Contribution à Firefox}\en{Contribution to Firefox}}{\fr{projet scolaire}\en{scholar project}}{}{\fr{par groupe de 5}\en{by group of 5 students}}{\fr{1 mois}\en{1 month}} %{Correction de bugs et amélioration de la partie audio et graphique de Firefox}
+% \cvcomp{2015}{\fr{Conception d'un compilateur}\en{Conception of a compiler}}{\fr{projet scolaire}\en{scholar project}}{}{\fr{par groupe de 5}\en{by group of 5 students}}{\fr{1 mois}\en{1 month}} %{Implémentation en java d'un compilateur et de sa librairie mathématique pour le Déca, un langage proche du java}
+% \cvcomptwo{2011-2015}{\fr{Responsable de classe}\en{Class representative}}{Ensimag, Phelma \fr{et}\en{and} IUT}{Grenoble}{}{\fr{Participation au conseil d’administration (durant mon IUT)}\en{Participation to the board of directors during my IUT}}
+% 
+% \vspace{1em}
 
 %\cvitemwithcomment{Projet}{Conception d'un clavier ergonomique}{réalisation matérielle et logicielle}
-\cvcomptwo{\fr{Robotique}\en{Robotics}}{\fr{Coupe de France de Robotique}\en{French cup of Robotics}}{}{}{}{
-  {\small
-    \fr{
-      Phelma: Robotronik
-              (2015~: 103\textsuperscript{e},
-              2014~: 91\textsuperscript{e}),
-      club de robotique de l'Esisar (2011)
-    }
-    \en{
-      Phelma: Robotronik
-              (2015:~103\textsuperscript{th},
-              2014:~91\textsuperscript{th}),
-      robotics club of Esisar (2011)
-    }
+\cvitem{\fr{Robotique}\en{Robotics}}{
+  {
+  \textbf{\fr{Coupe de France de Robotique}\en{French cup of Robotics}:}
+    Phelma (2015 \fr{et}\en{and} 2014), %2015: 103, 2014:91
+    Esisar (2011)
   }
   \break
   {
-  \textbf{\fr{Coupe inter-IUT}\en{inter-IUT cups}}, Vierzon, 2012, IUT GEII \fr{de}\en{of} Grenoble, \fr{demi-finale}\en{semi-final}
+  \textbf{\fr{Coupe inter-IUT}\en{inter-IUT cup}}, Vierzon, 2012, IUT GEII \fr{de}\en{of} Grenoble, \fr{demi-finale}\en{semi-final}
   }
 }
 %\cvitemwithcomment{Loisirs}{Jeu de société, vélo, escalade}{}
+
+\vspace{\fill}
+\vspace{\fill}
 
 \end{document}
