@@ -24,28 +24,20 @@
     {\textbf{#3}}%
     \ifthenelse{\equal{#4}{}}{}{, {\textit{#4}}}%
     \ifthenelse{\equal{#5}{}}{}{, #5}%
-    \ifthenelse{\equal{#6}{}}{}{, #6}%
+    \ifthenelse{\equal{#6}{}}{}{\hfill \footnotesize\textsc{#6}}%
     \ifx&#7&%
       \else{\newline#7}\fi}
 }
-\newcommand{\cvstage}[7][.25em]{%
+\newcommand{\cvwork}[8][.25em]{%
   \cvitem[#1]{#2}{%
     {\textbf{#7}}%
     \ifx&#6&%
       \else{\hfill\small#6}\fi
     \newline%
-    \textit{#4}%
+    \footnotesize\footnotesize\textit{#4}%
     \ifthenelse{\equal{#5}{}}{}{, #5}%
-  }
-}
-\newcommand{\cvwork}[7][.25em]{%
-  \cvitem[#1]{#2}{%
-    {\textbf{#7}}%
-    \ifx&#6&%
-      \else{\hfill\small#6}\fi
-    \newline%
-    \textit{#4}%
-    \ifthenelse{\equal{#5}{}}{}{, #5}%
+    \ifthenelse{\equal{#3}{}}{}{\hspace*{\fill}\textbf{#3}}%
+    \ifthenelse{\equal{#4}{}}{}{\newline #8}%
   }
 }
 
@@ -123,16 +115,16 @@
 
 \firstname{Robin}
 \familyname{Moussu}
-\title{\fr{Développeur logiciel}\en{Software engineer}}
-\address{11 rue du grand mur}{06250 Mougin}
+\title{\fr{Développeur back-end\\spécialisé en optimisation}\en{Back-end developper\\specialization in optimization}}
+\address{20 rue Félix Esclangon}{38000 Grenoble}
 \phone[mobile]{06 95 07 44 23}
-\email{robin.moussu@gmail.com}
+\email{moussu.robin@pm.me}
 \extrainfo{
   \linkedinsocialsymbol \gitlabsocialsymbol \githubsocialsymbol robinmoussu
   \makenewline
   \arabic{age} \fr{ans}\en{years old}
 }
-\photo{photo.jpg}
+%\photo{photo.jpg}
 
 \begin{document}
 
@@ -140,15 +132,15 @@
 
 \vspace{\fill}
 
-\hspace{1.5cm} \fr{Je travaille actuellement chez Astek, pour le compte d'Amadeus, en tant que développeur back-end. Mon environnement de travail est multi-culturel, et j'utilise l'anglais quotidiennement. Chez ce client, je travaille principalement en \cpp, scala et shell.}
-\en{I am currently working at Astek, with Amadeus as a client as back-end developer. My working environment is multi-cultural, and as such I am using English daily. At Amadeus, I use mainly \cpp, scala and shell programming language.}
+\hspace{1.5cm} \fr{Curieux, force de proposition, autonome et volontaire, je suis quelqu'un qui aime apprendre et sait s'investir (notamment dans la maîtrise des outils utilisés). Le développement de back-end haute performances, l’algorithmie et l'optimisation sont les sujets qui me passionnent le plus dans mon métier.}
+\en{Curious, ready to push changes, autonomous and volunteer, I am someone who love learning and know how to invest myself (especially in mastering my tools). High performance back-ends developpment, algorithms and optimisation are the subjects that captivates me the most in my work.}
 
 \vspace{\fill}
 
 \section{\fr{Compétences}\en{Competences}}
 
-\cvitem{\fr{Langages}\en{Languages}}{\xx{\cpp} (\fr{mon langage de prédilection}\en{my favorite language}), shell, \xx{C}, scala, \xx{ruby}, ada, asm, vhdl}
-\cvitem{\fr{Outils}\en{Utils}}{\xx{git}, gcc, clang, Doxygen} 
+\cvitem{\fr{Langages}\en{Languages}}{\xx{Rust}, \xx{\cpp}, shell, \xx{C}, \xx{python}, scala, {ruby, ada, asm, vhdl}}
+\cvitem{\fr{Outils}\en{Utils}}{\xx{git}, gcc, clang, valgrind, perf, Doxygen} 
 %\cvitem{Embedded}{\pic, \stm, arduino, rasberry pi}
 \cvitem{\fr{Conception}\en{Methods}}{Design patterns, \uml{}} 
 \cvitem{\fr{Autre}\en{Other}}{\xx{Linux}, Latex, Markdown, \ldots}
@@ -159,21 +151,20 @@
 
 \section{\fr{Expérience professionnelle}\en{Professional experience}}
 
-\cvwork{2016--2018}{}{\fr{Astek (chez le client Amadeus)}\en{Astek for Amadeus client (on-site)}}{Sophia Antipolis}{2 \fr{ans}\en{years}}{\fr{développeur logiciel back-end}\en{back-end software developer} (\cpp, scala, shell)}
+\cvwork{2019--2020}{Rust, python}{\fr{Astek (chez le client Naverlab)}\en{Astek for the Naverlab client (on-site)}}{Grenoble}{1 \fr{ans}\en{years}}{\fr{développeur logiciel back-end, specialisé dans l’optimisation}\en{back-end software developer, specialized in optimisations}}{\fr{Optimizations et améliorations de la génération de tours destiné à la course à pied. Réécriture pleinement réussie du projet Rust.}\en{Optimizations and improvements of the generation of tours intended to be run. Successful rewrite of the project in Rust}}
+
+\cvwork{2016--2019}{\cpp, scala, shell}{\fr{Astek (chez le client Amadeus)}\en{Astek for Amadeus client (on-site)}}{Sophia Antipolis}{3 \fr{ans}\en{years}}{\fr{développeur logiciel back-end}\en{back-end software developer}}{\fr{Participation à de nombreux projets relatif à PIO (\textit{Pricing Integration and Orchestration}). Mise en place et animation de séance hebdomadaire de partage de connaissances.}\en{Participation in various projecs of PIO (Pricing Integration and Orchestration). Set-up and animation of weekly sessions of knowledge sharing.}}
+\cvwork{2016}{\cpp, \textsc{SML}}{MathWorks (\fr{logiciel Polyspace}\en{on Polyspace software})}{Montbonnot}{6 \fr{mois}\en{month}}{\fr{Analyse d'alias et séparation de contextes}\en{Alias analysis and context splitting}}{\fr{Stage de fin d’étude -- Amélioration de la vitesse et de la qualitée de l’analyse statique de base de code C utilisant des pointeurs de fonctions.}\en{End of study internship -- Amelioration of the static analysis speed and precision of C codebase using function pointers.}}
+% \cvwork{2015}{}{Start Me Up}{Meylan}{3 \fr{mois}\en{month}}{\fr{Streaming video (\cpp)}\en{Video streaming (\cpp)}}{}
+% \cvwork{2014}{}{Kalray}{Montbonnot}{3 \fr{mois}\en{month}}{\fr{Description d'architecture processeur many-core}\en{Description of many-core processor architecture} (ruby)}{}
+% \cvwork{2013}{C, Labview}{Max Technologies}{Brossard, \textbf{Canada}}{3 \fr{mois}\en{month}}{\fr{\textbf{Portage de code} du langage C vers le langage \labview}\en{Code re-writing from C to \labview}}{}
 
 \section{Formation}
 
-\cvformation{2013--2016}{Grenoble INP}{Grenoble}{Phelma \fr{puis}\en{then} Ensimag}{}{\fr{Spécialité en Systemes et Logiciels Embarqués}\en{Specialization in system and embedded software}}
-\cvformation{2011--2013}{DUT GEII}{Grenoble}{IUT 1}{}{\fr{Génie électronique et informatique industrielle}\en{Electronic engineering and industrial data processing}}
+\cvformation{2013--2016}{Grenoble \textsc{INP}}{Grenoble}{Phelma \fr{puis}\en{then} Ensimag}{BAC +5}{\fr{Spécialité en Systemes et Logiciels Embarqués}\en{Specialization in system and embedded software}}
+\cvformation{2011--2013}{\textsc{DUT GEII}}{Grenoble}{IUT 1}{BAC +2}{\fr{Génie électronique et informatique industrielle}\en{Electronic engineering and industrial data processing}}
 %\cvformation{2010--2011}{Prépa intégré}{Valence}{Esisar}{}{\fr{Électronique, informatique, système embarqué et réseaux}\en{Electronics, computer science, embedded system and network}}
 \cvformation{2010}{Baccalauréat S}{Gap}{Lycée Dominique Villars (\fr{Mention bien}\en{with honors})}{}{}
-
-\section{\fr{Stages}\en{Internships}}
-
-\cvstage{2016}{}{MathWorks (\fr{logiciel Polyspace}\en{on Polyspace software})}{Montbonnot}{6 \fr{mois}\en{month}}{\fr{Analyse d'alias \& séparation de contextes (\cpp et SML)}\en{Alias analysis and context splitting (\cpp and SML)}}
-% \cvstage{2015}{}{Start Me Up}{Meylan}{3 \fr{mois}\en{month}}{\fr{Streaming video (\cpp)}\en{Video streaming (\cpp)}}
-% \cvstage{2014}{}{Kalray}{Montbonnot}{3 \fr{mois}\en{month}}{\fr{Description d'architecture processeur many-core}\en{Description of many-core processor architecture} (ruby)}
-\cvstage{2013}{}{Max Technologies}{Brossard, \textbf{Canada}}{3 \fr{mois}\en{month}}{\fr{\textbf{Portage de code} du langage C vers le langage \labview}\en{Code re-writing from C to \labview}}
 
 \section{\fr{Expériences personnelles}\en{Personal experiences}}
 
