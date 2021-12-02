@@ -32,10 +32,12 @@
   \cvitem[#1]{#2}{%
     {\textbf{#7}}%
     \ifx&#6&%
-      \else{\hfill\small#6}\fi
+      \else{\hfill#6}\fi%
     \newline%
-    \footnotesize\footnotesize\textit{#4}%
-    \ifthenelse{\equal{#5}{}}{}{, #5}%
+    {%
+        \footnotesize\textit{#4}%
+        \ifthenelse{\equal{#5}{}}{}{, \footnotesize#5}%
+    }%
     \ifthenelse{\equal{#3}{}}{}{\hspace*{\fill}\textbf{#3}}%
     \ifthenelse{\equal{#4}{}}{}{\newline #8}%
   }
@@ -101,7 +103,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\xx}[1]{\textbf{\large#1}}
+\newcommand{\xx}[1]{\textbf{#1}}
 
 \ifdefined\isenglish
   \newcommand{\fr}[1]{}
@@ -115,8 +117,8 @@
 
 \firstname{Robin}
 \familyname{Moussu}
-\title{\fr{Développeur back-end\\spécialisé en optimisation}\en{Back-end developper\\specialization in optimization}}
-\address{20 rue Félix Esclangon}{38000 Grenoble}
+\title{\fr{Développeur back-end\\spécialisé en optimisation}\en{Back-end developer\\specialization in optimization}}
+\address{17 rue Olympe de Gouges}{38400 Saint Martin d'Heres}
 \phone[mobile]{06 95 07 44 23}
 \email{moussu.robin@pm.me}
 \extrainfo{
@@ -132,18 +134,19 @@
 
 \vspace{\fill}
 
-\hspace{1.5cm} \fr{Curieux, force de proposition, autonome et volontaire, je suis quelqu'un qui aime apprendre et sait s'investir (notamment dans la maîtrise des outils utilisés). Le développement de back-end haute performances, l’algorithmie et l'optimisation sont les sujets qui me passionnent le plus dans mon métier.}
-\en{Curious, ready to push changes, autonomous and volunteer, I am someone who love learning and know how to invest myself (especially in mastering my tools). High performance back-ends developpment, algorithms and optimisation are the subjects that captivates me the most in my work.}
+\hspace{1.5cm} \fr{Curieux, force de proposition, autonome et volontaire, je suis quelqu'un qui aime apprendre et sait s'investir (notamment dans la maîtrise des outils utilisés). Le développement de back-end haute performance, l’algorithmie et l'optimisation sont les sujets qui me passionnent le plus dans mon métier. Depuis un peu plus de deux ans je me suis découvert une passion pour Rust que j'ai eu la chance de pouvoir utiliser professionnellement. C'est une expérience que j'aimerai renouveler.}
+\en{Curious, ready to push changes, autonomous and volunteer, I am someone who love learning and know how to invest myself (especially in mastering my tools). High performance back-ends development, algorithms and optimizations are subjects that I love the most in my work. Since a bit more than two years, I discovered myself a passion for Rust and I had the chance to use it professionally. It's a technology that I'd like to use again in the future.}
 
 \vspace{\fill}
 
 \section{\fr{Compétences}\en{Competences}}
 
-\cvitem{\fr{Langages}\en{Languages}}{\xx{Rust}, \xx{\cpp}, shell, \xx{C}, \xx{python}, scala, {ruby, ada, asm, vhdl}}
-\cvitem{\fr{Outils}\en{Utils}}{\xx{git}, gcc, clang, valgrind, perf, Doxygen} 
+\cvitem{\fr{Langages}\en{Languages}}{\xx{Rust, \cpp}, shell, C, \textit{\small \fr{et dans une certaine mesure~:}\en{exposure to} python, scala, SML, asm}}
+\cvitem{\fr{Outils}\en{Utils}}{\xx{git}, Linux, \textit{\small \fr{et dans une certaine mesure~:}\en{exposure to} gcc, clang, valgrind, perf, Doxygen}}
+\cvitem{\fr{Méthodologies}\en{Metodology}}{OOP, \fr{programmation fonctionnelle}\en{functional programming}}
 %\cvitem{Embedded}{\pic, \stm, arduino, rasberry pi}
-\cvitem{\fr{Conception}\en{Methods}}{Design patterns, \uml{}} 
-\cvitem{\fr{Autre}\en{Other}}{\xx{Linux}, Latex, Markdown, \ldots}
+%\cvitem{\fr{Conception}\en{Methods}}{Design patterns, \uml{}} 
+%\cvitem{\fr{Autre}\en{Other}}{\xx{Linux}, Latex, Markdown, \ldots}
 
 \vspace{1em}
 
@@ -151,31 +154,40 @@
 
 \section{\fr{Expérience professionnelle}\en{Professional experience}}
 
-\cvwork{2019--2020}
-    {Rust, python}
-    {\fr{Astek (chez le client Naverlab)}\en{Astek for the Naverlab client (on-site)}}
+\cvwork
+    {2021--present}
+    {\cpp, html, css, js}
+    {Silvaco (\fr{full remote, puis partiellement en présentiel}\en{full remote, then partially on site})}
     {Grenoble}
     {1 \fr{ans}\en{years}}
-    {\fr{développeur logiciel back-end, specialisé dans l’optimisation}\en{back-end software developer, specialized in optimisations}}
-    {\fr{Optimizations et améliorations de la génération de tours destiné à la course à pied. Réécriture pleinement réussie du projet Rust.}\en{Optimizations and improvements of the generation of tours intended to be run. Successful rewrite of the project in Rust}}
+    {\fr{Développeur back-end, travaux exploratoires et UX}\en{Back-end software developer, exploration and UX}}
+    {\fr{Prototypage d'un langage spécialisé pour l'extraction d'information de netlists.}\en{Prototyping of a query language specialized in data extraction from netlists.}\newline\fr{Amélioration de la visualisation des résultats des analyses.}\en{Improvements in the visualization of analysis.}\newline\fr{Aide à la migration de mon équipe sous git (formation et support individualisé).}\en{I helped my team migrate to git (formation and individual training).}}
+\cvwork
+    {2019--2020}
+    {Rust, python}
+    {Astek (\fr{chez le client Naver, en présentiel puis full-remote}\en{for the client Naver, on-site, then full remote})}
+    {Grenoble}
+    {1 \fr{ans}\en{years}}
+    {\fr{Développeur back-end, specialisé dans l’optimisation}\en{Back-end software developer, specialized in optimizations}}
+    {\fr{Optimisations et améliorations de la génération de tours destiné à la course à pied. Réécriture pleinement réussie du projet en Rust.}\en{Optimizations and improvements of the generation of tours intended to be run. Successful rewrite of the project in Rust}}
 
 \cvwork
     {2016--2019}
     {\cpp, scala, shell}
-    {\fr{Astek (chez le client Amadeus)}\en{Astek for Amadeus client (on-site)}}
-    {Sophia Antipolis}
+    {Astek (\fr{chez le client Amadeus, en présentiel}\en{for the client Amadeus, on-site})}
+    {Nice}
     {3 \fr{ans}\en{years}}
-    {\fr{développeur logiciel back-end}\en{back-end software developer}}
-    {\fr{Participation à de nombreux projets relatif à PIO (\textit{Pricing Integration and Orchestration}). Mise en place et animation de séance hebdomadaire de partage de connaissances.}\en{Participation in various projecs of PIO (Pricing Integration and Orchestration). Set-up and animation of weekly sessions of knowledge sharing.}}
+    {\fr{Développeur back-end}\en{Back-end software developer}}
+    {\fr{Participation à de nombreux projets relatif à PIO (\textit{Pricing Integration and Orchestration}). Mise en place et animation de séance hebdomadaire de partage de connaissances.}\en{Participation in various projects of PIO (Pricing Integration and Orchestration). Set-up and animation of weekly sessions of knowledge sharing.}}
 
 \cvwork
     {2016}
     {\cpp, \textsc{SML}}
     {MathWorks (\fr{logiciel Polyspace}\en{on Polyspace software})}
-    {Montbonnot}
+    {Grenoble}
     {6 \fr{mois}\en{month}}
-    {\fr{Analyse d'alias et séparation de contextes}\en{Alias analysis and context splitting}}
-    {\fr{Stage de fin d’étude -- Amélioration de la vitesse et de la qualitée de l’analyse statique de base de code C utilisant des pointeurs de fonctions.}\en{End of study internship -- Amelioration of the static analysis speed and precision of C codebase using function pointers.}}
+    {\fr{Stage de fin d’étude}\en{End of study internship}}
+    {\fr{Analyse d'alias et séparation de contextes~: amélioration de la vitesse et de la qualité de l’analyse statique de base de code C.}\en{Alias analysis and context splitting: amelioration of the static analysis speed and precision of C codebase using function pointers.}}
 
 % \cvwork{2015}{}{Start Me Up}{Meylan}{3 \fr{mois}\en{month}}{\fr{Streaming video (\cpp)}\en{Video streaming (\cpp)}}{}
 % \cvwork{2014}{}{Kalray}{Montbonnot}{3 \fr{mois}\en{month}}{\fr{Description d'architecture processeur many-core}\en{Description of many-core processor architecture} (ruby)}{}
@@ -188,7 +200,7 @@
 %\cvformation{2010--2011}{Prépa intégré}{Valence}{Esisar}{}{\fr{Électronique, informatique, système embarqué et réseaux}\en{Electronics, computer science, embedded system and network}}
 \cvformation{2010}{Baccalauréat S}{Gap}{Lycée Dominique Villars (\fr{Mention bien}\en{with honors})}{}{}
 
-\section{\fr{Expériences personnelles}\en{Personal experiences}}
+% \section{\fr{Expériences personnelles}\en{Personal experiences}}
 
 % \cvcomp{2015}{\fr{Contribution à Firefox}\en{Contribution to Firefox}}{\fr{projet scolaire}\en{scholar project}}{}{\fr{par groupe de 5}\en{by group of 5 students}}{\fr{1 mois}\en{1 month}} %{Correction de bugs et amélioration de la partie audio et graphique de Firefox}
 % \cvcomp{2015}{\fr{Conception d'un compilateur}\en{Conception of a compiler}}{\fr{projet scolaire}\en{scholar project}}{}{\fr{par groupe de 5}\en{by group of 5 students}}{\fr{1 mois}\en{1 month}} %{Implémentation en java d'un compilateur et de sa librairie mathématique pour le Déca, un langage proche du java}
@@ -197,17 +209,17 @@
 % \vspace{1em}
 
 %\cvitemwithcomment{Projet}{Conception d'un clavier ergonomique}{réalisation matérielle et logicielle}
-\cvitem{\fr{Robotique}\en{Robotics}}{
-  {
-  \textbf{\fr{Coupe de France de Robotique}\en{French cup of Robotics}:}
-    Phelma (2015 \fr{et}\en{and} 2014), %2015: 103, 2014:91
-    Esisar (2011)
-  }
-  \break
-  {
-  \textbf{\fr{Coupe inter-IUT}\en{inter-IUT cup}}, Vierzon, 2012, IUT GEII \fr{de}\en{of} Grenoble, \fr{demi-finale}\en{semi-final}
-  }
-}
+% \cvitem{\fr{Robotique}\en{Robotics}}{
+%   {
+%   \textbf{\fr{Coupe de France de Robotique}\en{French cup of Robotics}:}
+%     Phelma (2015 \fr{et}\en{and} 2014), %2015: 103, 2014:91
+%     Esisar (2011)
+%   }
+%   \break
+%   {
+%   \textbf{\fr{Coupe inter-IUT}\en{inter-IUT cup}}, Vierzon, 2012, IUT GEII \fr{de}\en{of} Grenoble, \fr{demi-finale}\en{semi-final}
+%   }
+% }
 %\cvitemwithcomment{Loisirs}{Jeu de société, vélo, escalade}{}
 
 \vspace{\fill}
